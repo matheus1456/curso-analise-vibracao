@@ -1,0 +1,311 @@
+/* =========================================================
+   Análise de Vibração — Curso Interativo
+   assets/css/practice.css — Página de Prática de Diagnóstico
+   (inspirada na interatividade de plataformas tipo freeCodeCamp)
+   ========================================================= */
+
+/* ---- link fixo na sidebar ---- */
+.modlink.practice-link {
+  background: rgba(111,216,138,0.12);
+  border: 1px dashed rgba(111,216,138,0.4);
+  font-weight: 700;
+}
+.modlink.practice-link:hover { background: rgba(111,216,138,0.2); }
+.modlink.practice-link .badge { background: rgba(111,216,138,0.25); }
+.modlink.practice-link.active { background: #ffffff; }
+.practice-mini-count {
+  margin-left: auto; font-size: 11px; background: var(--green); color: #fff;
+  padding: 1px 7px; border-radius: 10px; font-weight: 700;
+}
+li.sidebar-sep { height: 1px; background: rgba(255,255,255,0.12); margin: 8px 14px 6px 14px; list-style:none; }
+
+/* ---- cover page: dois botões ---- */
+.cover-btn-row { display:flex; gap: 12px; flex-wrap: wrap; margin: 10px 0 30px 0; }
+#cover .start-btn.secondary {
+  background: var(--card); color: var(--blue); border: 2px solid var(--blue);
+}
+#cover .start-btn.secondary:hover { background: var(--soft-blue); }
+
+/* ---- header da página de prática ---- */
+.practice-header-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.practice-header-actions { display:flex; align-items:center; gap: 10px; flex-wrap:wrap; }
+.practice-progress {
+  background: var(--soft-blue); color: var(--blue); font-size: 12.5px; font-weight: 700;
+  padding: 5px 12px; border-radius: 20px;
+}
+
+/* ---- alternância entre "Casos com Espectro" e "Análise de Falhas - Rolamentos" ---- */
+.practice-view-tabs { display:flex; gap: 8px; margin: 14px 0 4px 0; flex-wrap: wrap; }
+.practice-view-tab {
+  background: var(--card); border: 1.5px solid var(--border); color: var(--text);
+  padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.practice-view-tab:hover { background: var(--soft-blue); }
+.practice-view-tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+/* ---- Análise de Falhas - Rolamentos (fotos reais) ---- */
+.bf-photo-panel {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  margin-bottom: 18px; text-align: center;
+}
+.bf-photo {
+  max-width: 100%; width: auto; max-height: 420px; border-radius: 10px; border: 1px solid var(--border);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12); margin: 0 auto; display: block;
+}
+
+/* ---- chips de casos (estilo trilha de desafios) ---- */
+.case-chip-row { display:flex; flex-wrap:wrap; align-items:center; gap: 8px; }
+.chip-level-label {
+  width:100%; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); font-weight: 700; margin: 10px 0 -2px 0;
+}
+.chip-level-label:first-child { margin-top: 0; }
+.case-chip {
+  display:flex; align-items:center; gap: 6px; padding: 7px 12px; border-radius: 20px;
+  border: 1px solid var(--border); background: var(--card); cursor:pointer; font-size: 12.8px;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.case-chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(31,95,168,0.15); }
+.case-chip.active { border-color: var(--blue); background: var(--soft-blue); font-weight:700; }
+.case-chip.done { border-color: var(--green); }
+.case-chip .chip-num {
+  width:20px; height:20px; border-radius:50%; background: var(--btn-strong); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size: 10.5px; font-weight:700;
+}
+.case-chip.done .chip-num { background: var(--green); }
+.chip-lvl { font-size: 10.5px; text-transform: uppercase; letter-spacing:.03em; color: var(--muted); }
+.chip-lvl.lvl-básico { color: #2a9d3e; }
+.chip-lvl.lvl-intermediário { color: #c98a12; }
+.chip-lvl.lvl-avançado { color: #b5462a; }
+.chip-check { color: var(--green); font-weight:700; }
+
+/* ---- layout do caso: briefing + espectro ---- */
+.practice-topbar { display:flex; justify-content:flex-end; align-items:center; gap: 10px; flex-wrap:wrap; margin: 22px 0 6px 0; }
+.case-done-badge {
+  background: var(--soft-green); color: var(--green); font-size: 12.5px; font-weight:700;
+  padding: 5px 12px; border-radius: 20px;
+}
+.module-link-badge {
+  background: var(--soft-blue); color: var(--blue); border: 1px solid var(--blue);
+  font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; cursor: pointer;
+  transition: background .15s ease, color .15s ease; margin-right: auto;
+}
+.module-link-badge:hover { background: var(--blue); color: #fff; }
+.briefing-panel, .diagnosis-panel {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  margin-bottom: 18px;
+}
+.briefing-panel h3, .diagnosis-panel h3 { margin-top:0; color: var(--heading); font-size: 15.5px; }
+.briefing-panel .hint {
+  font-size: 12.5px; color: var(--muted); font-style: italic; margin: 12px 0 0 0;
+  border-top: 1px dashed var(--border); padding-top: 10px;
+}
+
+/* ---- painel único de "dados de campo" na Prática de Diagnóstico ----
+   Antes eram 3 cartões separados (dados de campo, espectro, tendência); agora
+   ficam juntos com divisores internos, para reduzir a fragmentação visual. */
+.case-data-panel {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  margin-bottom: 18px;
+}
+.case-data-section { padding: 2px 0; }
+.case-data-section h3, .case-data-section h4 { margin-top:0; color: var(--heading); }
+.case-data-section h3 { font-size: 15.5px; }
+.case-data-section h4 { font-size: 14px; }
+.case-data-section .hint {
+  font-size: 12.5px; color: var(--muted); font-style: italic; margin: 12px 0 0 0;
+  border-top: 1px dashed var(--border); padding-top: 10px;
+}
+.panel-divider { border: none; border-top: 1px dashed var(--border); margin: 18px 0; }
+.case-spectrum-block { display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; }
+
+/* ---- espectro em tamanho grande, ocupando a largura toda ---- */
+.spectrum-panel-large { display:block; }
+.spectrum-panel-large .hint {
+  font-size: 12.5px; color: var(--muted); font-style: italic; margin: 12px 0 0 0;
+  border-top: 1px dashed var(--border); padding-top: 10px;
+}
+.svg-click-readout {
+  margin-top: 10px; padding: 10px 14px; border-radius: 8px; font-size: 13px;
+  background: rgba(255,107,107,0.1); border-left: 3px solid #ff6b6b; color: var(--text);
+}
+.marker-kbd-hint { color: var(--muted); font-size: 11.5px; font-style: italic; margin-left: 4px; }
+.hover-capture:focus { outline: 2px solid #ff6b6b; outline-offset: 2px; }
+
+/* ---- painel de leitura do coletor (temperatura/vel/aceleração/envelope) ---- */
+.readings-panel {
+  margin-top: 14px; padding: 12px 14px; border-radius: 10px; background: var(--soft-blue);
+  border: 1px solid var(--border);
+}
+.readings-title { font-size: 12px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.readings-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 8px 14px; }
+.reading-cell { display:flex; flex-direction:column; gap: 2px; }
+.reading-label { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.reading-value { font-size: 14.5px; font-weight: 700; color: var(--text); font-family: "SFMono-Regular", Consolas, monospace; }
+/* Leituras de relatório de análise de óleo (seção Engenheiro de Lubrificação):
+   rótulos e valores mais longos e "em prosa" (ex.: "Média 15 ppm ± desvio 8 ppm...")
+   do que os 4 campos fixos de vibração — usa 1 coluna e permite quebra de linha. */
+.oil-readings-grid { grid-template-columns: 1fr; gap: 10px; }
+.oil-readings-grid .reading-value { font-size: 13.5px; font-weight: 600; white-space: normal; line-height: 1.4; }
+@media (min-width: 720px) {
+  .oil-readings-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- laudo de análise de óleo (estrutura inspirada em relatórios reais de
+   laboratórios como LUBRIN/PURILUB — não reproduz layout/marca proprietários,
+   apenas a organização típica: cabeçalho, físico-química, metais de desgaste,
+   aditivos, contagem de partículas e parecer técnico) ---- */
+.laudo-report {
+  margin-top: 14px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--card); overflow: hidden;
+}
+.laudo-header {
+  background: var(--soft-blue); padding: 14px 18px; border-bottom: 2px solid var(--blue);
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+}
+.laudo-lab-name { font-size: 15px; font-weight: 800; color: var(--heading); letter-spacing:.02em; }
+.laudo-lab-sub { font-size: 10.2px; color: var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.laudo-sample-grid {
+  display:grid; grid-template-columns: repeat(2, 1fr); gap: 7px 18px; padding: 14px 18px;
+  border-bottom: 1px dashed var(--border); font-size: 12.5px;
+}
+@media (min-width: 720px) { .laudo-sample-grid { grid-template-columns: repeat(3, 1fr); } }
+.laudo-sample-grid .lf span.k {
+  color: var(--muted); text-transform:uppercase; font-size: 9.8px; letter-spacing:.03em; display:block;
+}
+.laudo-sample-grid .lf span.v { font-weight: 700; color: var(--text); }
+.laudo-section { padding: 14px 18px; border-bottom: 1px dashed var(--border); }
+.laudo-section:last-child { border-bottom: none; }
+.laudo-section h4 {
+  margin: 0 0 10px 0; font-size: 12.5px; color: var(--heading); text-transform:uppercase; letter-spacing:.03em;
+}
+table.laudo-table { width:100%; border-collapse: collapse; font-size: 12.6px; }
+table.laudo-table th {
+  text-align:left; padding: 6px 8px; color: var(--muted); font-size: 10.2px;
+  text-transform:uppercase; letter-spacing:.03em; border-bottom: 1px solid var(--border);
+}
+table.laudo-table td { padding: 7px 8px; border-bottom: 1px solid var(--border); }
+table.laudo-table tr:last-child td { border-bottom: none; }
+.laudo-status {
+  display:inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10.6px; font-weight:700; white-space:nowrap;
+}
+.laudo-status.ok { background: var(--soft-green); color: var(--green); }
+.laudo-status.warn { background: rgba(209,160,42,0.15); color: #c98a12; }
+.laudo-status.crit { background: rgba(181,70,42,0.14); color: var(--orange); }
+.laudo-opinion {
+  background: var(--soft-blue); border-left: 3px solid var(--blue); padding: 12px 14px;
+  border-radius: 0 8px 8px 0; font-size: 13px; line-height:1.55;
+}
+.laudo-opinion b { color: var(--heading); }
+@media (max-width: 640px) {
+  table.laudo-table, table.laudo-table thead, table.laudo-table tbody, table.laudo-table tr, table.laudo-table td { font-size: 12px; }
+  .laudo-sample-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---- gráfico dinâmico (SVG) ---- */
+.spectrum-panel { display:flex; align-items:center; justify-content:center; }
+/* .spectrum-panel-large (prática de diagnóstico) precisa vencer a regra acima:
+   sem isso, o layout em linha (flex row) espremia o gráfico horizontalmente
+   e jogava a legenda de orientação ao lado dele em vez de abaixo. */
+.spectrum-panel.spectrum-panel-large {
+  display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start;
+}
+#spectrum-container { position: relative; width: 100%; max-width: 100%; }
+svg.spectrum-svg { width: 100%; height: auto; max-height: 460px; display:block; border-radius: 10px; }
+.svg-tooltip {
+  position: absolute; background: rgba(15,20,30,0.92); color:#fff; font-size: 12px;
+  padding: 6px 10px; border-radius: 6px; pointer-events:none; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+/* ---- painel de tendência histórica ---- */
+.trend-panel {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  margin: 0 0 22px 0;
+}
+.trend-panel h3 { margin-top:0; color: var(--heading); font-size: 15.5px; }
+.trend-panel .hint {
+  font-size: 12.5px; color: var(--muted); font-style: italic; margin: 10px 0 0 0;
+}
+svg.trend-svg { width: 100%; height: auto; display:block; border-radius: 10px; }
+.trend-dot { cursor: pointer; }
+
+/* ---- painel de diagnóstico (estilo "editor" freeCodeCamp) ---- */
+.check-options.diag-options { margin-bottom: 6px; }
+.check-options { display:flex; flex-direction:column; gap: 8px; margin: 8px 0 4px 0; }
+.radio-pill {
+  display:flex; align-items:center; gap: 9px; padding: 10px 14px; border-radius: 9px;
+  border: 1px solid var(--border); font-size: 14px; cursor:pointer; transition: background .15s ease, border-color .15s ease;
+}
+.radio-pill:hover { background: var(--soft-blue); border-color: var(--blue); }
+.radio-pill input { accent-color: var(--blue); width: 16px; height:16px; }
+
+.check-block { margin: 18px 0; }
+.check-label { font-size: 13.5px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.numeric-input {
+  width: 100%; max-width: 260px; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border);
+  font-size: 14px; font-family: "SFMono-Regular", Consolas, monospace;
+}
+.numeric-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(31,95,168,0.15); }
+
+.verify-btn {
+  background: var(--btn-strong); color:#fff; border:none; padding: 12px 22px; border-radius: 9px;
+  font-size: 14.5px; font-weight: 700; cursor:pointer; margin-top: 10px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.verify-btn:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(20,61,110,0.3); }
+
+.diag-actions { display:flex; align-items:center; gap: 10px; flex-wrap:wrap; }
+.diag-actions .verify-btn { margin-top: 10px; }
+.hint-btn {
+  background: var(--card); color: var(--orange); border: 1.5px dashed var(--orange); padding: 11px 18px;
+  border-radius: 9px; font-size: 13.5px; font-weight: 700; cursor:pointer; margin-top: 10px;
+  transition: background .15s ease;
+}
+.hint-btn:hover { background: rgba(181,70,42,0.1); }
+.hint-box {
+  margin-top: 10px; padding: 12px 16px; border-radius: 9px; font-size: 13.5px; font-style: italic;
+  background: rgba(181,70,42,0.08); border-left: 3px solid var(--orange); color: var(--text);
+}
+
+/* ---- painel de feedback (estilo "test suite" / console) ---- */
+#feedback-panel { margin-top: 18px; }
+.feedback-banner {
+  padding: 12px 16px; border-radius: 9px; font-weight: 700; font-size: 14px; margin-bottom: 12px;
+}
+.feedback-banner.pass { background: var(--soft-green); color: var(--green); border: 1px solid var(--green); }
+.feedback-banner.fail { background: rgba(181,70,42,0.12); color: var(--orange); border: 1px solid var(--orange); }
+
+ul.checklist { list-style:none; margin: 0 0 14px 0; padding: 0; background:#0f2b4c; border-radius: 10px; overflow:hidden; }
+ul.checklist li {
+  padding: 10px 16px; font-size: 13.5px; color: #dce6f2; font-family: Consolas, "SFMono-Regular", monospace;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+ul.checklist li:last-child { border-bottom:none; }
+ul.checklist li.ok { color: #8fe6a4; }
+ul.checklist li.no { color: #f2a58b; }
+
+.explanation-box, .action-box {
+  padding: 12px 16px; border-radius: 9px; font-size: 13.8px; margin-bottom: 10px; color: var(--text);
+}
+.explanation-box { background: var(--quote-bg); border-left: 3px solid var(--blue); }
+.action-box { background: var(--soft-green); border-left: 3px solid var(--green); }
+
+/* ---- mini-guia: o que fazer em cada hipótese de diagnóstico ---- */
+.solution-guide { margin-top: 16px; }
+.solution-guide h4 { font-size: 14px; color: var(--heading); margin: 0 0 10px 0; }
+.solution-guide-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap: 8px; }
+.solution-guide-item {
+  border: 1px solid var(--border); border-radius: 9px; padding: 10px 14px; background: var(--card);
+}
+.solution-guide-item.is-correct { border-color: var(--green); background: var(--soft-green); }
+.solution-guide-item.is-chosen-wrong { border-color: var(--orange); background: rgba(181,70,42,0.08); }
+.sg-hypothesis { font-size: 13.5px; font-weight: 700; color: var(--text); display:flex; align-items:center; gap: 8px; flex-wrap:wrap; }
+.sg-tag {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+  padding: 2px 8px; border-radius: 10px;
+}
+.sg-tag-correct { background: var(--green); color: #fff; }
+.sg-tag-chosen { background: var(--orange); color: #fff; }
+.sg-solution { font-size: 13px; color: var(--muted); margin-top: 4px; }

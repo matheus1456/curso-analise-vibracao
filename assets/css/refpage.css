@@ -1,0 +1,44 @@
+/* =========================================================
+   Análise de Vibração — Curso Interativo
+   assets/css/refpage.css — página "Consulta Rápida" + regras de impressão/PDF
+   ========================================================= */
+
+.modlink.ref-link {
+  background: rgba(255,209,102,0.14);
+  border: 1px dashed rgba(181,140,20,0.4);
+  font-weight: 700;
+}
+.modlink.ref-link:hover { background: rgba(255,209,102,0.24); }
+.modlink.ref-link .badge { background: rgba(181,140,20,0.25); }
+
+#ref-page { max-width: 100%; }
+.ref-header {
+  display:flex; align-items:flex-start; justify-content:space-between; gap: 16px; flex-wrap:wrap;
+  margin-bottom: 26px;
+}
+.ref-pdf-btn { margin-top: 0; white-space: nowrap; }
+
+.ref-section { margin: 0 0 30px 0; }
+.ref-section h2 { color: var(--heading); font-size: 17px; margin-bottom: 6px; }
+.ref-intro { color: var(--muted); font-size: 13.5px; margin: 0 0 12px 0; }
+.ref-note { color: var(--muted); font-size: 12px; font-style: italic; margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 8px; }
+
+.ref-table th { font-size: 12.5px; }
+.ref-table td { font-size: 12.8px; }
+
+.ref-print-title { display:none; }
+
+/* ---- impressão / geração de PDF (via Ctrl+P > Salvar como PDF) ---- */
+@media print {
+  #sidebar, #sidebar-toggle, #theme-toggle, #sidebar-overlay, .no-print { display:none !important; }
+  #main { padding: 0 !important; }
+  #app { display:block !important; }
+  body, #vib-line { background:#fff !important; }
+  .ref-print-title { display:block !important; margin-bottom: 24px; }
+  .ref-print-title h1 { font-size: 20px; margin:0 0 4px 0; }
+  .ref-print-title p { margin:0; color:#555; font-size: 12px; }
+  .ref-section { page-break-inside: avoid; margin-bottom: 22px; }
+  .ref-table th { background:#1f5fa8 !important; color:#fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ref-table tr:nth-child(even) td { background:#f0f4f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a[href]:after { content: ""; }
+}
