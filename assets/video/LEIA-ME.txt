@@ -1,0 +1,69 @@
+Vídeo-aulas — status atual (gerado via NotebookLM, direto pelo navegador)
+==========================================================================
+
+MUDANÇA DE ABORDAGEM: a tentativa anterior usava o HeyGen HyperFrames via
+MCP, mas o ambiente do assistente não tinha acesso de rede ao CDN de
+arquivos do HeyGen, impedindo o download automático (documentado na
+versão anterior deste arquivo). Nesta rodada, a geração passou a ser
+feita pelo NotebookLM (notebooklm.google.com), controlado via o navegador
+real do usuário (extensão Claude em Chrome) — isso contorna o bloqueio de
+rede porque o download acontece no computador do próprio usuário, não no
+sandbox do assistente.
+
+Prontos e já vinculados no site (data/video_manifest.json):
+- Módulo 0 — assets/video/m0.mp4 ("Fundamentos de Vibração", 5:35)
+- Módulo 1 — assets/video/m1.mp4 ("Analista de Vibração", 8:04)
+- Módulo 2 — assets/video/m2.mp4 ("Fundamentos da Vibração", 8:56)
+- Módulo 3 — assets/video/m3.mp4 ("Sensores e Instrumentação", 7:12)
+- Módulo 4 — assets/video/m4.mp4 ("ISO 10816: Critérios", 8:21)
+- Módulo 5 — assets/video/m5.mp4 ("Análise Espectral", 8:38)
+
+Pendentes (Módulos 6 a 21): o NotebookLM tem um limite diário de geração
+de "Resumo em Vídeo" (3 vídeos/dia). Nesta execução os 3 vídeos do dia
+foram usados nos Módulos 3, 4 e 5, sem atingir o limite (nenhuma mensagem
+de "limite diário atingido" apareceu). A cota renova em ~24h. Na próxima
+execução, o mesmo processo pode continuar a partir do Módulo 6.
+
+Como o processo funciona (para retomar manualmente ou pedir ao assistente):
+1. Abrir notebooklm.google.com (conta Google do usuário, já autenticada).
+2. Criar um notebook novo por módulo, nomeado "Vibração - Módulo N - <título>".
+3. Adicionar como fonte o texto do módulo (opção "Texto copiado"), extraído
+   de data/content.js (título + corpo + resumo do módulo).
+4. No painel Estúdio, clicar em "Resumo em Vídeo" → Personalizar:
+   - Idioma: português (Brasil) — no dropdown "Selecione o idioma", que
+     abre em "English"; a opção fica poucas posições abaixo de "polski"
+     (role a lista até ver "português (Brasil)").
+   - Formato: Vídeo explicativo
+   - Estilo visual: Seleção automática
+   - Foco: "Explique este módulo de forma didática, como uma aula técnica
+     para engenheiros de manutenção e confiabilidade, cobrindo os
+     conceitos e exemplos numéricos apresentados na fonte."
+   - Clicar em "Gerar" (leva de 10 a 25 minutos).
+5. Quando pronto, no item gerado (menu "⋮" → "Baixar") — isso baixa o
+   .mp4 direto para a pasta Downloads do usuário.
+6. Copiar o arquivo baixado para assets/video/mN.mp4 (renomeando).
+7. Adicionar a entrada em data/video_manifest.json, por exemplo:
+   { "m6": "assets/video/m6.mp4" }
+8. Como data/content.js já é o arquivo final (pós-pipeline de
+   build_site.js + inject_charts.js + inject_summaries.js + add_module18.js),
+   não é necessário re-rodar o pipeline inteiro — basta atualizar o campo
+   "videoUrl" do módulo correspondente diretamente em data/content.js
+   (mesma técnica usada para os Módulos 0-5 até agora), para não correr
+   o risco de perder conteúdo já injetado (gráficos, resumos, Módulo 18).
+
+Notebooks já criados no NotebookLM do usuário (podem ser reaproveitados
+sem precisar recriar a fonte de texto — mas os módulos 3, 4 e 5 abaixo já
+foram concluídos e vinculados, os notebooks ficam apenas como histórico):
+- Módulo 0: https://notebook.google.com/notebook/5ff5d6dc-0d80-43de-acb1-32145e7e4867
+- Módulo 1: https://notebook.google.com/notebook/158dcc22-4df8-40ff-9211-7090c92fa3c4
+- Módulo 2: https://notebook.google.com/notebook/73b19f9c-e4af-4fa0-a646-508d92685bdf
+- Módulo 3: https://notebook.google.com/notebook/b086b52d-a4a4-4fea-853b-fc15965d4b52
+  (concluído nesta rodada — vídeo já baixado e vinculado)
+- Módulo 4: https://notebook.google.com/notebook/509607ff-1410-4746-82fc-9817b07e13a5
+  (concluído nesta rodada — vídeo já baixado e vinculado)
+- Módulo 5: https://notebook.google.com/notebook/786e3dc4-356a-4250-8e1d-75b8b2bb5b60
+  (concluído nesta rodada — vídeo já baixado e vinculado)
+
+Módulos 6 a 21: notebooks ainda não criados. Repetir o processo acima
+para cada um, usando o texto de data/content.js como fonte. Total de
+módulos no curso: 22 (m0 a m21). Restam 16 módulos pendentes de vídeo.
