@@ -1,0 +1,112 @@
+{
+  "id": "m8",
+  "title": "Módulo 8 — Engrenagens",
+  "body": [
+    {
+      "type": "p",
+      "text": "O engrenamento gera, por natureza, uma frequência característica chamada frequência de engrenamento (GMF — Gear Mesh Frequency), calculada como o número de dentes da engrenagem multiplicado pela sua velocidade de rotação (que é igual ao número de dentes do pinhão multiplicado pela velocidade do pinhão, já que ambos engrenam na mesma taxa)."
+    },
+    {
+      "type": "h2",
+      "text": "8.1 Espectro normal de um engrenamento saudável"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/10_engrenagens.png",
+      "caption": "Figura 8.1 — Espectro típico de engrenamento com desgaste: GMF dominante, cercada por bandas laterais espaçadas em 1X RPM."
+    },
+    {
+      "type": "p",
+      "text": "Em uma engrenagem saudável, o espectro mostra 1X e 2X de baixa amplitude, junto com a GMF — também de amplitude relativamente baixa e, idealmente, sem bandas laterais significativas nem excitação da frequência natural da engrenagem."
+    },
+    {
+      "type": "h2",
+      "text": "8.2 Diagnósticos característicos"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 18,
+        "unit": "Ordens (x RPM do pinhão)",
+        "peaks": [
+          {
+            "order": 1,
+            "amp": 0.15
+          },
+          {
+            "order": 2,
+            "amp": 0.08
+          },
+          {
+            "order": 7,
+            "amp": 0.25
+          },
+          {
+            "order": 8,
+            "amp": 0.9
+          },
+          {
+            "order": 9,
+            "amp": 0.25
+          },
+          {
+            "order": 16,
+            "amp": 0.15
+          }
+        ]
+      },
+      "caption": "Espectro de um engrenamento com folga: bandas laterais regulares ao redor da GMF"
+    },
+    {
+      "type": "bullet",
+      "text": "Desgaste de dente: aparecem bandas laterais ao redor da frequência natural da engrenagem (Fn), espaçadas na velocidade de rotação da engrenagem desgastada — muitas vezes mais reveladoras do desgaste do que a própria amplitude de GMF."
+    },
+    {
+      "type": "bullet",
+      "text": "Excentricidade / folga / eixos não paralelos: bandas laterais de alta amplitude e regulares ao redor de GMF; o espaçamento das bandas indica qual das duas engrenagens (pinhão ou coroa) é a fonte do problema. Se causado por folga, a amplitude de GMF tende a cair com o aumento de carga."
+    },
+    {
+      "type": "bullet",
+      "text": "Desalinhamento do engrenamento: excita predominantemente harmônicos de segunda ordem ou superiores de GMF (2×GMF, 3×GMF), com bandas laterais na rotação — muitas vezes com 1×GMF de baixa amplitude, o que exige aumentar o Fmax da medição para capturar ao menos o segundo harmônico."
+    },
+    {
+      "type": "bullet",
+      "text": "Dente trincado ou quebrado: gera alta amplitude em 1X RPM da engrenagem afetada e excita a frequência natural da engrenagem com bandas laterais na sua rotação. É mais bem confirmado na forma de onda no tempo, onde aparece um pico de impacto nítido a cada volta do eixo com o dente danificado — com amplitude no domínio do tempo frequentemente muito maior do que a de 1X no espectro."
+    },
+    {
+      "type": "image",
+      "src": "assets/img/22_dente_quebrado_fo.png",
+      "caption": "Figura 8.2 — Forma de onda no tempo de um dente de engrenagem quebrado: impacto nítido e repetitivo, um por volta do eixo com o dente danificado."
+    },
+    {
+      "type": "p",
+      "text": "Exemplo numérico: se o eixo com o dente danificado gira a 600 rpm (10 Hz), o intervalo entre impactos na forma de onda deve ser de 1/10 = 0,1 s = 100 ms — exatamente o período de rotação daquele eixo. Medir esse intervalo diretamente na forma de onda (em vez de apenas observar o espectro) é a forma mais direta e inequívoca de confirmar qual dos dois eixos do par de engrenagens tem o dente danificado."
+    },
+    {
+      "type": "p",
+      "text": "Um cuidado essencial: a amplitude de GMF é sensível à carga. Sempre que possível, a análise comparativa entre inspeções deve ser feita com a máquina na mesma condição de carga, sob pena de interpretar uma simples variação de carga como evolução de um defeito (ou vice-versa)."
+    }
+  ],
+  "quizzes": [
+    {
+      "title": "Exercícios de fixação — Módulo 8",
+      "questions": [
+        "Um redutor apresenta GMF com bandas laterais regulares e de alta amplitude, cujo espaçamento coincide com a rotação do pinhão. A amplitude de GMF diminui quando a carga aumenta. Qual é o diagnóstico mais provável?",
+        "Por que o dente trincado é mais bem confirmado na forma de onda no tempo do que no espectro?",
+        "Em que situação é necessário aumentar o Fmax da medição para diagnosticar corretamente um problema de engrenagem?"
+      ],
+      "answers": [
+        "O espaçamento das bandas laterais aponta o pinhão como fonte da modulação, e a queda de amplitude de GMF com o aumento de carga é assinatura típica de folga no engrenamento — não de desgaste progressivo (que tende a não ter essa relação inversa com carga).",
+        "Porque o impacto do dente trincado é um evento discreto e breve, que aparece de forma muito nítida na forma de onda como um pico isolado a cada volta do eixo com o dente danificado — no espectro, essa energia se distribui entre 1X e a frequência natural excitada com suas bandas laterais, tornando o sinal mais difuso e de identificação menos direta.",
+        "Quando o desalinhamento do engrenamento é a suspeita, pois esse defeito costuma excitar predominantemente o segundo harmônico de GMF (2×GMF) ou superior, exigindo Fmax suficiente para capturar pelo menos essa faixa."
+      ]
+    }
+  ],
+  "meta": {
+    "num": "8",
+    "short": "Engrenagens",
+    "level": "intermediário"
+  },
+  "videoUrl": null
+}

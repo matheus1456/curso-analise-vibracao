@@ -1,0 +1,93 @@
+{
+  "m0": {
+    "title": "Módulo 0 — Antes de Começar",
+    "bullets": ["Amplitude: pico, pico a pico e RMS", "Frequência: Hz, CPM e ordens (xRPM)", "Por que RMS é a base da ISO 10816"],
+    "narration": "Bem-vindo à formação de Análise de Vibração para Engenheiro de Confiabilidade. Antes de entrarmos na técnica, vamos fixar três ideias simples. Primeiro: vibração é como o tremor de um pneu desbalanceado no carro — tem força, tem frequência e tem fase. Segundo: amplitude pode ser expressa em pico, pico a pico ou RMS; para uma onda senoidal pura, RMS é o pico dividido pela raiz de dois. Terceiro: frequência pode ser lida em Hertz, em CPM, ou, o mais importante para o diagnóstico, em ordens da rotação — 1X, 2X, 3X. É essa linguagem de ordens que vamos usar em todo o curso para transformar um espectro em um diagnóstico."
+  },
+  "m1": {
+    "title": "Módulo 1 — Manutenção, Confiabilidade e o Papel do Analista",
+    "bullets": ["Corretiva, preventiva e preditiva", "Por que vibração tem o melhor custo-benefício", "O que se espera do Engenheiro de Confiabilidade"],
+    "narration": "A manutenção evoluiu em três estratégias: corretiva, que espera a quebra; preventiva, baseada em calendário fixo; e preditiva, que decide a intervenção pela condição real da máquina. Entre as técnicas preditivas, a análise de vibração se destaca pelo custo-benefício, porque a vibração é o sintoma mais precoce de praticamente todo defeito mecânico. Um Engenheiro de Confiabilidade completo não só lê o espectro: ele planeja rotas de monitoramento, aplica critérios normativos, diagnostica a causa raiz e recomenda a ação corretiva certa, no momento certo."
+  },
+  "m2": {
+    "title": "Módulo 2 — Fundamentos Físicos da Vibração",
+    "bullets": ["Deslocamento, velocidade e aceleração", "Ordens de rotação (1X, 2X, sub-harmônicos)", "A FFT e o espectro de frequência"],
+    "narração_nota": "",
+    "narration": "Toda vibração pode ser descrita por três grandezas: deslocamento, velocidade e aceleração, relacionadas pela frequência. A velocidade RMS é a preferida para severidade geral; a aceleração revela melhor os defeitos de alta frequência, como rolamentos e engrenagens. No domínio da frequência, usamos ordens de rotação — múltiplos da rotação do eixo — porque elas carregam o significado físico do defeito, independente da velocidade real da máquina. A Transformada Rápida de Fourier, a FFT, é a ferramenta que converte o sinal do tempo em espectro, revelando a assinatura de cada defeito."
+  },
+  "m3": {
+    "title": "Módulo 3 — Sensores e Instrumentação",
+    "bullets": ["Sensores de proximidade, velocidade e acelerômetros", "Frequência natural de montagem do sensor", "Pontos e direções de medição"],
+    "narration": "A qualidade do diagnóstico começa na coleta. Sensores de proximidade medem o deslocamento relativo do eixo, ideais para mancais de filme de óleo. Acelerômetros piezoelétricos são o padrão atual para vibração absoluta na carcaça, com ampla faixa de frequência. A forma de fixação do sensor importa: rosca fixa permite captar frequências mais altas que base magnética ou ponta de prova manual. E a norma recomenda medir em três direções — horizontal, vertical e axial — para caracterizar completamente o comportamento da máquina."
+  },
+  "m4": {
+    "title": "Módulo 4 — Normas ISO 10816",
+    "bullets": ["Critério I: magnitude; Critério II: variação", "Zonas A, B, C e D de severidade", "Partes 2, 3, 4, 5 e 7 por tipo de máquina"],
+    "narration": "A família ISO 10816 é a referência mundial para avaliar severidade de vibração. O Critério I compara a magnitude medida contra quatro zonas — A, B, C e D — do excelente ao risco de dano. O Critério II avalia a variação da vibração ao longo do tempo. Cada parte da norma traz limites específicos: turbinas a vapor na Parte 2, máquinas industriais na Parte 3, turbinas a gás na Parte 4, máquinas hidráulicas na Parte 5, e bombas centrífugas na Parte 7. Saber consultar a tabela certa é o primeiro passo de qualquer avaliação de campo."
+  },
+  "m5": {
+    "title": "Módulo 5 — Metodologia de Análise Espectral",
+    "bullets": ["Roteiro de leitura de um espectro", "Harmônicos versus bandas laterais", "Resolução espectral: por que importa"],
+    "narration": "Ler um espectro exige método: identificar 1X, verificar quais ordens dominam, procurar bandas laterais, comparar direções de medição, cruzar com a fase e confirmar na forma de onda no tempo. Harmônicos são múltiplos inteiros da rotação; bandas laterais surgem de modulação de amplitude, e o espaçamento delas aponta o eixo responsável pelo defeito. E a resolução do espectro não é detalhe técnico: resolução insuficiente funde bandas laterais próximas em um único pico, escondendo exatamente a informação que revela a causa raiz."
+  },
+  "m6": {
+    "title": "Módulo 6 — Catálogo de Falhas por Espectro",
+    "bullets": ["Desbalanceamento: 1X dominante", "Desalinhamento: 1X e 2X, fase 180°", "Folga mecânica: harmônicos e sub-harmônicos"],
+    "narration": "Este é o módulo central do curso. Desbalanceamento gera um pico dominante em 1X, estável em fase, crescendo com o quadrado da velocidade. Desalinhamento — angular ou paralelo — eleva 1X e especialmente 2X, com diferença de fase próxima de 180 graus através do acoplamento. Folga mecânica produz uma série completa de harmônicos e sub-harmônicos, com fase instável. Eixo empenado, excentricidade, ressonância e batimento completam o catálogo — cada um com sua assinatura espectral única, que você vai aprender a reconhecer com exemplos reais."
+  },
+  "m7": {
+    "title": "Módulo 7 — Rolamentos: Frequências de Defeito e Envelope",
+    "bullets": ["BPFO, BPFI, BSF e FTF", "Os quatro estágios de falha", "Técnica de envelope (demodulação)"],
+    "narration": "Defeitos em rolamentos são a causa de falha mais comum em máquinas rotativas. Cada elemento do rolamento tem uma frequência de defeito característica: BPFO na pista externa, BPFI na pista interna, BSF no elemento rolante e FTF na gaiola. A falha evolui em quatro estágios, do submicroscópico até a falha iminente. E a técnica de envelope, ou demodulação de amplitude, é a ferramenta que antecipa o diagnóstico, revelando o defeito muito antes que ele apareça no espectro de vibração convencional."
+  },
+  "m8": {
+    "title": "Módulo 8 — Engrenagens",
+    "bullets": ["Frequência de engrenamento (GMF)", "Bandas laterais e excentricidade", "Dente trincado: forma de onda"],
+    "narration": "Todo engrenamento gera uma frequência característica, a GMF, igual ao número de dentes vezes a rotação. Bandas laterais ao redor da GMF, espaçadas na rotação de um dos eixos, apontam excentricidade, folga ou desalinhamento naquele eixo específico. Já um dente trincado ou quebrado é mais bem confirmado na forma de onda no tempo, onde aparece como um impacto nítido e repetitivo, a cada volta do eixo danificado."
+  },
+  "m9": {
+    "title": "Módulo 9 — Correias e Transmissões",
+    "bullets": ["Frequência da correia sempre menor que a rotação", "2x a frequência da correia: pico dominante típico", "Ressonância de correia"],
+    "narration": "A frequência da correia é sempre menor que a rotação do motor e do equipamento acionado. Correias gastas, frouxas ou desiguais geram múltiplos dessa frequência, tipicamente com 2 vezes a frequência da correia como pico dominante e amplitude instável. Desalinhamento de polias aparece como vibração axial em 1X, e a ressonância de correia ocorre quando sua frequência natural coincide com a rotação do sistema."
+  },
+  "m10": {
+    "title": "Módulo 10 — Máquinas Elétricas",
+    "bullets": ["2x frequência de linha: problema no estator", "Barras de rotor quebradas: bandas em frequência de polo", "Teste de desligar e observar"],
+    "narration": "Vibrações de origem elétrica desaparecem no instante em que o motor é desenergizado — um teste simples e definitivo. Um pico bem definido em duas vezes a frequência de linha aponta problema no estator, geralmente entreferro desigual. Barras de rotor quebradas geram bandas laterais estreitas ao redor de 1X, espaçadas pela frequência de polo, um padrão sutil que exige análise de banda estreita para ser confirmado."
+  },
+  "m11": {
+    "title": "Módulo 11 — Bombas, Ventiladores e Compressores",
+    "bullets": ["BPF: número de pás vezes RPM", "Cavitação: ruído aleatório de banda larga", "Cuidado com ressonância estrutural"],
+    "narration": "A frequência de passagem de pás, o BPF, é inerente a bombas, ventiladores e compressores e normalmente não é um problema — até que sua amplitude dispare, seja por folga entre pás e difusores, seja por coincidência com uma frequência natural da estrutura. Cavitação gera ruído aleatório de banda larga sobreposto ao BPF, e costuma indicar pressão de sucção insuficiente, não um defeito mecânico na bomba."
+  },
+  "m12": {
+    "title": "Módulo 12 — Forma de Onda, Fase e Órbitas",
+    "bullets": ["Forma de onda: confirma impactos e truncamentos", "Fase: discrimina hipóteses parecidas", "Órbitas: movimento real do eixo no mancal"],
+    "narration": "O espectro não conta toda a história. A forma de onda no tempo revela impactos e truncamentos que o espectro dilui. A fase discrimina definitivamente entre hipóteses parecidas, como desbalanceamento e desalinhamento. E a órbita, construída a partir de dois sensores em quadratura, mostra o caminho real que o eixo percorre dentro do mancal — essencial para diagnosticar instabilidades de filme de óleo."
+  },
+  "m13": {
+    "title": "Módulo 13 — Programa de Monitoramento de Condição",
+    "bullets": ["Padronização de pontos e parâmetros", "Baseline específico da máquina", "Relatórios claros e acionáveis"],
+    "narration": "Um bom diagnóstico depende de dados coletados de forma consistente. Isso significa padronizar pontos, direções e parâmetros de aquisição, registrar a geometria de rolamentos e engrenagens antes que ocorra qualquer problema, e construir um baseline específico de cada máquina para definir alarmes com sensibilidade real. E o trabalho só se completa quando o diagnóstico é comunicado com clareza, em um relatório que aponte causa, evidência e ação recomendada."
+  },
+  "m14": {
+    "title": "Módulo 14 — Balanceamento de Campo em Um Plano",
+    "bullets": ["Método do vetor de influência", "Peso de teste e subtração vetorial", "Cálculo de massa e ângulo de correção"],
+    "narration": "Diagnosticar desbalanceamento é metade do trabalho — corrigir é a outra metade. O método do vetor de influência mede a vibração original, instala um peso de teste conhecido, mede novamente, e calcula por subtração vetorial o efeito desse peso. A partir daí, uma simples proporção define a massa de correção, e a diferença de ângulos define onde instalá-la. É matemática simples aplicada a um problema muito comum."
+  },
+  "m15": {
+    "title": "Módulo 15 — Alinhamento de Eixos",
+    "bullets": ["Offset paralelo e desvio angular", "Alinhamento a laser", "Cálculo de correção em calços"],
+    "narration": "Todo desalinhamento real combina duas componentes: o deslocamento lateral entre as linhas de centro, chamado offset, e a inclinação relativa entre os eixos, o desvio angular. O alinhamento a laser é hoje o método padrão da indústria. E o cálculo de correção em cada pé da máquina combina o offset com a contribuição da angularidade, proporcional à distância de cada pé até o plano de medição."
+  },
+  "m16": {
+    "title": "Módulo 16 — Estudos de Caso Integrados",
+    "bullets": ["Dez casos reais, do básico ao avançado", "Cruzando espectro, fase e forma de onda", "Do diagnóstico à ação recomendada"],
+    "narration": "Chegou a hora de aplicar tudo o que você aprendeu. Dez estudos de caso — de um turbogerador avaliado por norma até um motor com barras de rotor quebradas detectadas por análise de banda estreita — mostram o raciocínio completo do Engenheiro de Confiabilidade: dos dados de campo à evidência espectral, da hipótese à ação corretiva recomendada."
+  },
+  "m17": {
+    "title": "Módulo 17 — Glossário Técnico",
+    "bullets": ["Termos de referência rápida", "BPFO, BPFI, GMF, RMS e mais", "Consulta para o dia a dia profissional"],
+    "narration": "Para fechar o curso, um glossário técnico reúne os principais termos usados em análise de vibração, para consulta rápida no seu dia a dia como Engenheiro de Confiabilidade."
+  }
+}

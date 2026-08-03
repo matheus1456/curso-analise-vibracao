@@ -1,0 +1,90 @@
+{
+  "id": "m10",
+  "title": "Módulo 10 — Máquinas Elétricas",
+  "body": [
+    {
+      "type": "image",
+      "src": "assets/img/12_eletrico.png",
+      "caption": "Figura 10.1 — Espectro típico de problema no estator: pico dominante em 2× a frequência de linha (2FL = 120 Hz em sistemas de 60 Hz)."
+    },
+    {
+      "type": "p",
+      "text": "Motores e geradores de indução podem apresentar vibração de origem puramente elétrica (eletromagnética), que desaparece assim que a alimentação elétrica é desligada — um teste de diagnóstico simples e definitivo é comparar a vibração com o motor energizado e logo após o desligamento: se o pico característico some instantaneamente, a origem é elétrica."
+    },
+    {
+      "type": "bullet",
+      "text": "Problema no estator (entreferro desigual): gera vibração bem definida em 2× a frequência de linha (2FL = 120 Hz em redes de 60 Hz, ou 100 Hz em redes de 50 Hz). O entreferro diferencial não deve exceder cerca de 5% em motores de indução e 10% em motores síncronos. Pé frouxo ou base isolada podem causar excentricidade do estator."
+    },
+    {
+      "type": "bullet",
+      "text": "Barras de rotor quebradas ou trincadas (motores de indução): geram bandas laterais ao redor de 1X RPM espaçadas na frequência de escorregamento multiplicada pelo número de polos — um padrão que deve ser buscado especificamente quando há suspeita de problema no rotor, pois pode ser sutil no espectro de banda larga convencional."
+    },
+    {
+      "type": "image",
+      "src": "assets/img/21_barras_rotor.png",
+      "caption": "Figura 10.2 — Barras de rotor quebradas: bandas laterais estreitas ao redor de 1X, espaçadas em 2 × frequência de polo (2·fp)."
+    },
+    {
+      "type": "h3",
+      "text": "Exemplo numérico: frequência de polo e escorregamento"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 1.6,
+        "unit": "Ordens (x RPM)",
+        "peaks": [
+          {
+            "order": 0.673,
+            "amp": 0.25
+          },
+          {
+            "order": 1,
+            "amp": 1
+          },
+          {
+            "order": 1.327,
+            "amp": 0.25
+          }
+        ]
+      },
+      "caption": "Espectro de um motor com barras de rotor quebradas: bandas laterais simétricas ao redor de 1X"
+    },
+    {
+      "type": "p",
+      "text": "Um motor de indução de 4 polos, 60 Hz, tem velocidade síncrona de 1800 rpm mas opera a 1764 rpm (escorregamento sob carga). Calculando a frequência de escorregamento e de polo:"
+    },
+    {
+      "type": "quote",
+      "text": "Escorregamento (s) = (1800 − 1764) / 1800 = 0,02 (2%)\nFrequência de escorregamento (fs) = s × f_linha = 0,02 × 60 = 1,2 Hz\nFrequência de polo (fp) = número de polos × fs = 4 × 1,2 = 4,8 Hz"
+    },
+    {
+      "type": "p",
+      "text": "Se houver barras de rotor quebradas, espera-se ver, ao redor de 1X RPM (1764/60 = 29,4 Hz), bandas laterais espaçadas em 2×fp = 9,6 Hz — ou seja, picos adicionais em aproximadamente 19,8 Hz e 39,0 Hz. Encontrar esse padrão específico, e não apenas \"alguma banda lateral\", é o que confirma o diagnóstico de barra de rotor quebrada em vez de outra causa de modulação."
+    },
+    {
+      "type": "bullet",
+      "text": "Excentricidade do rotor (entreferro estático ou dinâmico desigual): gera picos em 1X RPM e em frequências relacionadas às ranhuras do rotor (frequência de passagem de ranhuras), muitas vezes cercadas por bandas laterais na frequência de linha."
+    }
+  ],
+  "quizzes": [
+    {
+      "title": "Exercícios de fixação — Módulo 10",
+      "questions": [
+        "Um motor de 60 Hz apresenta pico elevado exatamente em 120 Hz, que desaparece assim que o motor é desligado. Qual é o diagnóstico e qual parâmetro de projeto deve ser verificado?",
+        "Por que o teste de \"desligar e observar\" é tão útil para separar causas elétricas de causas mecânicas?"
+      ],
+      "answers": [
+        "Diagnóstico: problema no estator, tipicamente entreferro desigual entre rotor e estator (excentricidade do estator). Deve-se verificar o entreferro diferencial, que não deve exceder cerca de 5% em motores de indução.",
+        "Porque vibrações de origem eletromagnética dependem da energização do motor e desaparecem no instante em que a corrente é cortada (a inércia mecânica ainda gira, mas a força de origem elétrica cessa imediatamente), enquanto vibrações de origem mecânica (desbalanceamento, desalinhamento, rolamento) persistem por alguns segundos após o desligamento, decaindo gradualmente com a rotação da máquina em roda livre."
+      ]
+    }
+  ],
+  "meta": {
+    "num": "10",
+    "short": "Máquinas Elétricas",
+    "level": "intermediário"
+  },
+  "videoUrl": null
+}

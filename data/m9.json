@@ -1,0 +1,101 @@
+{
+  "id": "m9",
+  "title": "Módulo 9 — Correias e Transmissões",
+  "body": [
+    {
+      "type": "image",
+      "src": "assets/img/11_correias.png",
+      "caption": "Figura 9.1 — Espectro típico de problema em correia: múltiplos da frequência da correia, frequentemente com 2× dominante."
+    },
+    {
+      "type": "p",
+      "text": "A frequência da correia é sempre menor que a rotação do motor e do equipamento acionado (é uma função da razão de diâmetros das polias e do comprimento da correia)."
+    },
+    {
+      "type": "bullet",
+      "text": "Correia gasta, frouxa ou desigual: gera múltiplos (tipicamente de 3 a 4 ordens) da frequência da própria correia, muitas vezes com 2× a frequência da correia como pico dominante. As amplitudes costumam ser instáveis, pulsando com a rotação do motor ou do acionado."
+    },
+    {
+      "type": "bullet",
+      "text": "Desalinhamento de polias: alta vibração em 1X RPM, predominantemente axial; a relação entre a amplitude no motor e no acionado depende de onde se mede e da rigidez relativa das estruturas."
+    },
+    {
+      "type": "bullet",
+      "text": "Polias excêntricas ou desbalanceadas: alta vibração em 1X RPM da polia, mais elevada na direção da linha das correias; tentativas de balanceamento por adição de massa podem reduzir a vibração, mas a excentricidade continuará gerando fadiga cíclica na correia."
+    },
+    {
+      "type": "bullet",
+      "text": "Ressonância da correia: amplitude elevada quando a frequência natural da correia coincide com a rotação do motor ou da polia acionada; pode ser diagnosticada variando a tensão da correia enquanto se mede a resposta — a frequência natural muda com a tensão e o comprimento livre da correia."
+    },
+    {
+      "type": "bullet",
+      "text": "Correias dentadas (síncronas): desgaste ou desalinhamento de polia aparece como alta amplitude na frequência de passagem dos dentes da correia."
+    },
+    {
+      "type": "h3",
+      "text": "Exemplo numérico: calculando a frequência da correia"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 3,
+        "unit": "Ordens do eixo do motor (x RPM)",
+        "peaks": [
+          {
+            "order": 0.3,
+            "amp": 0.2
+          },
+          {
+            "order": 0.6,
+            "amp": 0.5
+          },
+          {
+            "order": 0.9,
+            "amp": 0.3
+          },
+          {
+            "order": 1,
+            "amp": 0.35
+          },
+          {
+            "order": 1.2,
+            "amp": 0.15
+          }
+        ]
+      },
+      "caption": "Espectro típico de correia gasta/frouxa: pico não síncrono em 2× a frequência da correia"
+    },
+    {
+      "type": "p",
+      "text": "Um motor gira a 1760 rpm (29,3 Hz) acionando, por correia, uma polia de diâmetro 200 mm montada no eixo do motor e uma polia de 500 mm no equipamento acionado, com comprimento de correia de 1400 mm. A frequência da correia é aproximada por:"
+    },
+    {
+      "type": "quote",
+      "text": "Fcorreia ≈ (RPM motor ÷ 60) × (π × diâmetro da polia motora) ÷ comprimento da correia\nFcorreia ≈ 29,3 × (π × 200) ÷ 1400 ≈ 29,3 × 0,449 ≈ 13,2 Hz"
+    },
+    {
+      "type": "p",
+      "text": "Se o espectro mostrar um pico anômalo dominante em aproximadamente 26,4 Hz (2× esse valor), a hipótese mais provável — antes mesmo de abrir a caixa de correias — é correia gasta, frouxa ou desigual, já que 2× a frequência da correia é tipicamente o pico dominante nesse defeito."
+    }
+  ],
+  "quizzes": [
+    {
+      "title": "Exercícios de fixação — Módulo 9",
+      "questions": [
+        "Um ventilador acionado por correias em V apresenta pico dominante em 2× a frequência da correia, com amplitude instável, pulsando com a rotação do motor. O que isso indica e qual a ação recomendada?",
+        "Como diferenciar, na prática, uma ressonância de correia de um desalinhamento de polias?"
+      ],
+      "answers": [
+        "Indica correia gasta, frouxa ou desigual (defeito característico da própria correia). Ação recomendada: inspeção visual da correia, verificação de tensão e substituição se houver desgaste ou trinca visível.",
+        "A ressonância de correia responde a mudanças de tensão e comprimento livre da correia (a frequência natural se desloca ao tensionar/destensionar), enquanto o desalinhamento de polias se manifesta como vibração axial em 1X RPM que não muda significativamente com a tensão da correia, mas sim com a correção do alinhamento das polias."
+      ]
+    }
+  ],
+  "meta": {
+    "num": "9",
+    "short": "Correias e Transmissões",
+    "level": "intermediário"
+  },
+  "videoUrl": null
+}

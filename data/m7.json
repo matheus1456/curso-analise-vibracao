@@ -1,0 +1,241 @@
+{
+  "id": "m7",
+  "title": "Módulo 7 — Rolamentos: Frequências de Defeito e Técnica de Envelope",
+  "body": [
+    {
+      "type": "p",
+      "text": "Defeitos em rolamentos de elementos rolantes são a causa de falha mais comum em máquinas rotativas industriais e, felizmente, também uma das mais bem caracterizadas pela análise de vibração — desde que se use a técnica correta, pois o defeito de rolamento se manifesta primeiro em frequências muito mais altas do que as tratadas no Módulo 6."
+    },
+    {
+      "type": "h2",
+      "text": "7.1 Origem física do sinal de defeito"
+    },
+    {
+      "type": "p",
+      "text": "Quando um elemento rolante passa sobre um defeito localizado (uma pequena descontinuidade na pista interna, externa, em uma esfera/rolo ou na gaiola), ocorre um impacto de curtíssima duração. Esse impacto excita as frequências de ressonância do próprio rolamento e da estrutura ao redor — de forma análoga a uma badalada de sino: o impacto é breve, mas o \"toque\" resultante (a resposta ressonante) se prolonga por mais tempo, decaindo aos poucos. Como esses impactos se repetem periodicamente a cada passagem do elemento defeituoso, o resultado no domínio do tempo é uma modulação de amplitude: uma frequência de ressonância de alta frequência (a portadora) tendo sua amplitude modulada pela frequência de repetição do impacto (a moduladora, que é a frequência de defeito do rolamento)."
+    },
+    {
+      "type": "h2",
+      "text": "7.2 Frequências características de defeito"
+    },
+    {
+      "type": "p",
+      "text": "As quatro frequências de defeito são calculadas a partir da geometria do rolamento (número de elementos N, diâmetro do elemento d, diâmetro primitivo p, ângulo de contato β) e das velocidades relativas dos anéis interno e externo:"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Sigla",
+        "Defeito",
+        "Fórmula (Hz)"
+      ],
+      "rows": [
+        [
+          "BPFO",
+          "Pista externa (ball/roller pass frequency, outer)",
+          "N/2 · (fri − fre) · [1 − (d/p)·cosβ]"
+        ],
+        [
+          "BPFI",
+          "Pista interna (ball/roller pass frequency, inner)",
+          "N/2 · (fri − fre) · [1 + (d/p)·cosβ]"
+        ],
+        [
+          "BSF",
+          "Elemento rolante (ball spin frequency)",
+          "(p/2d) · (fri − fre) · [1 − (d²/p²)·cos²β]"
+        ],
+        [
+          "FTF",
+          "Gaiola (fundamental train frequency)",
+          "1/2 · { fri·[1−(d/p)cosβ] + fre·[1+(d/p)cosβ] }"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Na prática, o analista raramente calcula essas frequências manualmente: o software de análise as calcula a partir dos dados geométricos do rolamento (disponíveis no catálogo do fabricante) e sobrepõe marcadores no espectro. O trabalho do analista é verificar se picos reais no espectro coincidem com esses marcadores — e em que harmônico."
+    },
+    {
+      "type": "h2",
+      "text": "7.3 Exemplo numérico: calculando BPFO e BPFI"
+    },
+    {
+      "type": "p",
+      "text": "Um rolamento tem N = 9 esferas, diâmetro de esfera d = 12 mm, diâmetro primitivo p = 60 mm, ângulo de contato β = 0° (rolamento radial puro), montado em um eixo que gira a 1770 rpm (fre = 0, pista externa fixa; fri = 1770/60 = 29,5 Hz)."
+    },
+    {
+      "type": "quote",
+      "text": "BPFO = N/2 · (fri − fre) · [1 − (d/p)cosβ] = 9/2 · 29,5 · [1 − (12/60)·1] = 4,5 · 29,5 · 0,8 = 106,3 Hz\nBPFI = N/2 · (fri − fre) · [1 + (d/p)cosβ] = 4,5 · 29,5 · 1,2 = 159,3 Hz"
+    },
+    {
+      "type": "p",
+      "text": "Convertendo para ordens de rotação (dividindo por 29,5 Hz): BPFO ≈ 3,6X RPM e BPFI ≈ 5,4X RPM — não coincidentemente, os mesmos valores do Exemplo 3 do Módulo 2 e do estudo de caso do Módulo 16. Uma regra prática útil para conferência rápida de campo: para a maioria dos rolamentos radiais comuns, BPFO ≈ 0,4 × N × RPM e BPFI ≈ 0,6 × N × RPM (aproximação, não substitui o cálculo completo quando o ângulo de contato é significativo, como em rolamentos de esferas de contato angular ou rolos cônicos)."
+    },
+    {
+      "type": "h2",
+      "text": "7.4 Os quatro estágios de evolução da falha"
+    },
+    {
+      "type": "p",
+      "text": "Uma das contribuições mais importantes da metodologia SKF/Preditiva para o diagnóstico de rolamentos é o reconhecimento de que o defeito evolui em quatro estágios bem definidos, cada um com uma assinatura espectral própria — o que permite estimar a urgência da intervenção, e não apenas detectar que \"há um problema\"."
+    },
+    {
+      "type": "h3",
+      "text": "Estágio 1 — Defeito submicroscópico"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/06_rolamento_estagio1.png",
+      "caption": "Figura 7.1 — Estágio 1: nenhum pico discreto visível; apenas leve elevação do nível de energia em frequências ultrassônicas (20–80 kHz)."
+    },
+    {
+      "type": "bullet",
+      "text": "Só é detectável por parâmetros de altíssima frequência: Spike Energy (gSE), HFD (High Frequency Detection) ou Shock Pulse (dB). Não aparece ainda no espectro de vibração convencional."
+    },
+    {
+      "type": "h3",
+      "text": "Estágio 2 — Início de defeito na pista"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/07_rolamento_estagio2.png",
+      "caption": "Figura 7.2 — Estágio 2: bandas laterais começam a se formar ao redor da frequência natural (Fn) do componente do rolamento (tipicamente 30 a 120 kCPM)."
+    },
+    {
+      "type": "bullet",
+      "text": "O nível de Spike Energy continua a crescer. Ainda não há picos discretos de BPFO/BPFI no espectro de velocidade convencional — é preciso técnica de envelope (ver 7.5) para antecipar o diagnóstico neste estágio."
+    },
+    {
+      "type": "h3",
+      "text": "Estágio 3 — Defeito estabelecido"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 12,
+        "unit": "Ordens (x RPM)",
+        "peaks": [
+          {
+            "order": 2.5,
+            "amp": 0.25
+          },
+          {
+            "order": 3.5,
+            "amp": 0.7
+          },
+          {
+            "order": 4.5,
+            "amp": 0.25
+          },
+          {
+            "order": 6,
+            "amp": 0.2
+          },
+          {
+            "order": 7,
+            "amp": 0.55
+          },
+          {
+            "order": 8,
+            "amp": 0.2
+          },
+          {
+            "order": 9.5,
+            "amp": 0.15
+          },
+          {
+            "order": 10.5,
+            "amp": 0.4
+          },
+          {
+            "order": 11.5,
+            "amp": 0.15
+          }
+        ]
+      },
+      "caption": "Espectro de um rolamento em Estágio 3: harmônicos discretos de BPFO com bandas laterais em 1X"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/08_rolamento_estagio3.png",
+      "caption": "Figura 7.3 — Estágio 3: picos discretos de BPFO (ou BPFI/BSF, conforme o elemento afetado) e seus harmônicos, cercados por bandas laterais em 1X RPM."
+    },
+    {
+      "type": "bullet",
+      "text": "As frequências de defeito e seus harmônicos tornam-se visíveis no espectro convencional. Quanto mais harmônicos e bandas laterais aparecem, mais avançado é o desgaste. Recomendação: planejar a substituição do rolamento."
+    },
+    {
+      "type": "h3",
+      "text": "Estágio 4 — Falha iminente"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/09_rolamento_estagio4.png",
+      "caption": "Figura 7.4 — Estágio 4: piso de ruído de banda larga elevado, picos discretos começam a \"desaparecer\" no ruído, e até 1X RPM é afetado."
+    },
+    {
+      "type": "bullet",
+      "text": "Paradoxalmente, a amplitude do ruído de alta frequência e mesmo do Spike Energy pode cair um pouco neste estágio (o defeito já não é mais uma descontinuidade discreta, e sim um dano generalizado) — mas imediatamente antes da falha, o Spike Energy costuma disparar para valores muito altos. Ação: substituição imediata / parada programada de emergência."
+    },
+    {
+      "type": "h2",
+      "text": "7.5 Técnica de envelope (demodulação de amplitude)"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 6,
+        "unit": "Ordens (x RPM) — espectro de envelope (gE)",
+        "peaks": [
+          {
+            "order": 3.2,
+            "amp": 0.6
+          },
+          {
+            "order": 1,
+            "amp": 0.1
+          }
+        ],
+        "noise": 0.05
+      },
+      "caption": "Espectro de envelope revelando um defeito de rolamento em Estágio 1 — imperceptível em velocidade/aceleração pura"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/17_forma_onda_envelope.png",
+      "caption": "Figura 7.5 — Forma de onda no tempo: impactos periódicos do defeito modulando a resposta de alta frequência (ressonância) da estrutura."
+    },
+    {
+      "type": "p",
+      "text": "O desafio prático dos estágios 1 e 2 é que as frequências de defeito de rolamento são relativamente baixas (da ordem da rotação do eixo) e ficam \"escondidas\" no meio de componentes de baixa frequência de maior amplitude, como desbalanceamento e desalinhamento — que se propagam sem atenuação e mascaram o defeito incipiente."
+    },
+    {
+      "type": "p",
+      "text": "A técnica de envelope resolve isso explorando exatamente o fenômeno de modulação descrito em 7.1: filtra-se o sinal em uma banda estreita ao redor de uma frequência de ressonância de alta frequência (a portadora, normalmente identificada empiricamente ou por especificação do sensor/estrutura), e então se demodula esse sinal filtrado para extrair apenas a envoltória de amplitude — que contém, de forma isolada e amplificada, a frequência de repetição do impacto (a moduladora, ou seja, BPFO/BPFI/BSF/FTF). O espectro dessa envoltória (\"espectro de envelope\") revela o defeito de rolamento muito antes que ele seja visível no espectro de vibração convencional, sendo a ferramenta padrão da indústria para detecção precoce de defeitos em rolamentos e engrenagens."
+    }
+  ],
+  "quizzes": [
+    {
+      "title": "Exercícios de fixação — Módulo 7",
+      "questions": [
+        "Por que a técnica de envelope é mais sensível do que o espectro de vibração convencional para detectar um defeito incipiente de rolamento?",
+        "Um espectro mostra picos em 3,5X, 7X e 10,5X RPM, cada um cercado por bandas laterais espaçadas em 1X RPM. Sabendo que o BPFO calculado para o rolamento é 3,5X RPM, em que estágio de falha a máquina provavelmente está e o que as bandas laterais em 1X sugerem?",
+        "Cite os quatro estágios de evolução de falha de rolamento e o parâmetro mais indicado para detectar cada um."
+      ],
+      "answers": [
+        "Porque ela isola a modulação de amplitude causada pelos impactos do defeito, demodulando uma banda de alta frequência (onde a relação sinal-ruído para o defeito é maior e não há interferência de componentes de baixa frequência como desbalanceamento/desalinhamento) e trazendo a frequência de repetição do impacto para um espectro limpo — revelando o defeito antes que ele seja forte o suficiente para aparecer no espectro de vibração convencional.",
+        "Os picos em 1×, 2× e 3× BPFO (3,5X, 7X, 10,5X) caracterizam o Estágio 3 (defeito estabelecido) de falha na pista externa. As bandas laterais em 1X RPM ao redor desses harmônicos indicam que o defeito está sendo modulado pela rotação do próprio eixo, o que é esperado e reforça a confiança no diagnóstico — a recomendação é planejar a substituição do rolamento.",
+        "Estágio 1 (submicroscópico): Spike Energy / HFD / Shock Pulse (ultrassônico, 20–80 kHz). Estágio 2 (início na pista): bandas laterais ao redor da frequência natural do componente — melhor detectado por envelope/demodulação. Estágio 3 (estabelecido): picos discretos de BPFO/BPFI/BSF/FTF e harmônicos no espectro convencional. Estágio 4 (iminente): piso de ruído elevado e contaminação de 1X RPM e seus harmônicos — Spike Energy tende a disparar imediatamente antes da falha."
+      ]
+    }
+  ],
+  "meta": {
+    "num": "7",
+    "short": "Rolamentos e Envelope",
+    "level": "intermediário"
+  },
+  "videoUrl": null
+}

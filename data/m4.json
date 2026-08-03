@@ -1,0 +1,346 @@
+{
+  "id": "m4",
+  "title": "Módulo 4 — Normas Internacionais ISO 10816: Critérios de Severidade",
+  "body": [
+    {
+      "type": "p",
+      "text": "A família de normas ISO 10816 (\"Mechanical vibration — Evaluation of machine vibration by measurements on non-rotating parts\") é a referência internacional para avaliar se o nível de vibração medido em uma máquina é aceitável, requer atenção ou indica risco de dano. A Parte 1 estabelece os princípios gerais; as demais partes trazem limites numéricos específicos por tipo de máquina."
+    },
+    {
+      "type": "h2",
+      "text": "4.1 Os dois critérios de avaliação"
+    },
+    {
+      "type": "bullet",
+      "text": "Critério I — Magnitude de vibração: compara o valor RMS de vibração medido contra quatro zonas de severidade (A, B, C e D), definidas para cada classe de máquina."
+    },
+    {
+      "type": "bullet",
+      "text": "Critério II — Variação da magnitude: avalia mudanças na vibração ao longo do tempo em relação a uma condição de referência (baseline), independentemente de a variação ser um aumento ou uma redução. Uma variação superior a 25% do limite superior da zona B já é considerada significativa e deve disparar investigação, mesmo que o valor absoluto ainda esteja dentro da zona B."
+    },
+    {
+      "type": "h2",
+      "text": "4.2 As quatro zonas de severidade"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Zona",
+        "Significado"
+      ],
+      "rows": [
+        [
+          "A",
+          "Vibração típica de máquina recém-comissionada — condição de novo/excelente."
+        ],
+        [
+          "B",
+          "Operação de longo prazo sem restrição — condição aceitável."
+        ],
+        [
+          "C",
+          "Operação restrita, aceitável apenas por tempo limitado até a próxima intervenção planejada."
+        ],
+        [
+          "D",
+          "Risco de dano — nível considerado suficiente para causar avaria à máquina; ação corretiva imediata."
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Sobre esses limites são normalmente definidos os patamares operacionais de ALARME (indica que uma investigação deve começar) e TRIP (nível a partir do qual a máquina deve ser desligada, em sistemas de proteção automática)."
+    },
+    {
+      "type": "h2",
+      "text": "4.3 ISO 10816-2 — Turbinas a vapor e geradores de grande porte"
+    },
+    {
+      "type": "p",
+      "text": "Aplica-se a turbinas a vapor e geradores acima de 50 MW, tipicamente em rotação de 1500/1800 ou 3000/3600 rpm. Valores de vibração de velocidade RMS (mm/s), medidos na carcaça/pedestal do mancal:"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Zona limite",
+        "1500 / 1800 rpm (mm/s)",
+        "3000 / 3600 rpm (mm/s)"
+      ],
+      "rows": [
+        [
+          "A/B",
+          "2,8",
+          "3,8"
+        ],
+        [
+          "B/C",
+          "5,3",
+          "7,5"
+        ],
+        [
+          "C/D",
+          "8,5",
+          "11,8"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "4.4 ISO 10816-3 — Máquinas industriais de médio/grande porte (motores, bombas, compressores acoplados)"
+    },
+    {
+      "type": "p",
+      "text": "Cobre máquinas industriais com potência acima de 15 kW, divididas em Grupo 1 (potência > 300 kW até 50 MW, ou motores com altura de eixo ≥ 315 mm) e Grupo 2 (potência de 15 a 300 kW, ou altura de eixo entre 160 e 315 mm), cada um avaliado conforme o suporte seja rígido ou flexível."
+    },
+    {
+      "type": "h3",
+      "text": "Grupo 1 — grandes máquinas"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Suporte",
+        "Zona",
+        "Deslocamento RMS (µm)",
+        "Velocidade RMS (mm/s)"
+      ],
+      "rows": [
+        [
+          "Rígido",
+          "A/B",
+          "29",
+          "2,3"
+        ],
+        [
+          "Rígido",
+          "B/C",
+          "57",
+          "4,5"
+        ],
+        [
+          "Rígido",
+          "C/D",
+          "90",
+          "7,1"
+        ],
+        [
+          "Flexível",
+          "A/B",
+          "45",
+          "3,5"
+        ],
+        [
+          "Flexível",
+          "B/C",
+          "90",
+          "7,1"
+        ],
+        [
+          "Flexível",
+          "C/D",
+          "140",
+          "11,0"
+        ]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Grupo 2 — máquinas médias"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Suporte",
+        "Zona",
+        "Deslocamento RMS (µm)",
+        "Velocidade RMS (mm/s)"
+      ],
+      "rows": [
+        [
+          "Rígido",
+          "A/B",
+          "22",
+          "1,4"
+        ],
+        [
+          "Rígido",
+          "B/C",
+          "45",
+          "2,8"
+        ],
+        [
+          "Rígido",
+          "C/D",
+          "71",
+          "4,5"
+        ],
+        [
+          "Flexível",
+          "A/B",
+          "37",
+          "2,3"
+        ],
+        [
+          "Flexível",
+          "B/C",
+          "71",
+          "4,5"
+        ],
+        [
+          "Flexível",
+          "C/D",
+          "113",
+          "7,1"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "4.5 ISO 10816-4 — Turbinas a gás"
+    },
+    {
+      "type": "p",
+      "text": "Para turbinas a gás (tipicamente ao redor de 3000 rpm), a norma estabelece limites únicos de velocidade RMS na carcaça/pedestal:"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Zona limite",
+        "Velocidade RMS (mm/s)"
+      ],
+      "rows": [
+        [
+          "A/B",
+          "4,5"
+        ],
+        [
+          "B/C",
+          "9,3"
+        ],
+        [
+          "C/D",
+          "14,7"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "4.6 ISO 10816-5 — Máquinas hidráulicas (turbinas hidráulicas, bombas de armazenamento e geradores associados)"
+    },
+    {
+      "type": "p",
+      "text": "Divide as máquinas em quatro grupos conforme configuração (horizontal/vertical) e tipo de fixação dos mancais. Exemplo — Grupo 1 (conjuntos horizontais com mancais de pedestal, rotação acima de 300 rpm):"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Zona limite",
+        "Deslocamento pico a pico (mm)",
+        "Velocidade RMS (mm/s)"
+      ],
+      "rows": [
+        [
+          "A/B",
+          "30",
+          "1,6"
+        ],
+        [
+          "B/C",
+          "50",
+          "2,5"
+        ],
+        [
+          "C/D",
+          "80",
+          "4,0"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "4.7 ISO 10816-7 — Bombas centrífugas (rotodinâmicas)"
+    },
+    {
+      "type": "p",
+      "text": "Traz critérios específicos por faixa de potência e por categoria de aplicação (Categoria I — instalações críticas/especiais; Categoria II — instalações industriais gerais). Resumo simplificado para bombas acima de 1 kW:"
+    },
+    {
+      "type": "table",
+      "header": [
+        "Zona",
+        "Categoria I, ≤200 kW (mm/s)",
+        "Categoria I, >200 kW (mm/s)",
+        "Categoria II, ≤200 kW (mm/s)",
+        "Categoria II, >200 kW (mm/s)"
+      ],
+      "rows": [
+        [
+          "A",
+          "2,5",
+          "3,5",
+          "3,2",
+          "4,2"
+        ],
+        [
+          "B",
+          "4,0",
+          "5,0",
+          "5,1",
+          "6,1"
+        ],
+        [
+          "C",
+          "6,6",
+          "7,6",
+          "8,5",
+          "9,5"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "A norma também recomenda o alarme (~1,25× o limite superior da zona B) e o trip (~1,25× o limite superior da zona C) como referências práticas para configurar sistemas de proteção."
+    },
+    {
+      "type": "h2",
+      "text": "4.8 Exemplo resolvido: definindo ALARME e TRIP"
+    },
+    {
+      "type": "p",
+      "text": "Considere um turbogerador a vapor de 3000 rpm (ISO 10816-2). O limite B/C é 7,5 mm/s. Ao colocar a máquina em operação, o valor estável (baseline) medido no mancal foi de 4,0 mm/s RMS."
+    },
+    {
+      "type": "bullet",
+      "text": "Novo limite de ALARME = baseline + 25% do limite B/C = 4,0 + 0,25 × 7,5 = 5,9 mm/s."
+    },
+    {
+      "type": "bullet",
+      "text": "O limite de TRIP permanece no valor C/D da norma: 11,8 mm/s, a menos que haja justificativa técnica específica para alterá-lo."
+    },
+    {
+      "type": "p",
+      "text": "Esse procedimento — ancorar o alarme no baseline real da máquina, e não apenas no limite genérico da norma — é a prática recomendada para reduzir falsos alarmes sem perder sensibilidade a mudanças reais de condição."
+    }
+  ],
+  "quizzes": [
+    {
+      "title": "Exercícios de fixação — Módulo 4",
+      "questions": [
+        "Um motor elétrico de 200 kW (Grupo 2, suporte rígido) apresenta 3,1 mm/s RMS de vibração no mancal. Em que zona ele se encontra segundo a ISO 10816-3?",
+        "Explique a diferença entre o Critério I e o Critério II da ISO 10816-1.",
+        "Por que os valores numéricos das zonas de severidade não devem ser usados diretamente como especificação contratual de aceitação, segundo a própria norma?"
+      ],
+      "answers": [
+        "Para Grupo 2 rígido: A/B = 1,4; B/C = 2,8; C/D = 4,5 mm/s. Com 3,1 mm/s, o valor está entre B/C (2,8) e C/D (4,5), portanto na Zona C — operação aceitável apenas por tempo limitado, com necessidade de planejamento de intervenção.",
+        "O Critério I avalia o valor absoluto (magnitude) da vibração contra zonas fixas de severidade. O Critério II avalia a variação da magnitude ao longo do tempo em relação a uma referência (baseline) — uma mudança significativa pode indicar um problema em desenvolvimento mesmo que o valor absoluto ainda esteja em zona aceitável.",
+        "Porque os limites de zona foram estabelecidos a partir de experiência internacional geral, para evitar exigências grosseiramente inadequadas ou irrealistas — não consideram particularidades de projeto de cada máquina. A especificação de aceitação definitiva deve ser acordada entre fabricante e cliente, podendo ser mais rigorosa ou mais permissiva conforme o caso."
+      ]
+    }
+  ],
+  "meta": {
+    "num": "4",
+    "short": "Normas ISO 10816",
+    "level": "intermediário"
+  },
+  "videoUrl": null
+}

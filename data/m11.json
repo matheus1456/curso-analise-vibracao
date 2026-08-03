@@ -1,0 +1,118 @@
+{
+  "id": "m11",
+  "title": "Módulo 11 — Bombas, Ventiladores e Compressores",
+  "body": [
+    {
+      "type": "h2",
+      "text": "11.1 Frequência de passagem de pás (BPF)"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 10,
+        "unit": "Ordens (x RPM)",
+        "peaks": [
+          {
+            "order": 1,
+            "amp": 0.2
+          },
+          {
+            "order": 8,
+            "amp": 1
+          }
+        ]
+      },
+      "caption": "Espectro com BPF amplificado por ressonância estrutural da base"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/13_bomba_bpf.png",
+      "caption": "Figura 11.1 — Espectro típico de bomba centrífuga: BPF (nº de pás × RPM) e seu segundo harmônico."
+    },
+    {
+      "type": "p",
+      "text": "A frequência de passagem de pás (BPF = número de pás/palhetas × RPM) é inerente ao funcionamento de bombas, ventiladores e compressores e, em amplitude moderada, não constitui um problema — é o \"ruído de fundo\" esperado da máquina. Torna-se preocupante quando sua amplitude é anormalmente alta, o que pode ocorrer por:"
+    },
+    {
+      "type": "bullet",
+      "text": "Folga desigual entre as pás rotativas e os difusores estacionários (deveria ser uniforme em toda a volta)."
+    },
+    {
+      "type": "bullet",
+      "text": "Coincidência entre BPF (ou seus harmônicos) e uma frequência natural do sistema — uma condição de ressonância que amplifica dramaticamente a vibração."
+    },
+    {
+      "type": "bullet",
+      "text": "Desgaste do impelidor, quebra de travas de difusores, obstrução de fluxo ou rotor descentralizado dentro da carcaça."
+    },
+    {
+      "type": "h3",
+      "text": "Exemplo numérico: verificando coincidência de BPF com frequência natural"
+    },
+    {
+      "type": "p",
+      "text": "Uma bomba de 5 pás gira a 3560 rpm. O BPF calculado é 5 × (3560/60) = 296,7 Hz. Um teste de impacto (bump test) na tubulação de descarga, com a bomba parada, revelou uma frequência natural estrutural em 292 Hz. A diferença entre BPF e a frequência natural é de apenas 1,6%, dentro da margem geralmente considerada de risco de ressonância (tipicamente, diferenças inferiores a 10% já merecem atenção)."
+    },
+    {
+      "type": "p",
+      "text": "Diagnóstico: mesmo sem nenhum defeito na bomba em si, a proximidade entre BPF e a frequência natural da tubulação é suficiente para amplificar dramaticamente a vibração em BPF. A correção não está na bomba, e sim em alterar a rigidez ou o suporte da tubulação (adicionar um suporte, um contraventamento) para afastar a frequência natural de 296,7 Hz — ilustrando por que o diagnóstico de vibração muitas vezes aponta para a estrutura ao redor da máquina, não apenas para a máquina isoladamente."
+    },
+    {
+      "type": "h2",
+      "text": "11.2 Turbulência e cavitação"
+    },
+    {
+      "type": "chart",
+      "spectrum": {
+        "mode": "freq",
+        "xmax": 20,
+        "unit": "Ordens (x RPM)",
+        "peaks": [
+          {
+            "order": 6,
+            "amp": 0.9
+          },
+          {
+            "order": 12,
+            "amp": 0.3
+          }
+        ],
+        "noise": 0.35
+      },
+      "caption": "Espectro típico de cavitação: ruído aleatório de banda larga sobreposto ao BPF"
+    },
+    {
+      "type": "image",
+      "src": "assets/img/14_cavitacao.png",
+      "caption": "Figura 11.2 — Cavitação: ruído aleatório de banda larga, sobreposto a harmônicos de BPF."
+    },
+    {
+      "type": "bullet",
+      "text": "Turbulência: comum em ventiladores/sopradores, causa vibração aleatória de baixa frequência devido a variações de pressão e velocidade do ar no sistema de dutos."
+    },
+    {
+      "type": "bullet",
+      "text": "Cavitação: gera energia aleatória de banda larga e frequência mais alta, muitas vezes sobreposta a harmônicos de BPF; indica tipicamente pressão de sucção insuficiente (NPSH inadequado). É potencialmente destrutiva — pode erodir as palhetas do rotor — e costuma ser reconhecida no campo pelo som característico, como se \"pedras\" estivessem passando pela bomba."
+    }
+  ],
+  "quizzes": [
+    {
+      "title": "Exercícios de fixação — Módulo 11",
+      "questions": [
+        "Uma bomba centrífuga com 6 pás, girando a 1800 rpm, apresenta pico anômalo em 180 Hz. A que ordem/fenômeno isso corresponde e o que deve ser investigado?",
+        "Como diferenciar, no espectro e pelo comportamento observado em campo, cavitação de um simples aumento de amplitude de BPF por desgaste do impelidor?"
+      ],
+      "answers": [
+        "1800 rpm = 30 Hz de rotação; BPF = 6 × 30 Hz = 180 Hz. O pico corresponde à frequência de passagem de pás. Deve-se investigar folga entre pás e difusores, possível coincidência com frequência natural do sistema, desgaste do impelidor ou obstrução no fluxo.",
+        "A cavitação se manifesta como energia aleatória de banda larga (não como um pico discreto e estreito), tipicamente sobreposta aos harmônicos de BPF, acompanhada de ruído característico de \"pedras\" na bomba e frequentemente correlacionada com baixa pressão de sucção (NPSH insuficiente). O aumento simples de BPF por desgaste do impelidor aparece como elevação de amplitude em picos discretos e estreitos (BPF e harmônicos), sem o piso de ruído aleatório característico da cavitação."
+      ]
+    }
+  ],
+  "meta": {
+    "num": "11",
+    "short": "Bombas, Ventiladores e Compressores",
+    "level": "intermediário"
+  },
+  "videoUrl": null
+}
