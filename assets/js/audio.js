@@ -2,17 +2,14 @@
    Análise de Vibração — Curso Interativo
    assets/js/audio.js — leitura em áudio das aulas.
 
-   Dois motores de voz:
-   1) Voz de IA (OpenAI /v1/audio/speech) — soa muito mais natural, usada
-      automaticamente quando o aluno já tem uma chave de API da OpenAI
-      salva (a mesma chave do Chat com IA, compartilhada via openai.js).
-   2) Voz do navegador (Web Speech API, window.speechSynthesis) — motor
-      offline, sempre disponível como alternativa/fallback, com afinação
-      de voz e cadência para soar menos "robótica" (ver scoreVoice/speakNextBrowser).
+   Motor de voz: navegador (Web Speech API, window.speechSynthesis) — motor
+   offline, sempre disponível, com afinação de voz e cadência para soar
+   menos "robótica" (ver scoreVoice/speakNextBrowser).
 
-   Se a voz de IA falhar (chave ausente, CORS bloqueado, sem internet), a
-   leitura cai automaticamente para a voz do navegador, sem travar o botão
-   — o aluno sempre consegue ouvir a aula de alguma forma.
+   Observação: este arquivo também mantém um caminho opcional de voz via
+   API externa de IA (usado apenas se o próprio usuário configurar uma
+   chave no localStorage do navegador — nunca embutida no site). Sem
+   chave configurada, a leitura usa sempre a voz do navegador.
    ========================================================= */
 (function () {
   "use strict";
@@ -231,7 +228,7 @@
 
   window.toggleReading = function (moduleObj) {
     if (!supported && !hasAIVoice()) {
-      alert("Este navegador não tem suporte à leitura em voz alta, e nenhuma chave de API de IA foi configurada (veja a página Chat com IA).");
+      alert("Este navegador não tem suporte à leitura em voz alta.");
       return;
     }
     // trocou de módulo com leitura em andamento -> reinicia do zero no novo módulo

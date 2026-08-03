@@ -5,19 +5,60 @@
 (function () {
   "use strict";
 
-  /* ---------- 1. Onda de vibração animada no logo da sidebar ---------- */
+  /* ---------- 1. Onda animada no logo da sidebar — muda de forma e cor
+     conforme a trilha do módulo atual (chamado por app.js via
+     window.setWaveTrack), para dar identidade visual a cada trilha:
+       - vibracao:     onda senoidal contínua, verde (padrão original)
+       - rolamentos:   trem de pulsos/impactos, laranja (falha de rolamento
+                        se manifesta como impactos periódicos, não uma
+                        senoide contínua)
+       - lubrificacao: onda larga e lenta, dourada (fluxo de óleo)
+     Sem trilha ativa (capa, prática, chat, consulta) usa o estilo padrão
+     "vibracao". ---------- */
   function animateWaveLogo() {
     const path = document.getElementById("wave-path");
     if (!path) return;
+
+    const STYLES = {
+      vibracao: {
+        color: "#6fd88a", glow: "rgba(111,216,138,0.6)",
+        shape: function (x, t, amp) { return 20 + Math.sin(x / 18 + t) * amp; },
+      },
+      rolamentos: {
+        color: "#ff7a59", glow: "rgba(255,122,89,0.6)",
+        // trem de pulsos: a maior parte da onda fica perto da linha de base,
+        // com um pico estreito e agudo periódico — como o impacto de um
+        // defeito de rolamento passando pela zona de carga.
+        shape: function (x, t, amp) {
+          const cycle = 60; // largura de um período de impacto
+          const phase = ((x + t * 40) % cycle + cycle) % cycle;
+          const pulse = Math.exp(-Math.pow(phase - cycle * 0.15, 2) / 6);
+          return 20 - amp * 1.7 * pulse + Math.sin(x / 14 + t) * amp * 0.12;
+        },
+      },
+      lubrificacao: {
+        color: "#f2b53c", glow: "rgba(242,181,60,0.55)",
+        // onda larga, lenta e arredondada — como o fluxo contínuo de óleo.
+        shape: function (x, t, amp) { return 20 + Math.sin(x / 42 + t * 0.6) * amp * 1.15; },
+      },
+    };
+
+    let current = "vibracao";
+    window.setWaveTrack = function (track) {
+      current = STYLES[track] ? track : "vibracao";
+    };
+
     let t = 0;
     function frame() {
       t += 0.05;
+      const s = STYLES[current];
+      path.style.stroke = s.color;
+      path.style.filter = "drop-shadow(0 0 4px " + s.glow + ")";
       const amp = 8 + Math.sin(t * 0.5) * 3; // amplitude "respirando"
       let d = "M0,20";
       const step = 15;
       for (let x = step; x <= 210; x += step) {
-        const y = 20 + Math.sin((x / 20) + t) * amp * (x % (step * 2) === 0 ? 1 : -1) * 0.001; // subtle base
-        d += " T" + x + "," + (20 + Math.sin(x / 18 + t) * amp);
+        d += " T" + x + "," + s.shape(x, t, amp);
       }
       path.setAttribute("d", d);
       requestAnimationFrame(frame);

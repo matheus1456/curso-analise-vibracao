@@ -45,7 +45,7 @@
       "</div>" +
       "<button class='verify-btn ref-pdf-btn' onclick='printReference()'>📄 Baixar como PDF</button>" +
       "</div>";
-    html += "<div class='ref-print-title only-print'><h1>Consulta Rápida — Análise de Vibração em Máquinas Rotativas</h1><p>Referência para o Engenheiro de Confiabilidade</p></div>";
+    html += "<div class='ref-print-title only-print'><h1>Consulta Rápida — Engenharia de Confiabilidade</h1><p>Referência para o Engenheiro de Confiabilidade</p></div>";
     REFERENCE.sections.forEach((sec) => { html += renderSection(sec); });
     html += "</div>";
 
