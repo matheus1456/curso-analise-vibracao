@@ -1,0 +1,164 @@
+{
+  "c1": {
+    "a": "Balancear o rotor em campo (1 plano), corrigindo amplitude e fase em 1x RPM (Módulo 14).",
+    "b": "Realinhar o conjunto a laser, verificando soft foot antes do alinhamento final (Módulo 15).",
+    "c": "Inspecionar a fixação/folgas dos parafusos e do mancal, reapertando ou recondicionando as superfícies de encosto.",
+    "d": "Confirmar via BPFO/BPFI no espectro e programar a substituição do rolamento na próxima janela de manutenção."
+  },
+  "c2": {
+    "a": "Balancear o rotor em campo, corrigindo amplitude e fase em 1x RPM (Módulo 14).",
+    "b": "Realinhamento a laser do conjunto motor-bomba, verificando soft foot antes do alinhamento final (Módulo 15).",
+    "c": "Substituir a polia excêntrica ou corrigir sua usinagem/montagem no eixo.",
+    "d": "Alterar a rigidez/massa da estrutura, ou a rotação de operação, para afastar a frequência natural da excitação."
+  },
+  "c11": {
+    "a": "Não é necessário parar a máquina agora — aumentar a frequência de coleta e planejar a substituição na próxima parada programada.",
+    "b": "Nenhuma ação corretiva — manter o monitoramento de condição de rotina.",
+    "c": "Reavaliar a necessidade de balanceamento de campo apenas se a amplitude em 1x RPM também estiver elevada.",
+    "d": "Verificar a fixação do acelerômetro (torque, superfície, cabo) e refazer a medição antes de qualquer outra ação."
+  },
+  "c3": {
+    "a": "Balancear o conjunto em campo, corrigindo amplitude e fase em 1x RPM.",
+    "b": "Inspecionar os dentes de engrenagem via boroscopia e acompanhar a tendência do GMF.",
+    "c": "Inspeção interna do mancal, medição da folga real contra a folga de projeto, e substituição do componente com desgaste excessivo.",
+    "d": "Confirmar com análise de corrente do motor (MCSA) e inspeção elétrica do estator."
+  },
+  "c4": {
+    "a": "Inspeção visual do jogo de correias, verificação de tensão, e substituição do jogo completo (nunca uma correia isolada).",
+    "b": "Realinhar as polias (paralelismo e coplanaridade) usando régua ou laser.",
+    "c": "Ajustar o vão livre/tensão da correia para afastar sua frequência natural da rotação de operação.",
+    "d": "Balancear a polia, corrigindo amplitude e fase em 1x RPM."
+  },
+  "c7": {
+    "a": "Inspecionar/substituir o impelidor desgastado na próxima parada.",
+    "b": "Investigar a causa raiz da sucção insuficiente (nível de reservatório, perda de carga, filtro obstruído) antes de qualquer intervenção na bomba.",
+    "c": "Reforçar a estrutura ou alterar a rotação para afastar a frequência natural.",
+    "d": "Realinhar o conjunto motor-bomba a laser."
+  },
+  "c9": {
+    "a": "Apenas aumentar a frequência de monitoramento por envelope; ainda não há urgência de troca.",
+    "b": "Planejar a substituição do rolamento na próxima janela de manutenção disponível.",
+    "c": "Inspecionar a fixação/folgas do mancal e reapertar conforme necessário.",
+    "d": "Balancear o conjunto em campo, corrigindo amplitude e fase em 1x RPM."
+  },
+  "c12": {
+    "a": "Relubrificar o mancal seguindo o plano do fabricante, e reinspecionar temperatura/envelope em 24-48h para confirmar a melhora.",
+    "b": "Planejar a substituição do rolamento na próxima parada.",
+    "c": "Balancear o conjunto, corrigindo amplitude e fase em 1x RPM.",
+    "d": "Investigar a causa raiz da sucção insuficiente antes de qualquer intervenção mecânica."
+  },
+  "c13": {
+    "a": "Inspeção boroscópica dos dentes na próxima parada programada e acompanhamento mensal da tendência de aceleração no GMF.",
+    "b": "Confirmar via BPFO/BPFI e planejar a substituição do rolamento do pinhão.",
+    "c": "Balancear o pinhão, corrigindo amplitude e fase em 1x RPM.",
+    "d": "Reforçar/enrijecer a estrutura de fixação do redutor."
+  },
+  "c5": {
+    "a": "Programar parada para inspeção boroscópica e troca do pinhão trincado o quanto antes.",
+    "b": "Inspeção interna do redutor na próxima parada, com atenção ao pinhão e seus mancais.",
+    "c": "Corrigir o alinhamento entre os eixos de entrada e saída do redutor.",
+    "d": "Inspecionar e, se necessário, substituir a coroa excêntrica."
+  },
+  "c6": {
+    "a": "Balancear o rotor do motor, corrigindo amplitude e fase em 1x RPM.",
+    "b": "Confirmar com MCSA e planejar a remoção do rotor para inspeção/reparo na próxima parada programada.",
+    "c": "Inspecionar o entreferro/estator eletricamente e com termografia.",
+    "d": "Inspecionar a fixação e as folgas dos mancais do motor."
+  },
+  "c8": {
+    "a": "Balancear o rotor do ventilador, corrigindo amplitude e fase em 1x RPM.",
+    "b": "Reforçar estruturalmente a base ou adicionar massa para deslocar a frequência natural para fora da faixa de excitação.",
+    "c": "Confirmar via BPFO/BPFI e planejar a substituição do rolamento.",
+    "d": "Não se aplica a ventiladores de ar — investigar outras causas de ruído de banda larga antes."
+  },
+  "c10": {
+    "a": "Programar inspeção/troca do pinhão de entrada.",
+    "b": "Reduzir carga/rotação se possível até a próxima parada, e programar abertura do redutor para inspeção do conjunto de engrenagens do eixo de saída.",
+    "c": "Inspecionar fixações e folgas em todo o conjunto do redutor.",
+    "d": "Balancear o eixo de saída, corrigindo amplitude e fase em 1x RPM."
+  },
+  "c14": {
+    "a": "Apenas intensificar o monitoramento por envelope; ainda não há urgência.",
+    "b": "Programar a substituição do rolamento com prioridade alta (curto prazo), evitando operar até o Estágio 4 (risco de dano ao eixo/mancal).",
+    "c": "Inspecionar fixações e reapertar conforme necessário, sem urgência de parada.",
+    "d": "Nenhuma ação corretiva necessária."
+  },
+  "c15": {
+    "a": "Confirmar com MCSA e termografia, e programar inspeção elétrica do rotor na próxima parada.",
+    "b": "Confirmar via BPFO/BPFI e planejar a substituição do rolamento.",
+    "c": "Realinhar o conjunto a laser.",
+    "d": "Balancear o rotor, corrigindo amplitude e fase em 1x RPM."
+  },
+  "c16": {
+    "a": "Balanceamento de campo em um plano (Módulo 14) e revisão do procedimento de carregamento do cesto para distribuir o lote de forma mais uniforme.",
+    "b": "Confirmar via BPFO/BPFI/envelope e planejar a substituição do rolamento.",
+    "c": "Inspecionar e reapertar a fixação do mancal.",
+    "d": "Reforçar a base ou afastar a rotação de operação da frequência natural."
+  },
+  "c17": {
+    "a": "Aumentar a frequência de monitoramento por envelope, programar a substituição do rolamento na próxima janela de manutenção, e evitar postergar além do necessário.",
+    "b": "Balancear o rotor, corrigindo amplitude e fase em 1x RPM.",
+    "c": "Nenhuma ação corretiva necessária.",
+    "d": "Investigar a causa raiz da sucção/processo antes de intervir mecanicamente."
+  },
+  "c18": {
+    "a": "Revisar o nível mínimo operacional do poço de sucção, considerar um defletor ou dispositivo antivórtice, e evitar operar abaixo do nível mínimo.",
+    "b": "Confirmar via BPFO/BPFI e planejar a substituição do rolamento.",
+    "c": "Balancear o rotor da bomba, corrigindo amplitude e fase em 1x RPM.",
+    "d": "Realinhar o conjunto motor-bomba a laser."
+  },
+  "c19": {
+    "a": "Revisar a lógica de fechamento da válvula (fechamento mais gradual), avaliar um dispositivo de alívio, e não tratar como defeito mecânico da bomba.",
+    "b": "Confirmar via BPFO/BPFI de forma consistente entre medições antes de planejar a substituição.",
+    "c": "Balancear o rotor, corrigindo amplitude e fase em 1x RPM.",
+    "d": "Inspecionar fixações e folgas da bomba e da base."
+  },
+  "c20": {
+    "a": "Planejar a substituição do rolamento do lado acoplado na próxima janela de manutenção, e verificar a lubrificação para descartar causa combinada.",
+    "b": "Investigar a causa raiz da sucção insuficiente antes de intervir no rolamento.",
+    "c": "Realinhar o conjunto motor-bomba a laser.",
+    "d": "Correlacionar os picos com eventos de válvula/processo antes de tratar como defeito mecânico."
+  },
+  "c21": {
+    "a": "Revisar a eficácia do filtro de linha e da vedação do rolamento contra o ambiente de processo, e programar a substituição do rolamento.",
+    "b": "Verificar a vazão e o nível do líquido de selagem do anel líquido.",
+    "c": "Balancear o rotor, corrigindo amplitude e fase em 1x RPM.",
+    "d": "Correlacionar os picos com eventos de válvula/processo antes de tratar como defeito mecânico."
+  },
+  "c22": {
+    "a": "Inspeção boroscópica do conjunto de engrenagens no próximo desligamento programado, ferrografia do óleo, e correção da periodicidade de troca de óleo.",
+    "b": "Confirmar via BPFO/BPFI e planejar a substituição do rolamento.",
+    "c": "Realinhar o conjunto motor-redutor a laser.",
+    "d": "Inspecionar e reapertar a fixação da base do redutor."
+  },
+  "c23": {
+    "a": "Manter o monitoramento por envelope com frequência aumentada (semanal), e programar a substituição do rolamento na próxima janela de parada planejada.",
+    "b": "Balancear o eixo de saída, corrigindo amplitude e fase em 1x RPM.",
+    "c": "Revisar o plano de lubrificação de todo o conjunto, sem foco num ponto localizado.",
+    "d": "Reforçar a estrutura do agitador ou afastar a rotação da frequência natural."
+  },
+  "c24": {
+    "a": "Confirmar com MCSA completa e formal, avaliar a severidade pelo número de barras afetadas, e planejar reparo/rebobinamento do rotor.",
+    "b": "Balancear o rotor do motor, corrigindo amplitude e fase em 1x RPM.",
+    "c": "Verificar o entreferro do motor e a concentricidade da montagem do estator/rotor.",
+    "d": "Verificar o batimento radial (TIR) do eixo e corrigir ou substituir se empenado."
+  },
+  "c25": {
+    "a": "Instalar anel de aterramento de eixo ou rolamento isolado eletricamente no lado oposto ao acoplamento, e verificar o aterramento geral do sistema motor-inversor.",
+    "b": "Planejar a substituição normal do rolamento por fim de vida útil, sem necessidade de intervenção elétrica.",
+    "c": "Realinhar o conjunto motor-carga a laser.",
+    "d": "Corrigir o tipo/quantidade de graxa conforme especificação do fabricante do rolamento."
+  },
+  "c26": {
+    "a": "Programar inspeção da folga entre os rotores e das engrenagens de sincronismo no próximo overhaul (não postergar, dado o risco de contato metal-metal).",
+    "b": "Balancear o rotor, corrigindo amplitude e fase em 1x RPM.",
+    "c": "Confirmar via BPFO/BPFI e planejar a substituição do rolamento.",
+    "d": "Nenhuma ação corretiva necessária além do monitoramento de rotina."
+  },
+  "c27": {
+    "a": "Corrigir imediatamente o intervalo de relubrificação para o valor especificado pelo fabricante, programar a substituição do rolamento, e revisar a especificação térmica da graxa.",
+    "b": "Inspecionar a folga e as engrenagens de sincronismo entre os rotores.",
+    "c": "Não se aplica a compressores de ar — investigar outras causas antes.",
+    "d": "Inspecionar e reapertar a fixação da base do compressor."
+  }
+}
