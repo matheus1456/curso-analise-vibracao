@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Análise de Vibração — Curso Interativo para Engenheiro de Confiabilidade</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/practice.css" />
+<link rel="stylesheet" href="assets/css/chat.css" />
+<link rel="stylesheet" href="assets/css/refpage.css" />
+<link rel="stylesheet" href="assets/css/lab.css" />
+<script>
+  // Aplica o tema salvo antes da primeira pintura, evitando "flash" de tema errado.
+  (function () {
+    try {
+      var saved = localStorage.getItem("vibcourse_theme");
+      if (!saved) saved = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", saved);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div id="vib-line" aria-hidden="true"></div>
+
+<div id="app">
+  <button id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir menu">☰</button>
+  <div id="quick-nav">
+    <button id="quick-nav-btn" onclick="toggleQuickNav()" aria-label="Menu de navegação rápida" title="Menu de navegação rápida"><span class="qn-label">☰ Menu</span> <span class="qn-arrow">▾</span></button>
+    <div id="quick-nav-dropdown" class="quick-nav-dropdown" style="display:none">
+      <button onclick="goTo('m0'); toggleQuickNav()">🏠 Início do curso</button>
+      <button onclick="goTo('practice'); toggleQuickNav()">🧪 Prática de Diagnóstico</button>
+      <button onclick="goTo('chat'); toggleQuickNav()">💬 Chat com IA</button>
+      <button onclick="goTo('reference'); toggleQuickNav()">📖 Consulta Rápida</button>
+      <div class="qn-sep"></div>
+      <button onclick="toggleSidebar(); toggleQuickNav()">📚 Ver todos os módulos</button>
+      <button onclick="toggleTheme()">🌙 Alternar tema claro/escuro</button>
+    </div>
+  </div>
+  <button id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">🌙</button>
+  <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <aside id="sidebar">
+    <div class="brand">
+      <svg id="wave-logo" viewBox="0 0 220 40" width="100%" height="40" aria-hidden="true">
+        <path id="wave-path" d="M0,20 Q15,0 30,20 T60,20 T90,20 T120,20 T150,20 T180,20 T210,20" />
+      </svg>
+      <h1>Análise de Vibração</h1>
+      <p>Formação para Engenheiro de Confiabilidade</p>
+    </div>
+    <div id="progress-wrap">
+      <div id="progress-label"><span>Progresso do curso</span><span id="progress-count">0/19</span></div>
+      <div id="progress-bar-bg"><div id="progress-bar-fill"></div></div>
+    </div>
+    <ul id="modlist" onclick="handleNavClick(event)"></ul>
+  </aside>
+
+  <main id="main">
+    <div id="content" class="fade-target"></div>
+  </main>
+</div>
+
+<script src="data/content.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/bearing_failure_cases.js"></script>
+<script src="data/lube_content.js"></script>
+<script src="data/lube_cases.js"></script>
+<script src="data/reference.js"></script>
+<script src="assets/js/acronyms.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/openai.js"></script>
+<script src="assets/js/audio.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/practice.js"></script>
+<script src="assets/js/chat.js"></script>
+<script src="assets/js/refpage.js"></script>
+<script src="assets/js/lab.js"></script>
+<script src="assets/js/effects.js"></script>
+</body>
+</html>
