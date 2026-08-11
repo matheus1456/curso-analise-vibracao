@@ -1,6 +1,6 @@
-# Engenharia de Confiabilidade — Curso Interativo
+# Análise de Vibração — Curso Interativo
 
-Site estático (sem servidor/back-end necessário) para o curso **"Engenharia de Confiabilidade — Análise de Vibração, Falhas em Rolamentos e Lubrificação"**, com 34 módulos do nível básico ao avançado organizados em três trilhas — **Análise de Vibração I, II e III** (18 módulos), **Análise de Falhas - Rolamentos** (4 módulos, base SKF) e **Engenheiro de Lubrificação** (12 módulos, base ICML/Noria/Lubrin) —, todos os 98 quizzes do curso em formato de **múltipla escolha com correção instantânea**, tabelas de normas ISO 10816, mais de 50 diagramas/gráficos ilustrativos + 18 fotos reais de falhas de rolamentos, vídeo-aulas por módulo geradas por IA (NotebookLM), uma página de prática de diagnóstico com 27 casos de espectro + 18 casos de identificação por foto real + 19 casos de análise de óleo (incluindo **laudos de análise de óleo completos**, estilo LUBRIN/PURILUB, e exercícios visuais de ferrografia analítica), percentual de conclusão por trilha no menu lateral, tooltips explicativos ao passar o mouse em siglas técnicas (BPFO, GMF, RMS etc.) em todo o site, modo claro/escuro e um chat com IA (ChatGPT/OpenAI) para tirar dúvidas.
+Site estático (sem servidor/back-end necessário) para o curso **"Análise de Vibração em Máquinas Rotativas — Formação para Engenheiro de Confiabilidade"**, com 37 módulos do nível básico ao avançado organizados em três trilhas — **Análise de Vibração I, II e III** (19 módulos), **Análise de Falhas - Rolamentos** (6 módulos, base SKF) e **Engenheiro de Lubrificação** (12 módulos, base ICML/Noria/Lubrin) —, todos os 107 quizzes do curso em formato de **múltipla escolha com correção instantânea**, tabelas de normas ISO 10816, mais de 50 diagramas/gráficos ilustrativos + 18 fotos reais de falhas de rolamentos, vídeo-aulas por módulo geradas por IA (NotebookLM), uma página de prática de diagnóstico com 32 casos de espectro + 18 casos de identificação por foto real + 19 casos de análise de óleo (incluindo **laudos de análise de óleo completos**, estilo LUBRIN/PURILUB, e exercícios visuais de ferrografia analítica), percentual de conclusão por trilha no menu lateral, tooltips explicativos ao passar o mouse em siglas técnicas (BPFO, GMF, RMS etc.) em todo o site, modo claro/escuro e um chat com IA (ChatGPT/OpenAI) para tirar dúvidas.
 
 ## Como abrir
 
@@ -25,8 +25,8 @@ curso-vibracao/
 │   ├── img/                # 34 gráficos/diagramas + 18 fotos reais de falhas (PNG/JPG), usados nos módulos e na prática
 │   └── video/              # Vídeo-aulas por módulo (MP4), geradas via NotebookLM
 ├── data/
-│   ├── content.js          # Conteúdo estruturado dos 22 módulos (gerado automaticamente)
-│   ├── cases.js            # 27 casos práticos de espectro (tendência histórica + diagnóstico)
+│   ├── content.js          # Conteúdo estruturado dos 25 módulos da trilha de Vibração/Rolamentos (gerado automaticamente)
+│   ├── cases.js            # 32 casos práticos de espectro (tendência histórica + diagnóstico)
 │   ├── bearing_failure_cases.js  # 18 casos de identificação por foto real (Análise de Falhas - Rolamentos)
 │   ├── video_manifest.json # Mapeamento módulo → arquivo de vídeo
 │   └── video_scripts.json  # Roteiros de narração usados para gerar os vídeos
@@ -236,7 +236,7 @@ reproduções das imagens/fotos dos materiais SKF originais.
 
 ## Resumo por módulo
 
-Todos os 22 módulos têm uma caixa "📌 Resumo do módulo" com os principais pontos da aula, posicionada logo
+Todos os módulos têm uma caixa "📌 Resumo do módulo" com os principais pontos da aula, posicionada logo
 antes dos exercícios de fixação — útil para revisão rápida antes de responder ao quiz.
 
 ## Prática de Diagnóstico: gráficos maiores + ponto de medição
@@ -461,3 +461,122 @@ Testado via `test_site_v3.js` (todas as 98 perguntas de todos os módulos valida
 Lubrificação renderizam sem `undefined`/`[object Object]`, o caso de laudo mostra a tabela de físico-química e o
 parecer técnico sem duplicar o painel antigo de leituras, e o caso de ferrografia visual mostra a foto e o
 `questionLabel` customizado).
+
+## Revisão de conteúdo com base em novos materiais SKF + 2 novos módulos + tabela de diagnóstico visual (Rodada K)
+
+Rodada de revisão a partir de 4 novos documentos enviados pelo usuário (`Confiabilidade - Vibração básico.pdf`,
+`Manual de Manutenção - SKF.pdf` [454 páginas], `Ebook - SKF.pdf`, `Ebook - SKF 2.pdf`) e de uma imagem de referência
+(`Tabela de Diagnósticos - SKF.jpeg`). Dois dos quatro documentos já estavam substancialmente cobertos pelo conteúdo
+existente do curso; os outros dois trouxeram material novo relevante o suficiente para justificar dois módulos
+inteiros, além de um pequeno reforço em conteúdo já existente.
+
+**Módulo 22 — Boas Práticas de Montagem, Folga Interna e Guia de Solução de Problemas em Rolamentos (SKF)**
+(avançado, trilha "Análise de Falhas - Rolamentos", logo após o Módulo 21): extraído do Manual de Manutenção SKF,
+cobre por que a folga interna do rolamento afeta diretamente a vibração medida, como erros específicos de montagem
+geram os defeitos já vistos nos Módulos 6 e 7 (mapeando códigos de causa numéricos da SKF aos sintomas espectrais),
+a diferenciação entre "falso Brinell" (marcas estáticas por vibração em transporte/armazenamento, sem fadiga real) e
+dano por fadiga real — reforçando por que a técnica de envelope do Módulo 7.5 é decisiva nessa distinção —, um guia
+rápido sintoma → causas prováveis em formato de tabela, e boas práticas de montagem/desmontagem. Inclui quiz com 2
+perguntas de múltipla escolha.
+
+**Módulo 23 — Técnicas Complementares de Monitoramento de Condição: Termografia, Análise de Óleo, Ultrassom e MCSA**
+(avançado, trilha de Vibração, logo após o Módulo 13): cobre as técnicas de CBM que complementam a análise de
+vibração — termografia infravermelha (incluindo o conceito de emissividade e o cuidado com superfícies reflexivas),
+análise de óleo lubrificante (viscosidade, contaminação por água, o ponto de atenção de que ~80% dos rolamentos
+industriais usam graxa, não óleo), ultrassom (vazamentos, descargas elétricas, atrito incipiente em rolamentos) e
+MCSA (Motor Current Signature Analysis, o método recomendado para confirmar defeitos elétricos do rotor identificados
+no Módulo 10 sem parar a máquina), fechando com uma tabela comparativa de quando priorizar cada técnica. Inclui quiz
+com 2 perguntas de múltipla escolha.
+
+**Pequeno reforço no Módulo 1**: acrescentada uma frase sobre manutenção proativa (variante da manutenção preditiva
+que busca eliminar a causa raiz da falha, não apenas prevê quando ela vai ocorrer) ao bullet existente sobre
+manutenção preditiva.
+
+**Renumeração**: `meta.num` de todos os 24 módulos de `data/content.js` foi recalculado sequencialmente (0 a 23) para
+refletir a nova ordem, corrigindo também uma lacuna pré-existente no número do Módulo 17 (Glossário).
+
+**Tabela de Diagnóstico SKF como referência visual sempre acessível**: a imagem enviada pelo usuário
+(`assets/img/tabela_diagnostico_skf.jpeg`) — um pôster de referência rápida cobrindo desbalanceamento, desalinhamento,
+folgas, bombas centrífugas, engrenagens, elétrico, correias, efeito de batimento, mancais de deslizamento e evolução
+de falhas de rolamento por envelope de aceleração — agora fica disponível através de um **botão flutuante "📊
+Diagnóstico"** no canto inferior direito, visível em qualquer página do site (não só dentro de um módulo específico).
+O botão abre um modal em tela cheia com a imagem, controles de zoom (−/100%/+, de 0.5x a 3x) e fecha com Esc, clique
+fora ou o botão "✕". Também foi adicionado um atalho equivalente ("📊 Tabela de Diagnóstico") no menu suspenso "☰
+Menu" já existente. Implementado em `index.html` (`#diag-table-btn`, `#diag-table-modal`), `assets/css/style.css`
+(classes `.dtb-*`/`.dtm-*`, reaproveitando as variáveis de tema existentes) e `assets/js/app.js`
+(`window.toggleDiagTable`, `window.zoomDiagTable`).
+
+
+## Rodada L — Revisão profunda do Manual de Manutenção SKF, novos exercícios e correção das vídeo-aulas
+
+Segunda rodada de revisão sobre os materiais SKF enviados, agora com leitura detalhada do **Manual de
+Manutenção de Rolamentos da SKF** (454 páginas) capítulo a capítulo, comparando cada seção com o conteúdo
+já existente no curso. Os capítulos de Alinhamento (6), Solução de problemas (9) e Noções básicas (1)
+concentraram as lacunas reais; os demais já estavam cobertos pelos Módulos 7, 18 a 23.
+
+### Novo Módulo 24 — Designação, folga, ajustes e montagem/desmontagem de rolamentos
+
+Módulo avançado na trilha "Análise de Falhas - Rolamentos", que fecha uma lacuna prática relevante: o curso
+ensinava a diagnosticar defeitos de rolamento pelo espectro, mas não ensinava a **ler a designação gravada no
+anel** nem a reconhecer os erros de montagem que criam o defeito. Cobre a estrutura da designação básica
+(tipo, série de dimensões, código de tamanho × 5 = furo em mm, com as exceções para furos abaixo de 10 mm e a
+partir de 500 mm), uma tabela dos sufixos que mais afetam a vibração (folga C1–C5, vedações Z/2Z, RS1/2RS1,
+RZ/2RZ, furo cônico K/K30, materiais de gaiola), a diferença entre folga de catálogo e **folga residual em
+operação**, a regra de ouro da montagem (a força nunca atravessa os elementos rolantes), os quatro métodos de
+montagem (a frio, a quente com limite de 125 °C, Drive-up da SKF e injeção de óleo) e a desmontagem tratada
+como **coleta de evidência** para a análise de falha ISO 15243. Três exercícios de múltipla escolha.
+
+### Módulos existentes enriquecidos
+
+- **Módulo 15 (Alinhamento de Eixos)** ganhou duas seções novas. A seção 15.4 trata do **pé manco (soft foot)**,
+  que antes aparecia apenas como uma linha na lista de erros comuns: os dois tipos (paralelo/"pé curto" e
+  angular/"pé em ângulo"), as causas, o método de verificação com calibrador de folga registrando os quatro
+  valores, e por que apertar parafusos para compensar pé manco deforma a carcaça e mata o rolamento. A seção
+  15.5 traz as **tolerâncias de alinhamento por faixa de rotação** (níveis "excelente" e "aceitável"), as regras
+  de calçamento (aço inoxidável, nunca cobre ou latão, no máximo três calços empilhados), o aperto de parafusos
+  (máximo de 75% da resistência ao escoamento, torquímetro em pelo menos dois estágios) e a exigência de
+  temperatura estável antes de alinhar. Mais um exercício.
+- **Módulo 9 (Correias e Transmissões)** ganhou a seção 9.2 com os **três tipos de desalinhamento de polia**
+  (ângulo vertical/torcido, ângulo horizontal e paralelo/offset), em tabela com descrição, causa típica e
+  correção específica de cada um, a tolerância de 0,25° a 1,0° e o aviso da SKF de que uma correia nova não
+  durará mais que a substituída enquanto o desalinhamento persistir. Mais um exercício.
+- **Módulo 22** teve a tabela de solução de problemas expandida: os cinco sintomas SKF (A a E — aquecimento,
+  ruído, vibração, movimentação do eixo e atrito para girar) agora vêm com os grupos completos de causa
+  possível, e uma segunda tabela traduz os **códigos numéricos de solução da SKF** (1–4, 11, 16/17/26, 19/20,
+  22, 25, 27–29, 30/31, 34, 35/36, 37/38/40, 41) para o padrão espectral correspondente já estudado no curso —
+  fazendo a ponte entre o diagnóstico no espectro e a ação mecânica.
+
+### 5 diagramas novos
+
+Gerados por `scripts/gen_skf_manual_diagrams.py` (matplotlib), no mesmo estilo visual dos demais gráficos do
+curso — são esquemas originais, não reproduções das figuras do manual SKF:
+`skf_01_pe_manco.png` (apoio correto × paralelo × angular), `skf_02_desalinhamento_correias.png` (os três tipos,
+com a vista indicada em cada painel), `skf_03_designacao_rolamento.png` (anatomia campo a campo de
+6205-2RS1/C3), `skf_04_tolerancias_alinhamento.png` (tolerâncias × rotação) e `skf_05_montagem_forca.png`
+(regra de ouro da montagem, certo × errado).
+
+### 5 novos casos na Prática de Diagnóstico (c28–c32, total de 32)
+
+Todos com painel de leituras do coletor, espectro dinâmico, tendência histórica, dica, mini-guia de solução por
+hipótese e vínculo com o módulo teórico:
+
+- **c28** — bomba cujo alinhamento não se sustenta: tendência em dente de serra e leitura do alinhador que muda
+  conforme a ordem de aperto dos parafusos, apontando **pé manco** como causa raiz por trás do 2X axial.
+- **c29** — ventilador em que a correia nova se desgastou como a antiga: 1X axial e desgaste concentrado em um
+  flanco do canal, revelando **desalinhamento de polias** não corrigido.
+- **c30** — motor que passou a esquentar após a troca do rolamento, com aceleração alta e **envelope sem picos
+  discretos**: rolamento de reposição 6316 aplicado no lugar de um 6316/C3, gerando pré-carga (código 11 da SKF).
+- **c31** — motor reserva armazenado catorze meses ao lado de um britador, cujos picos de envelope **não
+  coincidem com nenhuma frequência de defeito calculada**: falso brinelamento, e não fadiga.
+- **c32** — redutor com folga que reaparece a cada troca de rolamento, com assento do eixo polido: **fluência
+  (creep) do anel interno**, código 30 da SKF — o rolamento é a vítima, não a causa.
+
+### Correção: vídeo-aulas dos Módulos 6 a 10 não apareciam no site publicado
+
+A pasta `curso-vibracao-site` (a versão publicada/enviada ao GitHub) continha apenas os vídeos dos Módulos 0 a 5,
+em versão comprimida, enquanto os vídeos dos Módulos 6 a 10 existiam apenas no pacote local em resolução cheia
+(30 a 44 MB cada, acima do limite de 25 MB por arquivo do GitHub). Por isso os módulos 6 a 10 continuavam
+mostrando o cartão "em produção" no site publicado, mesmo com o `videoUrl` já preenchido em `data/content.js`.
+Os cinco vídeos foram recodificados para 960×540 (entre 6,6 MB e 13 MB cada, mesmo padrão dos vídeos 0 a 5) e
+adicionados à pasta publicada. Os **onze vídeos (Módulos 0 a 10) agora aparecem no site**. Instruções de
+publicação em `PUBLICAR-NO-GITHUB.md`.

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const vm = require("vm");
 
-const PROJ = "/tmp/project/curso-vibracao";
+const PROJ = __dirname;
 const labJs = fs.readFileSync(PROJ + "/assets/js/lab.js", "utf-8");
 
 // ---------------------------------------------------------------------------

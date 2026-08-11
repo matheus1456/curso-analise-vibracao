@@ -3167,5 +3167,582 @@ const CASES = [
     "action": "Ação recomendada: corrigir imediatamente o intervalo de relubrificação para o valor especificado pelo fabricante (ou menor, dada a temperatura de operação), programar a substituição do rolamento na próxima parada disponível, e revisar se a graxa utilizada tem especificação térmica adequada para a faixa de temperatura observada nesse compressor.",
     "relatedModule": "m7",
     "relatedModuleLabel": "Módulo 7 — Rolamentos: Frequências de Defeito e Técnica de Envelope"
+  },
+  {
+    "id": "c28",
+    "num": 28,
+    "level": "intermediário",
+    "title": "Bomba centrífuga: desalinhamento que volta sempre depois de cada alinhamento",
+    "briefing": [
+      "Bomba centrífuga de água de processo acionada por motor elétrico de 1780 rpm, acoplamento flexível, instalada sobre base de concreto com histórico de reparo.",
+      "A máquina já foi alinhada a laser três vezes nos últimos seis meses. Em cada intervenção o relatório final do alinhador ficou dentro de tolerância, mas em duas a três semanas o nível de vibração volta ao patamar anterior.",
+      "Ao acompanhar a última intervenção, o analista observou que o técnico precisou apertar bastante o parafuso do pé traseiro direito para \"assentar\" a máquina, e que o valor lido no alinhador mudava conforme a ordem de aperto dos parafusos."
+    ],
+    "readings": {
+      "temp": 52,
+      "vel": 6.8,
+      "accel": 0.9,
+      "envelope": 0.4
+    },
+    "spectrum": {
+      "mode": "freq",
+      "xmax": 6,
+      "unit": "Ordens (x RPM) — espectro de velocidade, direção axial",
+      "peaks": [
+        {
+          "order": 1,
+          "amp": 2.1
+        },
+        {
+          "order": 2,
+          "amp": 5.4
+        },
+        {
+          "order": 3,
+          "amp": 1.3
+        }
+      ],
+      "noise": 0.15
+    },
+    "trend": {
+      "unit": "mm/s RMS",
+      "months": [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun"
+      ],
+      "values": [
+        6.5,
+        2.4,
+        6.2,
+        2.6,
+        6.4,
+        6.8
+      ],
+      "alertLimit": 4.5,
+      "dangerLimit": 7.1
+    },
+    "diagnosisOptions": [
+      {
+        "id": "a",
+        "text": "Pé manco (soft foot) não corrigido: a máquina se deforma a cada aperto de parafuso e o alinhamento não se sustenta",
+        "solution": "Antes de qualquer novo alinhamento, medir o pé manco com calibrador de folga nos quatro pés (ou pela rotina de soft foot do alinhador a laser), identificar se é paralelo ou angular e corrigir com calços de aço inoxidável (paralelo) ou calço em cunha / elemento nivelador ajustável (angular). Só então realinhar."
+      },
+      {
+        "id": "b",
+        "text": "Acoplamento flexível com elementos elásticos desgastados",
+        "solution": "Inspecionar e substituir os elementos elásticos do acoplamento, verificando o torque de aperto dos parafusos do cubo."
+      },
+      {
+        "id": "c",
+        "text": "Desbalanceamento do rotor da bomba por incrustação",
+        "solution": "Inspecionar e limpar o rotor; se necessário, balancear em campo conforme o Módulo 14."
+      },
+      {
+        "id": "d",
+        "text": "Crescimento térmico não compensado no alvo de alinhamento",
+        "solution": "Levantar os valores de deslocamento térmico do fabricante e refazer o alinhamento com os alvos a frio corrigidos."
+      }
+    ],
+    "correctDiagnosis": "a",
+    "checks": [
+      {
+        "id": "ordem_dominante",
+        "label": "Qual ordem domina o espectro axial deste caso?",
+        "type": "numeric",
+        "correct": 2,
+        "tolerance": 0.2
+      },
+      {
+        "id": "sinal_pe_manco",
+        "label": "Qual observação de campo é a evidência mais forte de pé manco neste caso?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "leitura_muda",
+            "text": "A leitura do alinhador muda conforme a ordem de aperto dos parafusos"
+          },
+          {
+            "id": "temp_52",
+            "text": "A temperatura do mancal está em 52 °C"
+          }
+        ],
+        "correct": "leitura_muda"
+      }
+    ],
+    "hint": "Dica: repare no formato da tendência — a vibração cai logo após cada intervenção e sobe de novo poucas semanas depois, em serra. Isso não é um defeito que evolui, é um defeito que é reintroduzido. E quando a leitura do alinhador muda conforme a ordem de aperto dos parafusos, a máquina está mudando de forma a cada aperto: o problema está no apoio, não no alinhamento em si.",
+    "relatedModule": "m15",
+    "relatedModuleLabel": "Módulo 15 — Alinhamento de Eixos",
+    "explanation": "O espectro axial com 2X RPM dominante acompanhado de 1X e 3X é a assinatura clássica de desalinhamento (Módulo 6.2). A pergunta relevante, porém, não é \"há desalinhamento?\" — é \"por que ele volta?\". A tendência em dente de serra, com queda após cada alinhamento e retorno em poucas semanas, indica que a causa raiz não foi tratada. O pé manco é exatamente esse tipo de causa: enquanto um dos pés não apoia solidamente na base, apertar os parafusos deforma a carcaça, e a máquina assume uma geometria diferente daquela em que foi alinhada. É por isso que o valor lido muda conforme a ordem de aperto. A SKF classifica o pé manco em paralelo (o pé está paralelo à base mas não encosta) e angular (só parte do pé apoia), e a correção difere entre os dois.",
+    "action": "Ação recomendada: interromper o ciclo de realinhamentos. Medir o pé manco nos quatro pés com calibrador de folga, registrando os quatro valores para determinar magnitude e tipo; inspecionar a fundação quanto a trincas e a base da máquina quanto a deformação; corrigir com calços de aço inoxidável (nunca cobre ou latão, que deformam plasticamente), usando no máximo três calços empilhados; apertar os parafusos com torquímetro em pelo menos dois estágios, até no máximo 75% da resistência ao escoamento; e só então realizar o alinhamento a laser."
+  },
+  {
+    "id": "c29",
+    "num": 29,
+    "level": "básico",
+    "title": "Ventilador por correias: a correia nova que não durou mais que a antiga",
+    "briefing": [
+      "Ventilador centrífugo de exaustão acionado por motor de 1760 rpm através de um jogo de três correias em V.",
+      "Há dois meses o jogo de correias foi substituído por desgaste lateral acentuado e ruído. Duas semanas depois da troca, o operador voltou a relatar ruído, e a medição mostra o mesmo padrão de antes da intervenção.",
+      "Inspeção visual: as correias novas já apresentam brilho e desgaste no flanco de um dos lados do canal, e há acúmulo de pó de borracha preta abaixo da polia motora."
+    ],
+    "readings": {
+      "temp": 44,
+      "vel": 5.9,
+      "accel": 0.7,
+      "envelope": 0.3
+    },
+    "spectrum": {
+      "mode": "freq",
+      "xmax": 6,
+      "unit": "Ordens (x RPM do motor) — espectro de velocidade, direção axial",
+      "peaks": [
+        {
+          "order": 1,
+          "amp": 4.9
+        },
+        {
+          "order": 2,
+          "amp": 1.1
+        }
+      ],
+      "noise": 0.12
+    },
+    "trend": {
+      "unit": "mm/s RMS",
+      "months": [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun"
+      ],
+      "values": [
+        5.6,
+        5.8,
+        6,
+        1.9,
+        5.5,
+        5.9
+      ],
+      "alertLimit": 4.5,
+      "dangerLimit": 7.1
+    },
+    "diagnosisOptions": [
+      {
+        "id": "a",
+        "text": "Desalinhamento de polias não corrigido — a correia nova se desgasta pelo mesmo motivo que a antiga",
+        "solution": "Alinhar as polias com ferramenta a laser que trabalhe pelos sulcos (não pelas faces), identificando qual dos três tipos está presente: ângulo vertical (ajustar altura dos pés), ângulo horizontal (deslizar lateralmente frente ou traseira) ou paralelo/offset (mover a polia ao longo do eixo ou a máquina para frente/para trás). Meta: desalinhamento angular horizontal entre 0,25° e 1,0°."
+      },
+      {
+        "id": "b",
+        "text": "Correias novas de lote defeituoso",
+        "solution": "Substituir o jogo por outro lote e acompanhar; se o desgaste se repetir, investigar causa geométrica."
+      },
+      {
+        "id": "c",
+        "text": "Ressonância da correia",
+        "solution": "Alterar a tensão da correia para deslocar sua frequência natural para longe da rotação de excitação, conforme o Módulo 9."
+      },
+      {
+        "id": "d",
+        "text": "Defeito de rolamento no mancal do ventilador",
+        "solution": "Confirmar por análise de envelope e programar substituição do rolamento."
+      }
+    ],
+    "correctDiagnosis": "a",
+    "checks": [
+      {
+        "id": "direcao",
+        "label": "Em qual direção a amplitude de 1X é predominante neste caso?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "axial",
+            "text": "Axial"
+          },
+          {
+            "id": "radial",
+            "text": "Radial horizontal"
+          }
+        ],
+        "correct": "axial"
+      },
+      {
+        "id": "tipo_desal",
+        "label": "Se os eixos das duas polias estão paralelos, mas uma polia está adiantada em relação à outra, de que tipo de desalinhamento se trata?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "paralelo",
+            "text": "Paralelo (offset)"
+          },
+          {
+            "id": "ang_vert",
+            "text": "Ângulo vertical (torcido)"
+          }
+        ],
+        "correct": "paralelo"
+      }
+    ],
+    "hint": "Dica: 1X RPM predominantemente AXIAL em uma transmissão por correias aponta para a geometria das polias, não para a correia em si. E a tendência conta o resto da história: a vibração caiu no mês da troca e voltou ao mesmo patamar logo depois. O desgaste concentrado em um único flanco do canal é a assinatura visual do problema.",
+    "relatedModule": "m9",
+    "relatedModuleLabel": "Módulo 9 — Correias e Transmissões",
+    "explanation": "Vibração em 1X RPM predominantemente axial em acionamento por correias é a assinatura de desalinhamento de polias. O desgaste concentrado em um dos flancos do canal e o pó de borracha confirmam que a correia trabalha raspando lateralmente. Como a causa raiz é geométrica — as polias continuam desalinhadas —, a correia nova se desgasta exatamente pelo mesmo mecanismo, o que é o aviso explícito da SKF: a menos que o desalinhamento seja corrigido, uma correia nova não durará mais do que aquela que ela substituiu. O laudo completo precisa identificar qual dos três tipos de desalinhamento está presente, porque cada um tem uma correção mecânica diferente.",
+    "action": "Ação recomendada: alinhar as polias com ferramenta a laser que trabalhe pelos sulcos das polias (mais preciso que alinhar pelas faces, e funciona mesmo com polias de espessuras ou marcas diferentes); classificar o desalinhamento encontrado entre ângulo vertical, ângulo horizontal e paralelo, aplicando a correção correspondente; verificar também a tensão do jogo de correias após o alinhamento; e registrar no histórico que a troca anterior tratou apenas o sintoma."
+  },
+  {
+    "id": "c30",
+    "num": 30,
+    "level": "avançado",
+    "title": "Motor elétrico que esquenta depois da troca de rolamento, sem defeito no envelope",
+    "briefing": [
+      "Motor elétrico de 75 kW, 3560 rpm, acionando um ventilador de tiragem induzida. O rolamento do lado acoplado foi substituído há três semanas em manutenção programada.",
+      "Desde a partida após a intervenção, a temperatura do mancal subiu de 55 °C (histórico) para 88 °C e permanece estável nesse patamar. O nível global de velocidade subiu pouco, mas a aceleração em alta frequência aumentou de forma perceptível.",
+      "A análise de envelope não mostra picos discretos em BPFO, BPFI, BSF ou FTF — apenas um patamar de ruído mais alto e sem estrutura. A ficha do almoxarifado registra que o rolamento original era 6316/C3 e que o item aplicado foi um 6316 disponível em estoque."
+    ],
+    "readings": {
+      "temp": 88,
+      "vel": 2.4,
+      "accel": 3.6,
+      "envelope": 0.9
+    },
+    "spectrum": {
+      "mode": "freq",
+      "xmax": 12,
+      "unit": "Ordens (x RPM) — espectro de envelope (gE)",
+      "peaks": [
+        {
+          "order": 1,
+          "amp": 0.12
+        }
+      ],
+      "noise": 0.55
+    },
+    "trend": {
+      "unit": "°C (temperatura do mancal)",
+      "months": [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun"
+      ],
+      "values": [
+        54,
+        55,
+        55,
+        56,
+        88,
+        88
+      ],
+      "alertLimit": 75,
+      "dangerLimit": 95
+    },
+    "diagnosisOptions": [
+      {
+        "id": "a",
+        "text": "Rolamento de reposição com folga interna errada (CN no lugar de C3), gerando pré-carga em operação",
+        "solution": "Substituir pelo rolamento com a designação completa correta (6316/C3), conferindo sufixo por sufixo. Revisar o procedimento de almoxarifado para que a designação completa — e não apenas a designação básica — seja usada como critério de equivalência."
+      },
+      {
+        "id": "b",
+        "text": "Defeito de pista externa em estágio inicial",
+        "solution": "Acompanhar a evolução do envelope e programar substituição quando os picos de BPFO se destacarem do ruído de fundo."
+      },
+      {
+        "id": "c",
+        "text": "Desbalanceamento residual do ventilador após a intervenção",
+        "solution": "Verificar 1X radial e, se confirmado, balancear em campo conforme o Módulo 14."
+      },
+      {
+        "id": "d",
+        "text": "Excesso de graxa aplicado na montagem",
+        "solution": "Purgar o excesso de graxa e reavaliar a temperatura após estabilização."
+      }
+    ],
+    "correctDiagnosis": "a",
+    "checks": [
+      {
+        "id": "furo_6316",
+        "label": "Qual é o diâmetro do furo, em mm, de um rolamento 6316?",
+        "type": "numeric",
+        "correct": 80,
+        "tolerance": 0.5
+      },
+      {
+        "id": "por_que_sem_pico",
+        "label": "Por que a análise de envelope NÃO mostra picos discretos neste caso?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "sem_defeito_local",
+            "text": "Porque não há defeito localizado numa pista — a pré-carga distribui a solicitação por toda a circunferência"
+          },
+          {
+            "id": "envelope_falhou",
+            "text": "Porque a técnica de envelope não funciona acima de 3000 rpm"
+          }
+        ],
+        "correct": "sem_defeito_local"
+      }
+    ],
+    "hint": "Dica: a combinação temperatura muito alta + aceleração de alta frequência elevada + envelope SEM picos discretos é característica. Defeito localizado gera pico em frequência calculável; este quadro não gera. Vale conferir o que mudou na intervenção — inclusive a designação completa do rolamento aplicado, sufixo por sufixo.",
+    "relatedModule": "m24",
+    "relatedModuleLabel": "Módulo 24 — Designação de Rolamentos, Folga, Ajustes e Montagem",
+    "explanation": "O 6316 tem furo de 80 mm (16 × 5). O sufixo /C3 indica folga interna maior que a Normal (CN) — especificação típica de motores elétricos, onde o anel interno opera mais quente que o externo e a diferença de temperatura consome parte da folga. Ao aplicar um 6316 com folga Normal em uma aplicação especificada para C3, a folga residual em operação fica próxima de zero ou negativa: o rolamento entra em pré-carga. Pré-carga aumenta atrito e temperatura e eleva o ruído de alta frequência, mas não produz picos discretos no envelope, porque não existe um defeito localizado passando pela zona de carga — a solicitação está distribuída por toda a circunferência. É por isso que o envelope mostra apenas um patamar de ruído sem estrutura. Na tabela de solução de problemas da SKF, o quadro corresponde ao sintoma A (aquecimento excessivo) com causa no grupo \"rolamento pré-carregado\", código 11 — folga incorreta selecionada para o rolamento de reposição.",
+    "action": "Ação recomendada: programar a substituição pelo rolamento com a designação completa correta (6316/C3) na primeira oportunidade, antes que a pré-carga evolua para dano por fadiga; até lá, monitorar a temperatura com frequência aumentada. Em paralelo, corrigir a causa organizacional: estabelecer que a equivalência de rolamento no almoxarifado seja feita pela designação completa, incluindo sufixos de folga e vedação, e não apenas pelos quatro dígitos da designação básica."
+  },
+  {
+    "id": "c31",
+    "num": 31,
+    "level": "avançado",
+    "title": "Motor reserva que entrou em operação já vibrando: picos que não batem com nenhuma frequência de defeito",
+    "briefing": [
+      "Motor elétrico reserva de 45 kW, 1780 rpm, mantido em almoxarifado por catorze meses. A prateleira fica em um mezanino apoiado na mesma estrutura de um britador que opera em turnos contínuos.",
+      "O motor foi instalado na semana passada, em substituição a uma unidade queimada. Desde a partida, a medição mostra vibração acima do histórico da posição, com componentes de alta frequência bem marcados.",
+      "O espectro de envelope mostra picos discretos e repetitivos, mas o analista calculou BPFO = 4,1x, BPFI = 5,9x, BSF = 2,4x e FTF = 0,38x — e nenhum dos picos observados coincide com esses valores nem com seus harmônicos."
+    ],
+    "readings": {
+      "temp": 58,
+      "vel": 4.2,
+      "accel": 2.8,
+      "envelope": 1.6
+    },
+    "spectrum": {
+      "mode": "freq",
+      "xmax": 12,
+      "unit": "Ordens (x RPM) — espectro de envelope (gE)",
+      "peaks": [
+        {
+          "order": 1,
+          "amp": 0.4
+        },
+        {
+          "order": 2,
+          "amp": 0.9
+        },
+        {
+          "order": 3,
+          "amp": 1.2
+        },
+        {
+          "order": 4,
+          "amp": 0.8
+        },
+        {
+          "order": 5,
+          "amp": 0.5
+        }
+      ],
+      "noise": 0.18
+    },
+    "trend": {
+      "unit": "gE Pk-Pk",
+      "months": [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun"
+      ],
+      "values": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        1.6
+      ],
+      "alertLimit": 1.2,
+      "dangerLimit": 2
+    },
+    "diagnosisOptions": [
+      {
+        "id": "a",
+        "text": "Falso brinelamento (false brinelling) ocorrido durante o armazenamento, por vibração transmitida do britador ao motor parado",
+        "solution": "Substituir o rolamento e, principalmente, corrigir as condições de armazenagem: isolar o estoque de máquinas de fontes de vibração, apoiar sobre material amortecedor e girar periodicamente o eixo dos equipamentos armazenados para mudar a posição dos elementos rolantes."
+      },
+      {
+        "id": "b",
+        "text": "Descascamento por fadiga (spalling) na pista externa",
+        "solution": "Programar substituição do rolamento e investigar sobrecarga ou vida útil esgotada como causa raiz."
+      },
+      {
+        "id": "c",
+        "text": "Erosão elétrica por correntes de eixo",
+        "solution": "Instalar anel de aterramento de eixo ou rolamento isolado, conforme o Módulo 21."
+      },
+      {
+        "id": "d",
+        "text": "Desalinhamento com a máquina acionada",
+        "solution": "Verificar e corrigir o alinhamento a laser, observando as tolerâncias por faixa de rotação."
+      }
+    ],
+    "correctDiagnosis": "a",
+    "checks": [
+      {
+        "id": "coincide",
+        "label": "Os picos observados coincidem com as frequências de defeito calculadas (BPFO/BPFI/BSF/FTF)?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "nao",
+            "text": "Não — e é justamente isso que descarta defeito localizado por fadiga"
+          },
+          {
+            "id": "sim",
+            "text": "Sim, coincidem com BPFO e seus harmônicos"
+          }
+        ],
+        "correct": "nao"
+      },
+      {
+        "id": "espacamento",
+        "label": "Os picos observados estão espaçados aproximadamente de quantas ordens entre si?",
+        "type": "numeric",
+        "correct": 1,
+        "tolerance": 0.2
+      }
+    ],
+    "hint": "Dica: a informação decisiva é negativa — os picos NÃO batem com nenhuma frequência de defeito calculada. Um dano por fadiga sempre gera pico na frequência de passagem correspondente. Pergunte-se então o que pode marcar as pistas sem que o rolamento esteja girando, e olhe com atenção para onde esse motor passou os últimos catorze meses.",
+    "relatedModule": "m22",
+    "relatedModuleLabel": "Módulo 22 — Montagem, Folga Interna e Solução de Problemas em Rolamentos",
+    "explanation": "Este é o caso-teste da distinção entre falso brinelamento e dano real por fadiga. No falso brinelamento, o eixo está parado e uma vibração externa faz os elementos rolantes oscilarem microscopicamente sempre na MESMA posição, marcando a pista em intervalos regulares correspondentes ao espaçamento entre os elementos rolantes. Como essas marcas não são geradas pelo movimento de rolamento, elas não produzem picos nas frequências de defeito calculadas (BPFO, BPFI, BSF, FTF) — que dependem da geometria de rolamento em operação. É exatamente o que se observa: picos discretos, regulares, mas sem correspondência com nenhuma frequência de defeito. Um descascamento por fadiga, ao contrário, produziria picos em BPFO ou BPFI com harmônicos e bandas laterais. O histórico fecha o diagnóstico: catorze meses parado sobre a mesma estrutura de um britador em operação contínua é o cenário-livro de falso brinelamento. Na classificação SKF, isso corresponde aos códigos 35 e 36, distintos dos códigos 37 e 38 de fadiga real.",
+    "action": "Ação recomendada: substituir o rolamento afetado. Mais importante, tratar a causa raiz, que está no armazenamento e não na operação: transferir o estoque de máquinas para local isolado de fontes de vibração, apoiar os equipamentos sobre material amortecedor, e implantar uma rotina de girar o eixo dos equipamentos armazenados a cada poucos meses, mudando a posição relativa dos elementos rolantes. Registrar também a data de entrada em estoque para permitir rastrear o tempo de armazenagem em análises futuras."
+  },
+  {
+    "id": "c32",
+    "num": 32,
+    "level": "intermediário",
+    "title": "Redutor com folga que reaparece: o anel interno que gira no eixo",
+    "briefing": [
+      "Redutor de engrenagens do acionamento de um transportador de correia, eixo de entrada a 1180 rpm. O mancal do eixo de entrada já teve o rolamento substituído duas vezes em doze meses.",
+      "O espectro radial mostra 1X RPM com uma sequência de harmônicos (2X, 3X, 4X, 5X) de amplitude decrescente, padrão que retorna poucas semanas após cada substituição.",
+      "Na última desmontagem, o assento do eixo apresentava aspecto polido e brilhante na região de contato com o anel interno, com leve perda de material, e o rolamento retirado saiu do eixo com muito menos esforço do que o esperado para um ajuste com interferência."
+    ],
+    "readings": {
+      "temp": 71,
+      "vel": 7.4,
+      "accel": 1.9,
+      "envelope": 0.7
+    },
+    "spectrum": {
+      "mode": "freq",
+      "xmax": 8,
+      "unit": "Ordens (x RPM) — espectro de velocidade, direção radial",
+      "peaks": [
+        {
+          "order": 1,
+          "amp": 4.2
+        },
+        {
+          "order": 2,
+          "amp": 2.9
+        },
+        {
+          "order": 3,
+          "amp": 2.1
+        },
+        {
+          "order": 4,
+          "amp": 1.4
+        },
+        {
+          "order": 5,
+          "amp": 0.9
+        }
+      ],
+      "noise": 0.2
+    },
+    "trend": {
+      "unit": "mm/s RMS",
+      "months": [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun"
+      ],
+      "values": [
+        7,
+        2.2,
+        4.1,
+        6.3,
+        7.1,
+        7.4
+      ],
+      "alertLimit": 4.5,
+      "dangerLimit": 7.1
+    },
+    "diagnosisOptions": [
+      {
+        "id": "a",
+        "text": "Fluência do anel interno (creep): o anel gira no assento do eixo porque o ajuste perdeu interferência",
+        "solution": "Recuperar o assento do eixo (metalização e retífica, ou substituição do eixo) para restabelecer o ajuste com interferência especificado. Trocar apenas o rolamento sem recuperar o assento faz o problema retornar, como já ocorreu duas vezes."
+      },
+      {
+        "id": "b",
+        "text": "Desgaste avançado nas engrenagens do redutor",
+        "solution": "Inspecionar o engrenamento e avaliar a GMF e suas bandas laterais conforme o Módulo 8."
+      },
+      {
+        "id": "c",
+        "text": "Desbalanceamento do acoplamento de entrada",
+        "solution": "Balancear o conjunto girante em campo, conforme o Módulo 14."
+      },
+      {
+        "id": "d",
+        "text": "Defeito de pista interna em estágio avançado",
+        "solution": "Confirmar BPFI no envelope e programar substituição do rolamento."
+      }
+    ],
+    "correctDiagnosis": "a",
+    "checks": [
+      {
+        "id": "padrao",
+        "label": "Qual padrão espectral está presente neste caso?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "harmonicos",
+            "text": "Série de harmônicos de 1X com amplitude decrescente — padrão de folga mecânica"
+          },
+          {
+            "id": "bandas",
+            "text": "Bandas laterais em torno da GMF — padrão de engrenamento"
+          }
+        ],
+        "correct": "harmonicos"
+      },
+      {
+        "id": "evidencia",
+        "label": "Qual evidência da desmontagem é decisiva para o diagnóstico?",
+        "type": "mc",
+        "options": [
+          {
+            "id": "assento_polido",
+            "text": "O assento do eixo polido e com perda de material, e o rolamento saindo com pouco esforço"
+          },
+          {
+            "id": "temp_71",
+            "text": "A temperatura do mancal em 71 °C"
+          }
+        ],
+        "correct": "assento_polido"
+      }
+    ],
+    "hint": "Dica: a série de harmônicos de 1X aponta para folga mecânica — mas folga onde? A tendência mostra que o problema retorna gradualmente após cada troca de rolamento, e a evidência física está no eixo, não no rolamento: assento polido, com perda de material, e um ajuste que não segura mais.",
+    "relatedModule": "m22",
+    "relatedModuleLabel": "Módulo 22 — Montagem, Folga Interna e Solução de Problemas em Rolamentos",
+    "explanation": "A série de harmônicos de 1X com amplitude decrescente na direção radial é o padrão espectral de folga mecânica (Módulo 6.3). A evidência física identifica onde está a folga: o assento do eixo polido e com perda de material, somado ao rolamento saindo com pouco esforço, caracteriza a fluência (creep) do anel interno — a condição em que o anel interno gira lentamente em relação ao eixo porque o ajuste com interferência foi perdido. Na tabela de solução de problemas da SKF, essa é a condição de código 30 (anel interno apresentando fluência no assento do eixo), listada tanto no sintoma C (vibração excessiva) quanto no sintoma D (movimentação excessiva do eixo). O ponto prático é que o rolamento não é a causa: ele é a vítima. Cada troca de rolamento devolve interferência por pouco tempo, mas o assento desgastado volta a permitir o giro, e o ciclo se repete — como mostra o histórico de duas substituições em doze meses e a tendência que sobe de novo a cada intervenção.",
+    "action": "Ação recomendada: recuperar o assento do eixo para restabelecer o ajuste com interferência especificado — por metalização seguida de retífica ao diâmetro correto, ou substituição do eixo, conforme a extensão do desgaste. Medir o assento e comparar com a tolerância recomendada antes de montar o novo rolamento. Trocar apenas o rolamento, sem tratar o assento, reproduzirá o problema pela terceira vez."
   }
 ];

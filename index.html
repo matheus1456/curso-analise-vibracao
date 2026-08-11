@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Engenharia de Confiabilidade — Curso Interativo</title>
+<title>Análise de Vibração — Curso Interativo para Engenheiro de Confiabilidade</title>
 <link rel="stylesheet" href="assets/css/style.css" />
 <link rel="stylesheet" href="assets/css/practice.css" />
+<link rel="stylesheet" href="assets/css/chat.css" />
 <link rel="stylesheet" href="assets/css/refpage.css" />
 <link rel="stylesheet" href="assets/css/lab.css" />
 <script>
@@ -29,7 +30,9 @@
     <div id="quick-nav-dropdown" class="quick-nav-dropdown" style="display:none">
       <button onclick="goTo('m0'); toggleQuickNav()">🏠 Início do curso</button>
       <button onclick="goTo('practice'); toggleQuickNav()">🧪 Prática de Diagnóstico</button>
+      <button onclick="goTo('chat'); toggleQuickNav()">💬 Chat com IA</button>
       <button onclick="goTo('reference'); toggleQuickNav()">📖 Consulta Rápida</button>
+      <button onclick="toggleDiagTable(); toggleQuickNav()">📊 Tabela de Diagnóstico</button>
       <div class="qn-sep"></div>
       <button onclick="toggleSidebar(); toggleQuickNav()">📚 Ver todos os módulos</button>
       <button onclick="toggleTheme()">🌙 Alternar tema claro/escuro</button>
@@ -38,13 +41,35 @@
   <button id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">🌙</button>
   <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
+  <button id="diag-table-btn" onclick="toggleDiagTable()" aria-label="Abrir tabela de diagnóstico rápido" title="Tabela de Diagnóstico Rápido">
+    <span class="dtb-icon">📊</span><span class="dtb-label">Diagnóstico</span>
+  </button>
+
+  <div id="diag-table-modal" class="dtm-overlay" onclick="if(event.target===this) toggleDiagTable()">
+    <div class="dtm-panel">
+      <div class="dtm-header">
+        <h2>Tabela de Possíveis Diagnósticos por Vibração</h2>
+        <div class="dtm-actions">
+          <button class="dtm-zoom" onclick="zoomDiagTable(-1)" aria-label="Diminuir zoom" title="Diminuir zoom">−</button>
+          <button class="dtm-zoom" onclick="zoomDiagTable(0)" aria-label="Redefinir zoom" title="Redefinir zoom">100%</button>
+          <button class="dtm-zoom" onclick="zoomDiagTable(1)" aria-label="Aumentar zoom" title="Aumentar zoom">+</button>
+          <button class="dtm-close" onclick="toggleDiagTable()" aria-label="Fechar">✕</button>
+        </div>
+      </div>
+      <p class="dtm-sub">Referência visual rápida (SKF) — desbalanceamento, desalinhamento, folgas, bombas, engrenagens, elétrico, correias, mancais e evolução de falhas de rolamento. Role e use os botões de zoom para examinar cada seção.</p>
+      <div class="dtm-scroll" id="dtm-scroll">
+        <img id="dtm-img" src="assets/img/tabela_diagnostico_skf.jpeg" alt="Tabela de possíveis diagnósticos por vibração (SKF): desbalanceamento, desalinhamento, folgas, bombas centrífugas, engrenagens, elétrico, correias, efeito de batimento, mancais de deslizamento e evolução de falhas de rolamento por envelope de aceleração." />
+      </div>
+    </div>
+  </div>
+
   <aside id="sidebar">
     <div class="brand">
       <svg id="wave-logo" viewBox="0 0 220 40" width="100%" height="40" aria-hidden="true">
         <path id="wave-path" d="M0,20 Q15,0 30,20 T60,20 T90,20 T120,20 T150,20 T180,20 T210,20" />
       </svg>
-      <h1>Engenharia de Confiabilidade</h1>
-      <p>Análise de Vibração, Falhas em Rolamentos e Lubrificação</p>
+      <h1>Análise de Vibração</h1>
+      <p>Formação para Engenheiro de Confiabilidade</p>
     </div>
     <div id="progress-wrap">
       <div id="progress-label"><span>Progresso do curso</span><span id="progress-count">0/19</span></div>
@@ -66,9 +91,11 @@
 <script src="data/reference.js"></script>
 <script src="assets/js/acronyms.js"></script>
 <script src="assets/js/charts.js"></script>
+<script src="assets/js/openai.js"></script>
 <script src="assets/js/audio.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/practice.js"></script>
+<script src="assets/js/chat.js"></script>
 <script src="assets/js/refpage.js"></script>
 <script src="assets/js/lab.js"></script>
 <script src="assets/js/effects.js"></script>

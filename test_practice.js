@@ -1,7 +1,7 @@
 const fs = require("fs");
 const vm = require("vm");
 
-const PROJ = "/tmp/project/curso-vibracao";
+const PROJ = __dirname;
 const contentJs = fs.readFileSync(PROJ + "/data/content.js", "utf-8");
 const lubeContentJs = fs.readFileSync(PROJ + "/data/lube_content.js", "utf-8");
 const casesJs = fs.readFileSync(PROJ + "/data/cases.js", "utf-8");
@@ -184,6 +184,33 @@ const xAfterLeft = markerLine2._attrs["x1"];
 console.log("Seta esquerda desloca o marcador de volta:", xAfterLeft !== xAfterRight);
 
 // --- Análise de Falhas - Rolamentos (seção de fotos reais para identificação) ---
+// --- Novos casos baseados no Manual de Manutenção SKF (c28-c32) ---
+console.log("\\n--- Novos casos SKF (c28-c32) ---");
+const novos = ["c28", "c29", "c30", "c31", "c32"];
+let novosOk = true, faltando = [];
+novos.forEach(function (id) {
+  const caso = context.CASES.find(function (c) { return c.id === id; });
+  if (!caso) { novosOk = false; faltando.push(id + " (ausente em CASES)"); return; }
+  context.window.selectCase(id);
+  const h = elements["case-detail"]._html;
+  if (h.includes("undefined") || h.includes("[object Object]") || h.length < 400) {
+    novosOk = false; faltando.push(id + " (render)");
+  }
+  // o caso deve apontar para um módulo existente do curso
+  const mod = context.COURSE.find(function (m) { return m.id === caso.relatedModule; });
+  if (!mod) { novosOk = false; faltando.push(id + " (relatedModule " + caso.relatedModule + " inexistente)"); }
+  // resposta correta deve existir entre as opcoes
+  if (!caso.diagnosisOptions.some(function (o) { return o.id === caso.correctDiagnosis; })) {
+    novosOk = false; faltando.push(id + " (correctDiagnosis invalido)");
+  }
+  // toda opcao deve ter solution para o mini-guia
+  if (!caso.diagnosisOptions.every(function (o) { return typeof o.solution === "string" && o.solution.length > 10; })) {
+    novosOk = false; faltando.push(id + " (opcao sem solution)");
+  }
+});
+console.log("Os 5 novos casos renderizam e estao consistentes:", novosOk, faltando.length ? faltando.join("; ") : "");
+console.log("CASES agora com 32 casos:", context.CASES.length === 32);
+
 console.log("\\n--- Análise de Falhas - Rolamentos ---");
 console.log("BEARING_FAILURE_CASES length:", context.BEARING_FAILURE_CASES.length);
 

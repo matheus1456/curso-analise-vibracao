@@ -1,7 +1,7 @@
 const fs = require("fs");
 const vm = require("vm");
 
-const PROJ = "/tmp/project/curso-vibracao";
+const PROJ = __dirname;
 const contentJs = fs.readFileSync(PROJ + "/data/content.js", "utf-8");
 const lubeContentJs = fs.readFileSync(PROJ + "/data/lube_content.js", "utf-8");
 const chartsJs = fs.readFileSync(PROJ + "/assets/js/charts.js", "utf-8");

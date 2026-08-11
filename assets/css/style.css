@@ -536,3 +536,59 @@ video.mod-video {
 @media (max-width: 600px) {
   .acr-tip { min-width: 180px; max-width: 250px; font-size: 12px; }
 }
+
+/* ---------- Botão flutuante + modal: Tabela de Diagnóstico Rápido ---------- */
+#diag-table-btn {
+  position: fixed; right: 22px; bottom: 22px; z-index: 60;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--orange); color: #fff; border: none; border-radius: 26px;
+  padding: 12px 18px 12px 14px; font-size: 14px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#diag-table-btn:hover { transform: translateY(-2px); box-shadow: 0 9px 22px rgba(0,0,0,0.3); }
+#diag-table-btn .dtb-icon { font-size: 18px; }
+@media (max-width: 560px) {
+  #diag-table-btn { right: 14px; bottom: 14px; padding: 12px; border-radius: 50%; }
+  #diag-table-btn .dtb-label { display: none; }
+}
+
+.dtm-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(10, 16, 28, 0.72);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.dtm-overlay.open { display: flex; }
+.dtm-panel {
+  background: var(--card); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  width: min(1400px, 100%); max-height: 92vh; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.dtm-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 16px 20px 0 20px; flex-wrap: wrap;
+}
+.dtm-header h2 { margin: 0; font-size: 18px; color: var(--heading); }
+.dtm-actions { display: flex; align-items: center; gap: 6px; }
+.dtm-zoom, .dtm-close {
+  background: var(--soft-blue); border: 1px solid var(--border); color: var(--text);
+  border-radius: 8px; width: 34px; height: 34px; font-size: 15px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.dtm-zoom:hover, .dtm-close:hover { background: var(--soft-blue-hover); }
+.dtm-zoom:nth-child(2) { width: auto; padding: 0 10px; font-size: 12.5px; }
+.dtm-close { background: var(--orange); color: #fff; border-color: var(--orange); }
+.dtm-close:hover { filter: brightness(1.08); }
+.dtm-sub { margin: 8px 20px 0 20px; color: var(--muted); font-size: 13px; }
+.dtm-scroll {
+  flex: 1; overflow: auto; margin: 14px 20px 20px 20px; border: 1px solid var(--border);
+  border-radius: 10px; background: var(--img-bg);
+}
+.dtm-scroll img {
+  display: block; width: 100%; height: auto; transform-origin: top left;
+  transition: transform .15s ease;
+}
+@media (max-width: 700px) {
+  .dtm-panel { max-height: 96vh; }
+  .dtm-header h2 { font-size: 15.5px; }
+}

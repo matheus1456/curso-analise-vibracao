@@ -70,6 +70,37 @@
     document.getElementById("sidebar-overlay").classList.toggle("open");
   };
 
+  // Tabela de Diagnóstico Rápido (referência visual SKF) — modal com zoom simples,
+  // acessível de qualquer página do curso via botão flutuante ou menu rápido.
+  let diagTableZoom = 1;
+  window.toggleDiagTable = function () {
+    const modal = document.getElementById("diag-table-modal");
+    if (!modal) return;
+    const opening = !modal.classList.contains("open");
+    modal.classList.toggle("open");
+    if (opening) {
+      diagTableZoom = 1;
+      const img = document.getElementById("dtm-img");
+      if (img) img.style.transform = "scale(1)";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  };
+  window.zoomDiagTable = function (dir) {
+    const img = document.getElementById("dtm-img");
+    if (!img) return;
+    if (dir === 0) diagTableZoom = 1;
+    else diagTableZoom = Math.max(0.5, Math.min(3, diagTableZoom + dir * 0.25));
+    img.style.transform = "scale(" + diagTableZoom + ")";
+  };
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape") {
+      const modal = document.getElementById("diag-table-modal");
+      if (modal && modal.classList.contains("open")) window.toggleDiagTable();
+    }
+  });
+
   function renderSidebar() {
     const progress = loadProgress();
     const ul = document.getElementById("modlist");
@@ -84,6 +115,12 @@
     practiceLi.innerHTML = '<span class="badge">🧪</span><span>Prática de Diagnóstico</span>' +
       (practiceDone ? '<span class="practice-mini-count">' + practiceDone + '/' + (window.CASES ? CASES.length : 10) + '</span>' : "");
     ul.appendChild(practiceLi);
+
+    const chatLi = document.createElement("li");
+    chatLi.className = "modlink chat-link" + (currentId === "chat" ? " active" : "");
+    chatLi.dataset.id = "chat";
+    chatLi.innerHTML = '<span class="badge">💬</span><span>Chat com IA</span>';
+    ul.appendChild(chatLi);
 
     const refLi = document.createElement("li");
     refLi.className = "modlink ref-link" + (currentId === "reference" ? " active" : "");
@@ -286,7 +323,6 @@
     const next = ALL_MODULES[idx + 1];
     pendingCharts = [];
     window.CURRENT_MODULE = m;
-    if (window.setWaveTrack) window.setWaveTrack(m.meta.track);
     let html = "";
     html += "<div id='topbar'>";
     html += "<span class='level-tag'>" + LEVEL_LABEL[m.meta.level] + " · Módulo " + m.meta.num + "</span>";
@@ -334,13 +370,13 @@
   }
 
   function renderCover() {
-    if (window.setWaveTrack) window.setWaveTrack("vibracao");
     let html = "<div id='cover'>";
-    html += "<h1>Engenharia de Confiabilidade</h1>";
+    html += "<h1>Análise de Vibração em Máquinas Rotativas</h1>";
     html += "<p class='subtitle'>Formação técnica interativa para Engenheiro de Confiabilidade — " + ALL_MODULES.length + " módulos em 3 trilhas (Análise de Vibração, Análise de Falhas em Rolamentos e Engenheiro de Lubrificação), do nível básico ao avançado, com exemplos de espectros, exercícios comentados, vídeo-aulas geradas por IA e estudos de caso.</p>";
     html += "<div class='cover-btn-row'>" +
       "<button class='start-btn' onclick=\"goTo('m0')\">Começar o curso →</button>" +
       "<button class='start-btn secondary' onclick=\"goTo('practice')\">🧪 Praticar com casos reais →</button>" +
+      "<button class='start-btn secondary' onclick=\"goTo('chat')\">💬 Tirar dúvidas com a IA →</button>" +
       "<button class='start-btn secondary' onclick=\"goTo('reference')\">📖 Consulta rápida →</button>" +
       "</div>";
     // Um cartão por trilha temática, e dentro de cada cartão os módulos ainda
@@ -374,14 +410,18 @@
     currentId = id;
     window.scrollTo(0, 0);
     if (id === "practice") {
-      if (window.setWaveTrack) window.setWaveTrack("vibracao");
       if (window.renderPracticePage) window.renderPracticePage();
       renderSidebar();
       history.replaceState(null, "", "#practice");
       return;
     }
+    if (id === "chat") {
+      if (window.renderChatPage) window.renderChatPage();
+      renderSidebar();
+      history.replaceState(null, "", "#chat");
+      return;
+    }
     if (id === "reference") {
-      if (window.setWaveTrack) window.setWaveTrack("vibracao");
       if (window.renderReferencePage) window.renderReferencePage();
       renderSidebar();
       history.replaceState(null, "", "#reference");
@@ -406,7 +446,7 @@
   // init
   renderSidebar();
   const hash = location.hash.replace("#", "");
-  if (hash === "practice" || hash === "reference" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
+  if (hash === "practice" || hash === "chat" || hash === "reference" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
     goTo(hash);
   } else {
     renderCover();
