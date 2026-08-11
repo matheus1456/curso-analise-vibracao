@@ -265,7 +265,7 @@
     const asstLi = document.createElement("li");
     asstLi.className = "modlink asst-link" + (currentId === "assistant" ? " active" : "");
     asstLi.dataset.id = "assistant";
-    asstLi.innerHTML = '<span class="badge">🤖</span><span>Assistente de Diagnóstico</span>';
+    asstLi.innerHTML = '<span class="badge">🧮</span><span>Calculadora de Diagnóstico</span>';
     ul.appendChild(asstLi);
 
     const sep = document.createElement("li");

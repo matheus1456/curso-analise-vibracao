@@ -1,6 +1,6 @@
 /* =========================================================
-   assets/css/assistant.css — Assistente de Diagnóstico com IA
-   Formulário guiado + painel de cálculos + resposta da IA.
+   assets/css/assistant.css — Calculadora de Diagnóstico
+   Formulário guiado + painel de cálculos + parecer por regras.
    Usa as variáveis de tema já definidas em style.css.
    ========================================================= */
 
@@ -103,62 +103,11 @@
 .asst-rules { margin: 0; padding-left: 20px; }
 .asst-rules li { font-size: 13.2px; line-height: 1.65; margin-bottom: 7px; color: var(--text); }
 
-/* ---------------- resposta da IA ---------------- */
-.asst-ai {
-  border: 1px solid var(--border); border-left: 4px solid var(--orange);
-  border-radius: 0 11px 11px 0; background: var(--card); padding: 15px 18px;
-}
-.asst-ai-off { border-left-color: var(--border); }
-.asst-loading { font-size: 13.5px; color: var(--muted); }
-.asst-loading::after {
-  content: ""; display: inline-block; width: 10px;
-  animation: asstDots 1.2s steps(4, end) infinite;
-}
-@keyframes asstDots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
-
-.asst-ai-body h3 { margin: 16px 0 6px; font-size: 15.5px; color: var(--orange); }
-.asst-ai-body h3:first-child { margin-top: 4px; }
-.asst-ai-body h4 { margin: 12px 0 4px; font-size: 13.8px; color: var(--heading); }
-.asst-ai-body p { margin: 0 0 9px; font-size: 13.8px; line-height: 1.7; color: var(--text); }
-.asst-ai-body ul { margin: 0 0 11px; padding-left: 20px; }
-.asst-ai-body li { font-size: 13.5px; line-height: 1.7; margin-bottom: 5px; color: var(--text); }
-.asst-ai-body code {
-  background: var(--img-bg); padding: 1px 5px; border-radius: 4px;
-  font-family: ui-monospace, Consolas, monospace; font-size: 12.5px;
-}
-.asst-ai-foot {
-  margin: 12px 0 0; padding-top: 9px; border-top: 1px solid var(--border);
-  font-size: 11.5px; color: var(--muted);
-}
-
 .asst-err {
   padding: 11px 14px; border-radius: 9px; font-size: 13.2px; line-height: 1.6;
   background: rgba(217, 79, 69, 0.12); border: 1px solid rgba(217, 79, 69, 0.4);
   color: var(--text);
 }
-
-/* ---------------- painel da chave ---------------- */
-.asst-key {
-  border: 1px dashed var(--border); border-radius: 11px;
-  background: var(--img-bg); padding: 15px 18px; margin: 22px 0 0;
-}
-.asst-key h3 { margin: 0 0 7px; font-size: 15px; color: var(--heading); }
-.asst-key p { margin: 0 0 11px; font-size: 12.8px; line-height: 1.65; color: var(--muted); }
-.asst-key-ok { color: var(--text) !important; font-weight: 600; }
-.asst-key-row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
-.asst-key-row label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
-#asst-key-input {
-  flex: 1; min-width: 260px; padding: 9px 12px; font-size: 13px; font-family: inherit;
-  border: 1px solid var(--border); border-radius: 8px;
-  background: var(--card); color: var(--text);
-}
-#asst-model {
-  padding: 8px 11px; font-size: 12.8px; font-family: inherit;
-  border: 1px solid var(--border); border-radius: 8px;
-  background: var(--card); color: var(--text); min-width: 220px;
-}
-.asst-key-note { margin-top: 10px !important; font-size: 11.5px !important; }
-.asst-key-note a { color: var(--orange); font-weight: 600; }
 
 .asst-disclaimer {
   margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border);
@@ -171,3 +120,15 @@
   .asst-zone { flex-direction: column; }
   .asst-btn { width: 100%; }
 }
+
+/* ---------------- parecer automático (sem IA) ---------------- */
+.asst-parecer {
+  margin: 0 0 22px; padding: 15px 18px;
+  border: 1px solid var(--border); border-left: 4px solid #2a9d3e;
+  border-radius: 0 11px 11px 0; background: var(--card);
+}
+.asst-parecer h2 { margin: 0 0 4px; font-size: 19px; color: var(--heading); }
+.asst-parecer p { margin: 0 0 10px; font-size: 13.8px; line-height: 1.7; color: var(--text); }
+.asst-parecer p:last-child { margin-bottom: 0; }
+.asst-parecer em { color: var(--muted); }
+
