@@ -640,3 +640,55 @@ citados em `usedIn` e em `refNotes`, renderização da página sem `undefined`, 
 categoria, presença do bloco de referências nos 37 módulos, e renderização das 11 seções da tabela de
 diagnóstico. Novo `test_diag.js` para a tabela em texto nativo. `test_site_v3.js` e `test_practice.js`
 continuam com `problems: 0`.
+
+
+## Rodada N — Assistente de Diagnóstico com IA (Claude)
+
+Nova página no menu (`🤖 Assistente de Diagnóstico`), construída em duas camadas independentes.
+
+### Camada 1 — motor determinístico (`data/diag_engine.js`)
+
+Roda sempre, no navegador, **sem chave de API e sem internet**. É a camada em que se confia para número
+e norma, justamente porque são os pontos em que um modelo de linguagem erra com mais facilidade:
+
+- **Zona de severidade ISO 10816** — 12 critérios (10816-3 Grupos 1 e 2 × suporte rígido/flexível,
+  10816-2 em duas faixas de rotação, 10816-4, 10816-5 e 10816-7 em quatro categorias). Os limites
+  reproduzem exatamente as tabelas do Módulo 4, então assistente e material didático nunca discordam.
+- **Frequências de defeito de rolamento** — BPFO, BPFI, BSF e FTF pela fórmula do Módulo 7, em Hz e em
+  ordens. Validado contra o exemplo numérico do próprio módulo (N=9, d=12 mm, p=60 mm, 1770 rpm →
+  BPFO 106,2 Hz / 3,6×, BPFI 159,3 Hz / 5,4×).
+- **GMF** (validado contra o exemplo do Módulo 8: 33 dentes a 1780 rpm = 979 Hz) e **frequência de correia**.
+- **Triagem por regras** — ranking preliminar de hipóteses a partir dos sintomas (ordem dominante, direção,
+  relação de fase, harmônicos, bandas laterais, envelope, ruído aleatório), usando os critérios da tabela SKF.
+  Reconhece desbalanceamento, desalinhamento, folga, defeito de rolamento, engrenagem, cavitação, oil whirl
+  (0,42–0,48×) e origem elétrica, sempre apontando o módulo do curso correspondente.
+
+### Camada 2 — interpretação por Claude (opcional)
+
+Chamada direta do navegador para `https://api.anthropic.com/v1/messages`, com o cabeçalho oficial
+`anthropic-dangerous-direct-browser-access: true` — o que permite um site 100% estático no GitHub Pages
+conversar com a API sem backend. Foi essa limitação que inviabilizou a página de Chat anterior com a OpenAI.
+
+O prompt é montado com três blocos: os dados informados pelo analista, **os cálculos já realizados**
+(com instrução explícita de não recalcular nem contradizer) e os trechos pertinentes dos módulos e da
+tabela SKF, selecionados conforme as hipóteses levantadas. A resposta vem em estrutura fixa: leitura da
+condição, hipóteses ordenadas com evidência a favor e contra, o que medir em seguida, e ação recomendada —
+cada hipótese citando o módulo que a explica.
+
+O seletor de modelo é preenchido consultando `/v1/models`, com lista de reserva caso a consulta falhe —
+assim a página não quebra quando os nomes de modelo mudarem.
+
+### Chave de API
+
+A chave é do próprio usuário, digitada na página, guardada apenas no `localStorage` do navegador dele e
+enviada somente para `api.anthropic.com`. Nenhum servidor deste projeto a recebe, ela não aparece no HTML
+da página nem no corpo da requisição, e o consumo é cobrado na conta de quem usa. Sem chave, a página
+continua útil: os cálculos e a triagem por regras funcionam normalmente.
+
+### Testes
+
+`test_assistant.js`, com 54 verificações: exemplos numéricos do curso, fronteiras das zonas ISO, consistência
+das 12 tabelas, cada regra de triagem, renderização do formulário e do painel de cálculos, e a integração com
+a API usando `fetch` simulado — conferindo host, os quatro cabeçalhos, corpo da requisição, presença dos
+cálculos no prompt, tratamento de erro 401, escape de HTML na resposta e o fato de a chave nunca vazar para
+o HTML ou para o corpo da requisição. Nenhuma chamada de rede real é feita nos testes.

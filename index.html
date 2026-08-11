@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="assets/css/refpage.css" />
 <link rel="stylesheet" href="assets/css/lab.css" />
 <link rel="stylesheet" href="assets/css/library.css" />
+<link rel="stylesheet" href="assets/css/assistant.css" />
 <script>
   // Aplica o tema salvo antes da primeira pintura, evitando "flash" de tema errado.
   (function () {
@@ -34,6 +35,7 @@
       <button onclick="goTo('chat'); toggleQuickNav()">💬 Chat com IA</button>
       <button onclick="goTo('reference'); toggleQuickNav()">📖 Consulta Rápida</button>
       <button onclick="goTo('library'); toggleQuickNav()">📚 Biblioteca</button>
+      <button onclick="goTo('assistant'); toggleQuickNav()">🤖 Assistente de Diagnóstico</button>
       <button onclick="toggleDiagTable(); toggleQuickNav()">📊 Tabela de Diagnóstico</button>
       <div class="qn-sep"></div>
       <button onclick="toggleSidebar(); toggleQuickNav()">📚 Ver todos os módulos</button>
@@ -106,6 +108,7 @@
 <script src="data/reference.js"></script>
 <script src="data/diag_table.js"></script>
 <script src="data/library.js"></script>
+<script src="data/diag_engine.js"></script>
 <script src="assets/js/acronyms.js"></script>
 <script src="assets/js/charts.js"></script>
 <script src="assets/js/openai.js"></script>
@@ -115,6 +118,7 @@
 <script src="assets/js/chat.js"></script>
 <script src="assets/js/refpage.js"></script>
 <script src="assets/js/library.js"></script>
+<script src="assets/js/assistant.js"></script>
 <script src="assets/js/lab.js"></script>
 <script src="assets/js/effects.js"></script>
 </body>

@@ -262,6 +262,12 @@
       (window.LIBRARY ? '<span class="practice-mini-count">' + LIBRARY.length + "</span>" : "");
     ul.appendChild(libLi);
 
+    const asstLi = document.createElement("li");
+    asstLi.className = "modlink asst-link" + (currentId === "assistant" ? " active" : "");
+    asstLi.dataset.id = "assistant";
+    asstLi.innerHTML = '<span class="badge">🤖</span><span>Assistente de Diagnóstico</span>';
+    ul.appendChild(asstLi);
+
     const sep = document.createElement("li");
     sep.className = "sidebar-sep";
     ul.appendChild(sep);
@@ -611,6 +617,12 @@
       history.replaceState(null, "", "#library");
       return;
     }
+    if (id === "assistant") {
+      if (window.renderAssistantPage) window.renderAssistantPage();
+      renderSidebar();
+      history.replaceState(null, "", "#assistant");
+      return;
+    }
     const m = ALL_MODULES.find((x) => x.id === id);
     renderModule(m);
     renderSidebar();
@@ -636,7 +648,7 @@
   function init() {
     renderSidebar();
     const hash = location.hash.replace("#", "");
-    if (hash === "practice" || hash === "chat" || hash === "reference" || hash === "library" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
+    if (hash === "practice" || hash === "chat" || hash === "reference" || hash === "library" || hash === "assistant" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
       goTo(hash);
     } else {
       renderCover();

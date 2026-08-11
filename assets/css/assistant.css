@@ -1,0 +1,173 @@
+/* =========================================================
+   assets/css/assistant.css — Assistente de Diagnóstico com IA
+   Formulário guiado + painel de cálculos + resposta da IA.
+   Usa as variáveis de tema já definidas em style.css.
+   ========================================================= */
+
+.asst-page { max-width: 1000px; margin: 0 auto; padding-bottom: 40px; }
+
+.asst-header h1 { margin: 0 0 6px; font-size: 26px; color: var(--heading); }
+.asst-sub {
+  margin: 0 0 22px; color: var(--muted); font-size: 14.5px; line-height: 1.65;
+  max-width: 760px;
+}
+
+/* ---------------- formulário ---------------- */
+.asst-fs {
+  border: 1px solid var(--border); border-radius: 11px; background: var(--card);
+  padding: 14px 18px 18px; margin: 0 0 16px;
+}
+.asst-fs legend {
+  padding: 0 8px; font-size: 13.5px; font-weight: 700; color: var(--orange);
+}
+.asst-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.asst-fld { display: flex; flex-direction: column; gap: 4px; }
+.asst-fld label { font-size: 12.2px; color: var(--muted); font-weight: 600; }
+.asst-fld input, .asst-fld select, .asst-page textarea {
+  padding: 9px 12px; font-size: 13.5px; font-family: inherit;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--img-bg); color: var(--text); width: 100%;
+}
+.asst-page textarea { resize: vertical; min-height: 70px; }
+.asst-fld input:focus, .asst-fld select:focus, .asst-page textarea:focus {
+  outline: 2px solid var(--orange); outline-offset: 1px;
+}
+
+.asst-checks {
+  display: grid; gap: 8px; margin-top: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.asst-chk {
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  font-size: 13px; color: var(--text);
+}
+.asst-chk input { width: 16px; height: 16px; accent-color: var(--orange); flex: none; }
+
+.asst-actions { display: flex; gap: 9px; margin: 4px 0 26px; flex-wrap: wrap; }
+.asst-btn {
+  padding: 11px 20px; font-size: 14px; font-weight: 700; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 9px;
+  background: var(--soft-blue); color: var(--text); font-family: inherit;
+}
+.asst-btn:hover { background: var(--soft-blue-hover); }
+.asst-btn-main { background: var(--orange); border-color: var(--orange); color: #fff; }
+.asst-btn-main:hover { filter: brightness(1.08); }
+.asst-btn-sm { padding: 8px 14px; font-size: 12.5px; }
+
+/* ---------------- cálculos ---------------- */
+.asst-facts, .asst-ai { margin: 0 0 22px; }
+.asst-facts h2, .asst-ai h2 { margin: 0 0 4px; font-size: 19px; color: var(--heading); }
+.asst-facts-sub { margin: 0 0 14px; font-size: 12.8px; color: var(--muted); line-height: 1.6; }
+
+.asst-card {
+  border: 1px solid var(--border); border-radius: 10px; background: var(--card);
+  padding: 13px 16px; margin-bottom: 11px;
+}
+.asst-card h4 {
+  margin: 0 0 8px; font-size: 14px; color: var(--heading);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.asst-card p { margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--text); }
+.asst-card-note { margin-top: 6px !important; font-size: 11.8px !important; color: var(--muted) !important; }
+
+.asst-mod {
+  padding: 2px 9px; font-size: 11px; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 11px;
+  background: var(--soft-blue); color: var(--text); font-family: inherit;
+}
+.asst-mod:hover { background: var(--soft-blue-hover); }
+
+.asst-zone { display: flex; gap: 14px; align-items: flex-start; border-left-width: 4px; }
+.asst-zone-badge {
+  flex: none; min-width: 74px; text-align: center; padding: 9px 6px;
+  border-radius: 8px; font-weight: 700; font-size: 14px; color: #fff;
+}
+.asst-zone-A { border-left-color: #2a9d3e; }
+.asst-zone-A .asst-zone-badge { background: #2a9d3e; }
+.asst-zone-B { border-left-color: #6fa8dc; }
+.asst-zone-B .asst-zone-badge { background: #2f7fc4; }
+.asst-zone-C { border-left-color: #dd8a2b; }
+.asst-zone-C .asst-zone-badge { background: #dd8a2b; }
+.asst-zone-D { border-left-color: #d94f45; }
+.asst-zone-D .asst-zone-badge { background: #d94f45; }
+
+.asst-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.asst-table th, .asst-table td {
+  padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border);
+}
+.asst-table th { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .3px; }
+
+.asst-rules { margin: 0; padding-left: 20px; }
+.asst-rules li { font-size: 13.2px; line-height: 1.65; margin-bottom: 7px; color: var(--text); }
+
+/* ---------------- resposta da IA ---------------- */
+.asst-ai {
+  border: 1px solid var(--border); border-left: 4px solid var(--orange);
+  border-radius: 0 11px 11px 0; background: var(--card); padding: 15px 18px;
+}
+.asst-ai-off { border-left-color: var(--border); }
+.asst-loading { font-size: 13.5px; color: var(--muted); }
+.asst-loading::after {
+  content: ""; display: inline-block; width: 10px;
+  animation: asstDots 1.2s steps(4, end) infinite;
+}
+@keyframes asstDots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+
+.asst-ai-body h3 { margin: 16px 0 6px; font-size: 15.5px; color: var(--orange); }
+.asst-ai-body h3:first-child { margin-top: 4px; }
+.asst-ai-body h4 { margin: 12px 0 4px; font-size: 13.8px; color: var(--heading); }
+.asst-ai-body p { margin: 0 0 9px; font-size: 13.8px; line-height: 1.7; color: var(--text); }
+.asst-ai-body ul { margin: 0 0 11px; padding-left: 20px; }
+.asst-ai-body li { font-size: 13.5px; line-height: 1.7; margin-bottom: 5px; color: var(--text); }
+.asst-ai-body code {
+  background: var(--img-bg); padding: 1px 5px; border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace; font-size: 12.5px;
+}
+.asst-ai-foot {
+  margin: 12px 0 0; padding-top: 9px; border-top: 1px solid var(--border);
+  font-size: 11.5px; color: var(--muted);
+}
+
+.asst-err {
+  padding: 11px 14px; border-radius: 9px; font-size: 13.2px; line-height: 1.6;
+  background: rgba(217, 79, 69, 0.12); border: 1px solid rgba(217, 79, 69, 0.4);
+  color: var(--text);
+}
+
+/* ---------------- painel da chave ---------------- */
+.asst-key {
+  border: 1px dashed var(--border); border-radius: 11px;
+  background: var(--img-bg); padding: 15px 18px; margin: 22px 0 0;
+}
+.asst-key h3 { margin: 0 0 7px; font-size: 15px; color: var(--heading); }
+.asst-key p { margin: 0 0 11px; font-size: 12.8px; line-height: 1.65; color: var(--muted); }
+.asst-key-ok { color: var(--text) !important; font-weight: 600; }
+.asst-key-row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+.asst-key-row label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+#asst-key-input {
+  flex: 1; min-width: 260px; padding: 9px 12px; font-size: 13px; font-family: inherit;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--card); color: var(--text);
+}
+#asst-model {
+  padding: 8px 11px; font-size: 12.8px; font-family: inherit;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--card); color: var(--text); min-width: 220px;
+}
+.asst-key-note { margin-top: 10px !important; font-size: 11.5px !important; }
+.asst-key-note a { color: var(--orange); font-weight: 600; }
+
+.asst-disclaimer {
+  margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border);
+  font-size: 11.8px; color: var(--muted); line-height: 1.65;
+}
+
+@media (max-width: 620px) {
+  .asst-header h1 { font-size: 21px; }
+  .asst-grid, .asst-checks { grid-template-columns: 1fr; }
+  .asst-zone { flex-direction: column; }
+  .asst-btn { width: 100%; }
+}
