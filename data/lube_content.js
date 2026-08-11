@@ -1442,7 +1442,10 @@ const LUBE_COURSE = [
       "Um erro de amostragem invalida qualquer interpretação posterior — ponto, procedimento e frasco devem ser consistentes entre coletas.",
       "Cada teste de laboratório revela um aspecto específico: viscosidade e FTIR indicam degradação/contaminação; TAN/TBN indicam saúde química; ICP indica desgaste e aditivos; contagem de partículas indica limpeza; RPVOT indica vida oxidativa remanescente.",
       "Tendência ao longo do tempo, comparada a limites de alerta/perigo definidos por ativo, é mais reveladora do que um resultado isolado."
-    ]
+    ],
+    "refNotes": {
+      "icml-certificacao": "Domínio de amostragem e análise de óleo do exame MLA."
+    }
   },
   {
     "id": "mlub8",
@@ -1912,7 +1915,10 @@ const LUBE_COURSE = [
       "O LIS (Sistema de Identificação de Lubrificantes), da Noria Corporation, combina cor, forma geométrica, classificação ISO 6743 e código alfanumérico numa etiqueta afixada diretamente no ponto de lubrificação.",
       "O código é independente de marca/fornecedor — descreve a especificação técnica, não o nome comercial, evitando reetiquetar a planta a cada troca de fornecedor.",
       "Lubrificantes líquidos usam 5 seções de classificação; graxas usam 7 seções, incluindo o tipo de espessante indicado pela forma geométrica."
-    ]
+    ],
+    "refNotes": {
+      "noria-catalogo": "Sistema LIS (Lubricant Identification System) da Noria, adotado no Brasil pela Lubrin."
+    }
   },
   {
     "id": "mlub10",
@@ -2268,7 +2274,10 @@ const LUBE_COURSE = [
       "O ORS (Estado de Referência Ótimo) define a condição-alvo de confiabilidade de cada ativo, orientando de trás para frente quais atividades de lubrificação realmente importam.",
       "O ASCEND organiza um programa de lubrificação de classe mundial em 6 pilares: seleção do lubrificante, recebimento/armazenamento, manuseio/aplicação, controle de contaminação, análise/monitoramento e descarte ambiental.",
       "Atributos habilitadores (preparo das pessoas, preparo da máquina, lubrificantes de precisão) sustentam os 6 pilares — sem eles, mesmo um programa tecnicamente bem desenhado tende a falhar na execução contínua."
-    ]
+    ],
+    "refNotes": {
+      "noria-catalogo": "Framework ASCEND e conceito de ORS (Optimum Reference State)."
+    }
   },
   {
     "id": "mlub12",
@@ -2443,6 +2452,9 @@ const LUBE_COURSE = [
       "Óleo lubrificante usado é resíduo perigoso na legislação brasileira — descarte inadequado é infração ambiental grave, com responsabilidade direta do gerador.",
       "A hierarquia de gestão prioriza reduzir (consolidação, precisão) antes de reutilizar (reprocessar), reciclar (re-refino) e, por último, descartar — sempre com destinador licenciado e certificado de destinação final.",
       "Segurança pessoal no manuseio de lubrificantes inclui consultar a FISPQ, usar EPIs adequados e nunca usar ar comprimido para limpar a pele (risco de injeção subcutânea)."
-    ]
+    ],
+    "refNotes": {
+      "icml-certificacao": "Body of Knowledge do ICML — descarte responsável, EPIs e gestão de resíduos."
+    }
   }
 ];

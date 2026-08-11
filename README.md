@@ -580,3 +580,63 @@ mostrando o cartão "em produção" no site publicado, mesmo com o `videoUrl` j�
 Os cinco vídeos foram recodificados para 960×540 (entre 6,6 MB e 13 MB cada, mesmo padrão dos vídeos 0 a 5) e
 adicionados à pasta publicada. Os **onze vídeos (Módulos 0 a 10) agora aparecem no site**. Instruções de
 publicação em `PUBLICAR-NO-GITHUB.md`.
+
+
+## Rodada M — Tabela de diagnóstico em texto nativo, Referências por módulo e Biblioteca
+
+### Tabela de diagnóstico agora é texto, não imagem
+
+O botão flutuante "📊 Diagnóstico" abria uma imagem do pôster técnico da SKF (1600 × 1138 px). Como o pôster
+tem muito texto miúdo, ampliar só aumentava a borrão — não havia mais detalhe a recuperar no arquivo. As onze
+seções do pôster foram **transcritas para texto nativo** em `data/diag_table.js` e passam a ser renderizadas
+como HTML (`renderDiagTable()` em `assets/js/app.js`): desbalanceamento, desalinhamento, folgas, bombas
+centrífugas, engrenagens, elétrico, correias, efeito de batimento, mancais de deslizamento, envelope de
+aceleração e evolução de falhas de rolamento (os quatro estágios, comparando envelope × velocidade).
+
+O que isso muda na prática:
+
+- **Nitidez em qualquer zoom** — é texto, não pixel. Funciona com o zoom do navegador e no celular.
+- **Busca** — um campo filtra por sintoma, frequência ou termo (`2xRPM`, `cavitação`, `BPFO`, `oil whirl`).
+- **Filtro por categoria** — chips coloridos, um por seção, na mesma cor do pôster original.
+- **Vínculo com o curso** — cada seção traz botões que levam direto ao módulo onde aquele defeito é estudado.
+- **Tema claro/escuro** — acompanha o tema do site, o que a imagem não fazia.
+- O **pôster original continua acessível** pelo botão "🖼️ Ver pôster original", que também permite abri-lo em
+  tamanho real numa aba separada.
+
+### Bloco "Referências" ao final de todos os módulos
+
+Os **37 módulos** passam a terminar com um bloco `📚 Referências deste módulo`, listando o material de origem
+daquele conteúdo com editora, ano, link direto para abrir o PDF e atalho para a ficha na Biblioteca. As fontes
+não são digitadas módulo a módulo: são derivadas automaticamente do campo `usedIn` de cada item do acervo
+(`data/library.js`), o que mantém as duas pontas sempre sincronizadas. Módulos com origem documental precisa
+trazem ainda uma nota de capítulo e página, declarada em `refNotes` no próprio módulo — por exemplo, o Módulo 15
+aponta "Capítulo 6 — Alinhamento (p. 158 a 177)" do Manual de Manutenção SKF.
+
+### Nova página: Biblioteca
+
+Nova entrada no menu lateral e no menu "☰", com os **19 materiais técnicos** que serviram de base ao curso,
+organizados em quatro categorias (Análise de Vibração, Normas ISO 10816, Rolamentos e Falhas, Lubrificação).
+Cada ficha mostra a capa gerada a partir da primeira página do próprio PDF, editora, ano, idioma, número de
+páginas, um resumo do conteúdo, os módulos em que o material foi usado (clicáveis) e os botões de visualizar e
+baixar. Há busca por título, editora ou assunto, e filtro por categoria. Implementado em `data/library.js`,
+`assets/js/library.js` e `assets/css/library.css`; os arquivos ficam em `assets/pdf/` e as capas em
+`assets/img/capas/`.
+
+**Redução de tamanho**: os dois livros mais pesados do acervo (267 e 264 páginas de páginas escaneadas, 57 MB e
+73 MB) foram recomprimidos com Ghostscript para 20 MB e 23 MB, mantendo a legibilidade e ficando abaixo do
+limite de 25 MB por arquivo do GitHub. O acervo inteiro saiu de 178 MB para 92 MB.
+
+**Materiais de distribuição restrita**: seis normas BS ISO 10816 e dois livros da Noria (MLE e Lubricación
+Nivel I) são publicações comerciais — o livro da Noria, inclusive, traz impressa em cada página a proibição
+expressa de reprodução e distribuição sem autorização por escrito. Esses oito arquivos ficam disponíveis apenas
+na cópia local do curso e **não são publicados no repositório**; na Biblioteca eles aparecem com um aviso e um
+link para o site do editor. Os demais onze materiais (SKF, Mobius, Systemair e a apostila introdutória) são
+distribuídos livremente pelos próprios fabricantes e seguem no repositório normalmente.
+
+### Testes
+
+Novo `test_library.js`, cobrindo: existência física de todos os PDFs e capas, validade de todos os módulos
+citados em `usedIn` e em `refNotes`, renderização da página sem `undefined`, funcionamento do filtro por
+categoria, presença do bloco de referências nos 37 módulos, e renderização das 11 seções da tabela de
+diagnóstico. Novo `test_diag.js` para a tabela em texto nativo. `test_site_v3.js` e `test_practice.js`
+continuam com `problems: 0`.

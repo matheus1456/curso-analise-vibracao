@@ -1,55 +1,55 @@
-# Como subir esta atualização no GitHub (2 minutos, sem git)
+# Como subir a Rodada M no GitHub
 
-Esta pasta contém **apenas os 25 arquivos que mudaram** desde o último envio ao
-repositório — já organizados na estrutura de pastas correta.
+Repositório: **https://github.com/matheus1456/curso-analise-vibracao**
 
-Repositório: https://github.com/matheus1456/curso-analise-vibracao
+Esta pasta tem **apenas os 42 arquivos desta rodada**, já na estrutura de pastas correta.
+Total: 48 MB, nenhum arquivo acima do limite de 25 MB do GitHub.
+
+> A pasta `ATUALIZAR-GITHUB` (sem sufixo) é da rodada anterior, que você já subiu no commit
+> `ee54652`. Ignore aquela e use **esta**.
 
 ## Passo a passo
 
-1. Abra: **https://github.com/matheus1456/curso-analise-vibracao/upload/main**
-   (você já está logado como `matheus1456`)
-
-2. Abra esta pasta (`ATUALIZAR-GITHUB`) no Explorador de Arquivos.
-
-3. Selecione **tudo que está dentro dela** (`Ctrl+A`) — os arquivos soltos e as
-   pastas `assets`, `data` e `scripts` — e **arraste para a área de upload** da
-   página do GitHub.
-
-   > O GitHub preserva a estrutura de pastas ao arrastar. Os arquivos vão cair
-   > automaticamente em `assets/video/`, `data/`, etc. Não é preciso repetir o
-   > processo pasta por pasta.
-
-4. Aguarde a barra de progresso terminar (são 37 MB, quase tudo vídeo).
-
-5. Em **Commit changes**, cole a mensagem abaixo e clique em **Commit changes**:
+1. Abra **https://github.com/matheus1456/curso-analise-vibracao/upload/main**
+2. Abra esta pasta no Explorador de Arquivos, selecione tudo com `Ctrl+A` e arraste para a
+   área de upload da página. O GitHub preserva a estrutura das pastas.
+3. Cole a mensagem de commit abaixo e clique em **Commit changes**:
 
 ```
-Rodada L: Módulo 24, pé manco e tolerâncias no M15, desalinhamento de polias no M9, tabelas SKF no M22, 5 casos novos e vídeos dos módulos 6-10
+Rodada M: tabela de diagnostico em texto nativo com busca, bloco de Referencias nos 37 modulos e nova pagina Biblioteca
 ```
 
 ## Conferência depois do commit
 
-- Abra `assets/video/` no repositório: devem aparecer **m0 a m10** (antes só ia até m5).
-- No site publicado, abra qualquer módulo de 6 a 10 e recarregue com `Ctrl+F5`:
-  o player de vídeo deve aparecer no lugar do cartão "em produção".
+Recarregue o site com `Ctrl+Shift+R` e verifique:
 
-## O que mudou nestes 25 arquivos
+- O botão **📊 Diagnóstico** abre a tabela em texto, com campo de busca e chips coloridos por
+  categoria. Amplie com `Ctrl +`: o texto continua nítido.
+- Aparece **📚 Biblioteca** no menu lateral, com 19 fichas e as capas dos PDFs.
+- Qualquer módulo, ao final, mostra o bloco **📚 Referências deste módulo**.
 
-| Arquivo | O que mudou |
+## Um ponto importante sobre 8 arquivos
+
+Oito PDFs do acervo **não** estão nesta pasta e não vão para o repositório:
+
+| Arquivo | Motivo |
 |---|---|
-| `data/content.js` | Módulo 24 novo, seções novas nos Módulos 9, 15 e 22, numeração corrigida |
-| `data/cases.js` | 5 casos novos na Prática de Diagnóstico (c28–c32) |
-| `data/video_manifest.json` | Vídeos dos Módulos 6 a 10 registrados |
-| `assets/video/m6…m10.mp4` | Vídeo-aulas novas, recomprimidas para caber no limite do GitHub |
-| `assets/img/skf_01…05.png` | 5 diagramas novos (pé manco, correias, designação, tolerâncias, montagem) |
-| `assets/img/tabela_diagnostico_skf.jpeg` | Tabela de diagnóstico usada no botão flutuante |
-| `index.html`, `assets/css/style.css`, `assets/js/app.js` | Botão flutuante "📊 Diagnóstico" + modal com zoom |
-| `README.md`, `assets/video/LEIA-ME.txt` | Documentação atualizada |
-| `test_*.js` | Testes atualizados e correção de caminho fixo |
-| `scripts/gen_skf_manual_diagrams.py` | Script que gera os 5 diagramas novos |
+| `iso-10816-1.pdf` a `iso-10816-7.pdf` (6 normas) | Normas BS ISO são vendidas pela BSI/ISO sob licença individual |
+| `mle-engenheiro-lubrificacao.pdf` | Livro comercial da Noria |
+| `noria-lubricacion-nivel-i.pdf` | Livro comercial da Noria |
+
+O livro da Noria traz impresso, em cada página, o aviso de que a reprodução ou distribuição
+total ou parcial sem autorização por escrito é proibida. Como o repositório é **público**,
+preferi não empacotar esses oito arquivos para publicação.
+
+Eles continuam **funcionando normalmente na sua cópia local** (pasta `curso-vibracao-site` e no
+`.zip`): a Biblioteca abre e baixa os oito sem restrição. Na versão publicada, essas fichas
+aparecem com um aviso e um link para o site do editor.
+
+Se você preferir publicá-los assim mesmo, é só copiar os oito arquivos de
+`curso-vibracao-site\assets\pdf\` para dentro desta pasta antes de arrastar — a decisão é sua.
 
 ## Alternativa por linha de comando
 
-Se preferir usar git, veja `PUBLICAR-NO-GITHUB.md` — mas aí use a pasta
-`curso-vibracao-site` (completa), não esta.
+Se preferir git, use a pasta completa `curso-vibracao-site` e veja `PUBLICAR-NO-GITHUB.md`.
+Nesse caso, decida antes se quer ou não incluir os oito arquivos acima.

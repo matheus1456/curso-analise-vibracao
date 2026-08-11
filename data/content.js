@@ -1299,7 +1299,11 @@ const COURSE = [
       "A família ISO 10816 define zonas de severidade (A, B, C, D) para avaliar a condição de uma máquina a partir da vibração global.",
       "Cada parte da norma (10816-2 a 10816-7) se aplica a um tipo/porte de máquina diferente, com limites numéricos próprios.",
       "ALARME normalmente corresponde ao limite superior da Zona B/C, e TRIP ao limite superior da Zona C/D — mas isso deve ser ajustado ao histórico real da máquina."
-    ]
+    ],
+    "refNotes": {
+      "iso-10816-3": "Tabelas de zonas de severidade A a D por grupo de máquina e tipo de fundação — base da tabela usada neste módulo.",
+      "iso-10816-5": "Atenção à unidade: os limites desta parte são em deslocamento pico a pico (µm), não em mm."
+    }
   },
   {
     "id": "m5",
@@ -2200,7 +2204,10 @@ const COURSE = [
       "Cada elemento do rolamento (pista externa, pista interna, esfera/rolo, gaiola) tem uma frequência característica própria: BPFO, BPFI, BSF, FTF.",
       "A falha de rolamento evolui em quatro estágios — do submicroscópico (Estágio 1, só visível no envelope) até a falha iminente (Estágio 4).",
       "A técnica de envelope de aceleração demodula os impactos de altíssima frequência, detectando o defeito muito antes da velocidade de vibração reagir."
-    ]
+    ],
+    "refNotes": {
+      "skf-vibracoes": "Frequências de defeito de rolamento (BPFO, BPFI, BSF, FTF) e técnica de envelope de aceleração."
+    }
   },
   {
     "id": "m8",
@@ -2608,7 +2615,11 @@ const COURSE = [
       "A amplitude desses picos costuma ser instável, pulsando com a rotação do equipamento acionado — diferente de um defeito fixo no eixo.",
       "Sempre trocar o jogo completo de correias, nunca uma unidade isolada, para manter tensão e desgaste uniformes.",
       "Desalinhamento de polia tem três tipos (ângulo vertical, ângulo horizontal e paralelo), cada um com correção própria; a tolerância de 0,25° a 1,0° só é atingível com alinhamento a laser."
-    ]
+    ],
+    "refNotes": {
+      "skf-manual-manutencao": "Capítulo 6 — Alinhamento de correias (p. 176): os três tipos de desalinhamento de polia, tolerâncias e métodos.",
+      "skf-ebook-vibracao": "Fórmula da frequência de batimento de correias."
+    }
   },
   {
     "id": "m10",
@@ -2908,7 +2919,10 @@ const COURSE = [
       "A frequência de passagem de pás (BPF = nº de pás × RPM) é a assinatura normal de bombas, ventiladores e compressores — o problema é quando ela é amplificada.",
       "BPF coincidindo com uma frequência natural da estrutura (ressonância) é uma causa comum de amplitude anormalmente alta, mesmo sem defeito real do rotor.",
       "Cavitação por NPSH insuficiente gera ruído aleatório de banda larga sobreposto ao BPF, que varia com a condição de sucção (não é um defeito mecânico fixo)."
-    ]
+    ],
+    "refNotes": {
+      "iso-10816-7": "Critérios de avaliação específicos para bombas rotodinâmicas."
+    }
   },
   {
     "id": "m12",
@@ -3614,7 +3628,10 @@ const COURSE = [
       "Métodos modernos de alinhamento a laser são mais precisos que réguas e relógios comparadores, especialmente para desvios pequenos.",
       "O cálculo da correção em calços (shims) usa a geometria dos pés da máquina e as leituras de desvio nos dois planos.",
       "Pé manco (paralelo ou angular) precisa ser corrigido ANTES do alinhamento; a tolerância de alinhamento depende principalmente da rotação, e acima de 3000 r/min só é verificável a laser."
-    ]
+    ],
+    "refNotes": {
+      "skf-manual-manutencao": "Capítulo 6 — Alinhamento (p. 158 a 177): pé manco, calçamento, aperto de parafusos e tabela de tolerâncias por rotação."
+    }
   },
   {
     "id": "m16",
@@ -4580,7 +4597,10 @@ const COURSE = [
       "Termografia detecta pontos quentes elétricos e mecânicos sem contato; a emissividade da superfície afeta a leitura absoluta — prefira análise de tendência em superfícies reflexivas.",
       "Análise de óleo detecta contaminação e degradação química antes que apareçam como desgaste mensurável em vibração — variação de viscosidade acima de 20% e água acima de 0,02%-0,1% são sinais de alerta.",
       "Ultrassom antecipa vazamentos, descargas elétricas e atrito incipiente em rolamentos; MCSA confirma defeitos elétricos do rotor sem parar a máquina."
-    ]
+    ],
+    "refNotes": {
+      "skf-ebook-cbm": "Termografia e emissividade, análise de óleo, ultrassom, MCSA e inspeção sensitiva."
+    }
   },
   {
     "id": "m18",
@@ -5326,7 +5346,11 @@ const COURSE = [
       "level": "avançado",
       "track": "rolamentos"
     },
-    "videoUrl": null
+    "videoUrl": null,
+    "refNotes": {
+      "skf-analise-falha": "Estatísticas de falha, padrões de pista e zonas de carga.",
+      "skf-manual-manutencao": "Capítulo 11 — Danos aos rolamentos e suas causas (p. 288 em diante)."
+    }
   },
   {
     "id": "m20",
@@ -5695,7 +5719,10 @@ const COURSE = [
       "level": "avançado",
       "track": "rolamentos"
     },
-    "videoUrl": null
+    "videoUrl": null,
+    "refNotes": {
+      "skf-analise-falha": "Classificação ISO 15243: fadiga, desgaste e corrosão, com os respectivos sub-modos."
+    }
   },
   {
     "id": "m21",
@@ -6103,7 +6130,11 @@ const COURSE = [
       "level": "avançado",
       "track": "rolamentos"
     },
-    "videoUrl": null
+    "videoUrl": null,
+    "refNotes": {
+      "skf-analise-falha": "Erosão elétrica, deformação plástica e fratura.",
+      "skf-treinamento-falhas": "Os quatro estudos de caso reais documentados pela SKF."
+    }
   },
   {
     "id": "m22",
@@ -6393,7 +6424,10 @@ const COURSE = [
       "Falso Brinell (vibração estática, código 36) não é fadiga de material — a técnica de envelope ajuda a diferenciar das falhas progressivas reais (códigos 37/38).",
       "O guia sintoma-causa da SKF (Tabelas 1a-1e) organiza aquecimento, ruído, vibração, movimentação do eixo e atrito excessivo em códigos de causa rastreáveis a ações corretivas específicas.",
       "Os cinco sintomas SKF (aquecimento, ruído, vibração, movimentação do eixo e atrito para girar) remetem a códigos numéricos de solução, cada um com correspondência direta em um padrão espectral já estudado no curso."
-    ]
+    ],
+    "refNotes": {
+      "skf-manual-manutencao": "Capítulo 9 — Solução de problemas (p. 228 a 251): tabelas de sintoma, causa possível e códigos de solução."
+    }
   },
   {
     "id": "m24",
@@ -6656,7 +6690,10 @@ const COURSE = [
       "A folga que importa é a residual em operação: a montagem com interferência e o gradiente térmico entre os anéis consomem parte da folga de catálogo.",
       "Regra de ouro da montagem: a força nunca deve atravessar os elementos rolantes; ela entra e sai pelo anel de ajuste justo. Na montagem a quente, não ultrapasse 125 °C.",
       "A desmontagem é também coleta de evidência: extrair pelo anel correto, marcar a orientação e guardar graxa e vedação preserva a informação necessária para classificar o modo de falha pela ISO 15243."
-    ]
+    ],
+    "refNotes": {
+      "skf-manual-manutencao": "Capítulo 1 — Noções básicas (designação, folga interna e ajustes) e Capítulos 2 e 10 — Montagem e desmontagem."
+    }
   },
   {
     "id": "m17",

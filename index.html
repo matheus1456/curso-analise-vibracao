@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="assets/css/chat.css" />
 <link rel="stylesheet" href="assets/css/refpage.css" />
 <link rel="stylesheet" href="assets/css/lab.css" />
+<link rel="stylesheet" href="assets/css/library.css" />
 <script>
   // Aplica o tema salvo antes da primeira pintura, evitando "flash" de tema errado.
   (function () {
@@ -32,6 +33,7 @@
       <button onclick="goTo('practice'); toggleQuickNav()">🧪 Prática de Diagnóstico</button>
       <button onclick="goTo('chat'); toggleQuickNav()">💬 Chat com IA</button>
       <button onclick="goTo('reference'); toggleQuickNav()">📖 Consulta Rápida</button>
+      <button onclick="goTo('library'); toggleQuickNav()">📚 Biblioteca</button>
       <button onclick="toggleDiagTable(); toggleQuickNav()">📊 Tabela de Diagnóstico</button>
       <div class="qn-sep"></div>
       <button onclick="toggleSidebar(); toggleQuickNav()">📚 Ver todos os módulos</button>
@@ -50,16 +52,29 @@
       <div class="dtm-header">
         <h2>Tabela de Possíveis Diagnósticos por Vibração</h2>
         <div class="dtm-actions">
-          <button class="dtm-zoom" onclick="zoomDiagTable(-1)" aria-label="Diminuir zoom" title="Diminuir zoom">−</button>
-          <button class="dtm-zoom" onclick="zoomDiagTable(0)" aria-label="Redefinir zoom" title="Redefinir zoom">100%</button>
-          <button class="dtm-zoom" onclick="zoomDiagTable(1)" aria-label="Aumentar zoom" title="Aumentar zoom">+</button>
           <button class="dtm-close" onclick="toggleDiagTable()" aria-label="Fechar">✕</button>
         </div>
       </div>
-      <p class="dtm-sub">Referência visual rápida (SKF) — desbalanceamento, desalinhamento, folgas, bombas, engrenagens, elétrico, correias, mancais e evolução de falhas de rolamento. Role e use os botões de zoom para examinar cada seção.</p>
-      <div class="dtm-scroll" id="dtm-scroll">
-        <img id="dtm-img" src="assets/img/tabela_diagnostico_skf.jpeg" alt="Tabela de possíveis diagnósticos por vibração (SKF): desbalanceamento, desalinhamento, folgas, bombas centrífugas, engrenagens, elétrico, correias, efeito de batimento, mancais de deslizamento e evolução de falhas de rolamento por envelope de aceleração." />
+      <p class="dtm-sub">Referência rápida baseada na tabela técnica da SKF. Use a busca para achar um sintoma, ou filtre por categoria. O texto é nativo: amplie o quanto quiser que ele continua nítido.</p>
+
+      <div class="dtm-toolbar">
+        <input id="dtm-search" type="search" placeholder="Buscar sintoma, frequência ou termo (ex.: 2xRPM, cavitação, BPFO, oil whirl)…"
+               oninput="searchDiagTable()" aria-label="Buscar na tabela de diagnóstico" />
+        <button id="dtm-poster-btn" class="dtm-poster-btn" onclick="toggleDiagPoster()">🖼️ Ver pôster original</button>
       </div>
+      <div id="dtm-chips" class="dtm-chips"></div>
+
+      <div id="dtm-poster" class="dtm-poster" style="display:none">
+        <img src="assets/img/tabela_diagnostico_skf.jpeg" alt="Pôster original da SKF: tabela de possíveis diagnósticos por vibração, cobrindo desbalanceamento, desalinhamento, folgas, bombas centrífugas, engrenagens, elétrico, correias, efeito de batimento, mancais de deslizamento, envelope de aceleração e evolução de falhas de rolamento." />
+        <p class="dtm-poster-cap">
+          Pôster técnico original da SKF (1600 × 1138 px). O conteúdo acima é a transcrição
+          deste material em texto, para leitura nítida em qualquer zoom.
+          <a href="assets/img/tabela_diagnostico_skf.jpeg" target="_blank" rel="noopener">Abrir em tamanho real ↗</a>
+        </p>
+      </div>
+
+      <div class="dtm-scroll" id="dtm-body"></div>
+      <p id="dtm-empty" class="dtm-empty" style="display:none">Nenhum resultado para essa busca. Tente um termo mais curto, como “fase”, “harmônico” ou “envelope”.</p>
     </div>
   </div>
 
@@ -89,6 +104,8 @@
 <script src="data/lube_content.js"></script>
 <script src="data/lube_cases.js"></script>
 <script src="data/reference.js"></script>
+<script src="data/diag_table.js"></script>
+<script src="data/library.js"></script>
 <script src="assets/js/acronyms.js"></script>
 <script src="assets/js/charts.js"></script>
 <script src="assets/js/openai.js"></script>
@@ -97,6 +114,7 @@
 <script src="assets/js/practice.js"></script>
 <script src="assets/js/chat.js"></script>
 <script src="assets/js/refpage.js"></script>
+<script src="assets/js/library.js"></script>
 <script src="assets/js/lab.js"></script>
 <script src="assets/js/effects.js"></script>
 </body>

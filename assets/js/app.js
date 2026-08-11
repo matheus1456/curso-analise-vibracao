@@ -70,30 +70,157 @@
     document.getElementById("sidebar-overlay").classList.toggle("open");
   };
 
-  // Tabela de Diagnóstico Rápido (referência visual SKF) — modal com zoom simples,
-  // acessível de qualquer página do curso via botão flutuante ou menu rápido.
-  let diagTableZoom = 1;
+  // Tabela de Diagnóstico Rápido (referência SKF) — renderizada como texto nativo
+  // a partir de data/diag_table.js, para permanecer nítida em qualquer nível de
+  // zoom do navegador, ser pesquisável e funcionar em telas pequenas. O pôster
+  // original continua acessível pelo botão "Ver pôster original".
+  // Acessível de qualquer página do curso via botão flutuante ou menu rápido.
+
+  function diagSectionHtml(sec) {
+    const dec = typeof window.decorateAcronyms === "function"
+      ? window.decorateAcronyms
+      : escapeHtml;
+    let h = '<section class="dtm-sec" data-secid="' + escapeHtml(sec.id) + '">';
+    h += '<h3 class="dtm-sec-title" style="border-left-color:' + escapeHtml(sec.color) + '">' +
+         '<span class="dtm-dot" style="background:' + escapeHtml(sec.color) + '"></span>' +
+         dec(sec.title) + "</h3>";
+
+    if (sec.modules && sec.modules.length) {
+      h += '<div class="dtm-modrefs">';
+      sec.modules.forEach(function (m) {
+        h += '<button class="dtm-modref" onclick="goToFromDiag(\'' + escapeHtml(m.id) + '\')">🎓 ' +
+             escapeHtml(m.label) + "</button>";
+      });
+      h += "</div>";
+    }
+    if (sec.summary) h += '<p class="dtm-sec-summary">' + dec(sec.summary) + "</p>";
+
+    (sec.items || []).forEach(function (it) {
+      h += '<div class="dtm-item">';
+      h += '<h4 class="dtm-item-title">' + dec(it.title) + "</h4>";
+      if (it.formula) h += '<div class="dtm-formula">' + dec(it.formula) + "</div>";
+      if (it.bullets && it.bullets.length) {
+        h += "<ul class=\"dtm-list\">";
+        it.bullets.forEach(function (b) { h += "<li>" + dec(b) + "</li>"; });
+        h += "</ul>";
+      }
+      if (it.note) h += '<p class="dtm-note">' + dec(it.note) + "</p>";
+      h += "</div>";
+    });
+
+    if (sec.stages && sec.stages.length) {
+      h += '<div class="dtm-stages">';
+      sec.stages.forEach(function (st) {
+        h += '<div class="dtm-stage">' +
+             '<div class="dtm-stage-name">' + dec(st.stage) + "</div>" +
+             '<div class="dtm-stage-row"><span class="dtm-tag dtm-tag-env">Envelope</span>' +
+             "<p>" + dec(st.envelope) + "</p></div>" +
+             '<div class="dtm-stage-row"><span class="dtm-tag dtm-tag-vel">Velocidade</span>' +
+             "<p>" + dec(st.velocidade) + "</p></div>" +
+             "</div>";
+      });
+      h += "</div>";
+    }
+    h += "</section>";
+    return h;
+  }
+
+  function renderDiagTable() {
+    const body = document.getElementById("dtm-body");
+    const chips = document.getElementById("dtm-chips");
+    if (!body || typeof DIAG_TABLE === "undefined") return;
+    let chipHtml = '<button class="dtm-chip active" data-target="all" onclick="filterDiagTable(\'all\')">Tudo</button>';
+    DIAG_TABLE.forEach(function (sec) {
+      chipHtml += '<button class="dtm-chip" data-target="' + escapeHtml(sec.id) +
+                  '" onclick="filterDiagTable(\'' + escapeHtml(sec.id) + '\')">' +
+                  '<span class="dtm-dot" style="background:' + escapeHtml(sec.color) + '"></span>' +
+                  escapeHtml(sec.title) + "</button>";
+    });
+    if (chips) chips.innerHTML = chipHtml;
+    body.innerHTML = DIAG_TABLE.map(diagSectionHtml).join("");
+  }
+
+  window.filterDiagTable = function (id) {
+    const body = document.getElementById("dtm-body");
+    const search = document.getElementById("dtm-search");
+    if (!body) return;
+    if (search) search.value = "";
+    body.querySelectorAll(".dtm-sec").forEach(function (s) {
+      s.style.display = id === "all" || s.dataset.secid === id ? "" : "none";
+      s.querySelectorAll(".dtm-item, .dtm-stage").forEach(function (el) { el.style.display = ""; });
+    });
+    document.querySelectorAll(".dtm-chip").forEach(function (c) {
+      c.classList.toggle("active", c.dataset.target === id);
+    });
+    const empty = document.getElementById("dtm-empty");
+    if (empty) empty.style.display = "none";
+    body.scrollTop = 0;
+  };
+
+  window.searchDiagTable = function () {
+    const input = document.getElementById("dtm-search");
+    const body = document.getElementById("dtm-body");
+    if (!input || !body) return;
+    const q = input.value.trim().toLowerCase();
+    document.querySelectorAll(".dtm-chip").forEach(function (c) {
+      c.classList.toggle("active", q === "" && c.dataset.target === "all");
+    });
+    let hits = 0;
+    body.querySelectorAll(".dtm-sec").forEach(function (sec) {
+      if (q === "") {
+        sec.style.display = "";
+        sec.querySelectorAll(".dtm-item, .dtm-stage").forEach(function (el) { el.style.display = ""; });
+        hits++;
+        return;
+      }
+      const secTitle = (sec.querySelector(".dtm-sec-title") || {}).textContent || "";
+      const secMatches = secTitle.toLowerCase().indexOf(q) !== -1;
+      let any = secMatches;
+      sec.querySelectorAll(".dtm-item, .dtm-stage").forEach(function (el) {
+        const show = secMatches || el.textContent.toLowerCase().indexOf(q) !== -1;
+        el.style.display = show ? "" : "none";
+        if (show) any = true;
+      });
+      sec.style.display = any ? "" : "none";
+      if (any) hits++;
+    });
+    const empty = document.getElementById("dtm-empty");
+    if (empty) empty.style.display = hits === 0 ? "" : "none";
+  };
+
+  window.goToFromDiag = function (id) {
+    const modal = document.getElementById("diag-table-modal");
+    if (modal && modal.classList.contains("open")) window.toggleDiagTable();
+    if (typeof window.goTo === "function") window.goTo(id);
+  };
+
   window.toggleDiagTable = function () {
     const modal = document.getElementById("diag-table-modal");
     if (!modal) return;
     const opening = !modal.classList.contains("open");
     modal.classList.toggle("open");
     if (opening) {
-      diagTableZoom = 1;
-      const img = document.getElementById("dtm-img");
-      if (img) img.style.transform = "scale(1)";
+      if (!modal.dataset.rendered) {
+        renderDiagTable();
+        modal.dataset.rendered = "1";
+      }
+      const search = document.getElementById("dtm-search");
+      if (search) { search.value = ""; window.searchDiagTable(); }
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
   };
-  window.zoomDiagTable = function (dir) {
-    const img = document.getElementById("dtm-img");
-    if (!img) return;
-    if (dir === 0) diagTableZoom = 1;
-    else diagTableZoom = Math.max(0.5, Math.min(3, diagTableZoom + dir * 0.25));
-    img.style.transform = "scale(" + diagTableZoom + ")";
+
+  window.toggleDiagPoster = function () {
+    const wrap = document.getElementById("dtm-poster");
+    const btn = document.getElementById("dtm-poster-btn");
+    if (!wrap) return;
+    const open = wrap.style.display === "";
+    wrap.style.display = open ? "none" : "";
+    if (btn) btn.textContent = open ? "🖼️ Ver pôster original" : "✕ Ocultar pôster";
   };
+
   document.addEventListener("keydown", function (ev) {
     if (ev.key === "Escape") {
       const modal = document.getElementById("diag-table-modal");
@@ -127,6 +254,13 @@
     refLi.dataset.id = "reference";
     refLi.innerHTML = '<span class="badge">📖</span><span>Consulta Rápida</span>';
     ul.appendChild(refLi);
+
+    const libLi = document.createElement("li");
+    libLi.className = "modlink lib-link" + (currentId === "library" ? " active" : "");
+    libLi.dataset.id = "library";
+    libLi.innerHTML = '<span class="badge">📚</span><span>Biblioteca</span>' +
+      (window.LIBRARY ? '<span class="practice-mini-count">' + LIBRARY.length + "</span>" : "");
+    ul.appendChild(libLi);
 
     const sep = document.createElement("li");
     sep.className = "sidebar-sep";
@@ -316,6 +450,49 @@
     container.querySelectorAll("input[type='radio']").forEach((inp) => { inp.disabled = true; });
   };
 
+  // Bloco "Referências" ao final de cada módulo. As fontes são derivadas
+  // automaticamente do acervo da Biblioteca (data/library.js): cada item traz o
+  // campo usedIn com os módulos que se apoiaram naquele material. Um módulo pode
+  // ainda declarar refNotes no próprio content.js para detalhar capítulo/página.
+  function renderReferences(m) {
+    if (typeof LIBRARY === "undefined" || !LIBRARY.length) return "";
+    const srcs = LIBRARY.filter((it) => (it.usedIn || []).indexOf(m.id) !== -1);
+    if (!srcs.length) return "";
+    const notes = (m.refNotes || {});
+
+    let h = "<div class='refs-box reveal'>";
+    h += "<h3>📚 Referências deste módulo</h3>";
+    h += "<p class='refs-intro'>Material de origem do conteúdo apresentado aqui. " +
+         "Todos os arquivos estão disponíveis na Biblioteca do curso.</p>";
+    h += "<ul class='refs-list'>";
+    srcs.forEach((it) => {
+      h += "<li class='refs-item'>";
+      h += "<span class='refs-title'>" + escapeHtml(it.title) + "</span>";
+      h += "<span class='refs-pub'>" + escapeHtml(it.publisher) +
+           (it.year ? " · " + escapeHtml(it.year) : "") + "</span>";
+      if (notes[it.id]) h += "<span class='refs-note'>" + escapeHtml(notes[it.id]) + "</span>";
+      h += "<span class='refs-actions'>" +
+           "<a class='refs-link' href='" + escapeHtml(it.file) + "' target='_blank' rel='noopener'>Abrir PDF ↗</a>" +
+           "<button class='refs-link refs-lib' onclick=\"goToLibraryItem('" + escapeHtml(it.id) + "')\">Ver na Biblioteca</button>" +
+           "</span>";
+      h += "</li>";
+    });
+    h += "</ul></div>";
+    return h;
+  }
+
+  window.goToLibraryItem = function (id) {
+    goTo("library");
+    setTimeout(function () {
+      const el = document.getElementById("lib-" + id);
+      if (el && el.scrollIntoView) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("lib-card-highlight");
+        setTimeout(function () { el.classList.remove("lib-card-highlight"); }, 2200);
+      }
+    }, 60);
+  };
+
   function renderModule(m) {
     const progress = loadProgress();
     const idx = ALL_MODULES.findIndex((x) => x.id === m.id);
@@ -350,6 +527,7 @@
         "</ul></div>";
     }
     m.quizzes.forEach((q, qi) => { html += renderQuiz(q, m.id, qi); });
+    html += renderReferences(m);
     const isDone = !!progress[m.id];
     html += "<div class='complete-bar reveal'>" +
       "<div>" + (isDone ? "✅ Módulo concluído" : "Marque este módulo como concluído ao terminar.") + "</div>" +
@@ -427,6 +605,12 @@
       history.replaceState(null, "", "#reference");
       return;
     }
+    if (id === "library") {
+      if (window.renderLibraryPage) window.renderLibraryPage();
+      renderSidebar();
+      history.replaceState(null, "", "#library");
+      return;
+    }
     const m = ALL_MODULES.find((x) => x.id === id);
     renderModule(m);
     renderSidebar();
@@ -446,7 +630,7 @@
   // init
   renderSidebar();
   const hash = location.hash.replace("#", "");
-  if (hash === "practice" || hash === "chat" || hash === "reference" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
+  if (hash === "practice" || hash === "chat" || hash === "reference" || hash === "library" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
     goTo(hash);
   } else {
     renderCover();
