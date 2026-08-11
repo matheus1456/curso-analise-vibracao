@@ -628,11 +628,26 @@
   };
 
   // init
-  renderSidebar();
-  const hash = location.hash.replace("#", "");
-  if (hash === "practice" || hash === "chat" || hash === "reference" || hash === "library" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
-    goTo(hash);
+  // O roteamento inicial precisa acontecer DEPOIS que os scripts das páginas
+  // especiais (practice.js, chat.js, refpage.js, library.js) tiverem sido
+  // carregados — todos vêm depois de app.js no index.html. Sem esperar, abrir o
+  // site direto em uma URL como #library encontra window.renderLibraryPage
+  // ainda indefinido e a área de conteúdo fica em branco.
+  function init() {
+    renderSidebar();
+    const hash = location.hash.replace("#", "");
+    if (hash === "practice" || hash === "chat" || hash === "reference" || hash === "library" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
+      goTo(hash);
+    } else {
+      renderCover();
+    }
+  }
+  // No navegador, os scripts no fim do <body> rodam com readyState "loading";
+  // adiamos até DOMContentLoaded. Nos testes em Node (DOM simulado, sem
+  // readyState) a inicialização acontece na hora, como antes.
+  if (typeof document.readyState === "string" && document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else {
-    renderCover();
+    init();
   }
 })();
