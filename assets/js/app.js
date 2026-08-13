@@ -243,12 +243,6 @@
       (practiceDone ? '<span class="practice-mini-count">' + practiceDone + '/' + (window.CASES ? CASES.length : 10) + '</span>' : "");
     ul.appendChild(practiceLi);
 
-    const chatLi = document.createElement("li");
-    chatLi.className = "modlink chat-link" + (currentId === "chat" ? " active" : "");
-    chatLi.dataset.id = "chat";
-    chatLi.innerHTML = '<span class="badge">💬</span><span>Chat com IA</span>';
-    ul.appendChild(chatLi);
-
     const refLi = document.createElement("li");
     refLi.className = "modlink ref-link" + (currentId === "reference" ? " active" : "");
     refLi.dataset.id = "reference";
@@ -261,12 +255,6 @@
     libLi.innerHTML = '<span class="badge">📚</span><span>Biblioteca</span>' +
       (window.LIBRARY ? '<span class="practice-mini-count">' + LIBRARY.length + "</span>" : "");
     ul.appendChild(libLi);
-
-    const asstLi = document.createElement("li");
-    asstLi.className = "modlink asst-link" + (currentId === "assistant" ? " active" : "");
-    asstLi.dataset.id = "assistant";
-    asstLi.innerHTML = '<span class="badge">🧮</span><span>Calculadora de Diagnóstico</span>';
-    ul.appendChild(asstLi);
 
     const sep = document.createElement("li");
     sep.className = "sidebar-sep";
@@ -560,7 +548,6 @@
     html += "<div class='cover-btn-row'>" +
       "<button class='start-btn' onclick=\"goTo('m0')\">Começar o curso →</button>" +
       "<button class='start-btn secondary' onclick=\"goTo('practice')\">🧪 Praticar com casos reais →</button>" +
-      "<button class='start-btn secondary' onclick=\"goTo('chat')\">💬 Tirar dúvidas com a IA →</button>" +
       "<button class='start-btn secondary' onclick=\"goTo('reference')\">📖 Consulta rápida →</button>" +
       "</div>";
     // Um cartão por trilha temática, e dentro de cada cartão os módulos ainda
@@ -599,12 +586,6 @@
       history.replaceState(null, "", "#practice");
       return;
     }
-    if (id === "chat") {
-      if (window.renderChatPage) window.renderChatPage();
-      renderSidebar();
-      history.replaceState(null, "", "#chat");
-      return;
-    }
     if (id === "reference") {
       if (window.renderReferencePage) window.renderReferencePage();
       renderSidebar();
@@ -615,12 +596,6 @@
       if (window.renderLibraryPage) window.renderLibraryPage();
       renderSidebar();
       history.replaceState(null, "", "#library");
-      return;
-    }
-    if (id === "assistant") {
-      if (window.renderAssistantPage) window.renderAssistantPage();
-      renderSidebar();
-      history.replaceState(null, "", "#assistant");
       return;
     }
     const m = ALL_MODULES.find((x) => x.id === id);
@@ -641,14 +616,14 @@
 
   // init
   // O roteamento inicial precisa acontecer DEPOIS que os scripts das páginas
-  // especiais (practice.js, chat.js, refpage.js, library.js) tiverem sido
+  // especiais (practice.js, refpage.js, library.js) tiverem sido
   // carregados — todos vêm depois de app.js no index.html. Sem esperar, abrir o
   // site direto em uma URL como #library encontra window.renderLibraryPage
   // ainda indefinido e a área de conteúdo fica em branco.
   function init() {
     renderSidebar();
     const hash = location.hash.replace("#", "");
-    if (hash === "practice" || hash === "chat" || hash === "reference" || hash === "library" || hash === "assistant" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
+    if (hash === "practice" || hash === "reference" || hash === "library" || (hash && ALL_MODULES.find((x) => x.id === hash))) {
       goTo(hash);
     } else {
       renderCover();

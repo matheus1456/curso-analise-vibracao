@@ -1,6 +1,6 @@
 # Análise de Vibração — Curso Interativo
 
-Site estático (sem servidor/back-end necessário) para o curso **"Análise de Vibração em Máquinas Rotativas — Formação para Engenheiro de Confiabilidade"**, com 37 módulos do nível básico ao avançado organizados em três trilhas — **Análise de Vibração I, II e III** (19 módulos), **Análise de Falhas - Rolamentos** (6 módulos, base SKF) e **Engenheiro de Lubrificação** (12 módulos, base ICML/Noria/Lubrin) —, todos os 107 quizzes do curso em formato de **múltipla escolha com correção instantânea**, tabelas de normas ISO 10816, mais de 50 diagramas/gráficos ilustrativos + 18 fotos reais de falhas de rolamentos, vídeo-aulas por módulo geradas por IA (NotebookLM), uma página de prática de diagnóstico com 32 casos de espectro + 18 casos de identificação por foto real + 19 casos de análise de óleo (incluindo **laudos de análise de óleo completos**, estilo LUBRIN/PURILUB, e exercícios visuais de ferrografia analítica), percentual de conclusão por trilha no menu lateral, tooltips explicativos ao passar o mouse em siglas técnicas (BPFO, GMF, RMS etc.) em todo o site, modo claro/escuro e um chat com IA (ChatGPT/OpenAI) para tirar dúvidas.
+Site estático (sem servidor/back-end necessário) para o curso **"Análise de Vibração em Máquinas Rotativas — Formação para Engenheiro de Confiabilidade"**, com 37 módulos do nível básico ao avançado organizados em três trilhas — **Análise de Vibração I, II e III** (19 módulos), **Análise de Falhas - Rolamentos** (6 módulos, base SKF) e **Engenheiro de Lubrificação** (12 módulos, base ICML/Noria/Lubrin) —, todos os 107 quizzes do curso em formato de **múltipla escolha com correção instantânea**, tabelas de normas ISO 10816, mais de 50 diagramas/gráficos ilustrativos + 18 fotos reais de falhas de rolamentos, vídeo-aulas por módulo geradas por IA (NotebookLM), uma página de prática de diagnóstico com 32 casos de espectro + 18 casos de identificação por foto real + 19 casos de análise de óleo (incluindo **laudos de análise de óleo completos**, estilo LUBRIN/PURILUB, e exercícios visuais de ferrografia analítica), percentual de conclusão por trilha no menu lateral, tooltips explicativos ao passar o mouse em siglas técnicas (BPFO, GMF, RMS etc.) em todo o site e modo claro/escuro.
 
 ## Como abrir
 
@@ -15,12 +15,10 @@ curso-vibracao/
 │   ├── css/
 │   │   ├── style.css       # Visual principal: layout, cores (com variáveis de tema), animações
 │   │   ├── practice.css    # Estilos da página de Prática de Diagnóstico (espectro + tendência)
-│   │   └── chat.css        # Estilos da página de Chat com IA
 │   ├── js/
 │   │   ├── acronyms.js     # Dicionário de siglas técnicas (BPFO, GMF, RMS...) + tooltip ao passar o mouse
 │   │   ├── app.js          # Lógica principal: navegação, render de módulos, quiz, progresso, grupos colapsáveis
 │   │   ├── practice.js     # Página de prática: espectro dinâmico (SVG) + gráfico de tendência histórica (SVG)
-│   │   ├── chat.js         # Página de Chat com IA (chamadas diretas à API da OpenAI/ChatGPT)
 │   │   └── effects.js      # Efeitos visuais: onda animada, scroll-reveal, confete, tema claro/escuro
 │   ├── img/                # 34 gráficos/diagramas + 18 fotos reais de falhas (PNG/JPG), usados nos módulos e na prática
 │   └── video/              # Vídeo-aulas por módulo (MP4), geradas via NotebookLM
@@ -76,13 +74,9 @@ Os cabeçalhos de nível (Básico, Intermediário, Avançado, Referência) na ba
 
 Cada um dos casos práticos com espectro mostra, além do espectro dinâmico (FFT ou forma de onda), um **gráfico de tendência histórica** com as últimas 6 medições e faixas de alerta/perigo baseadas na ISO 10816 — simulando um sistema de monitoramento de vibração real, em vez de uma foto única do espectro.
 
-## Chat com IA
-
-A página "Chat com IA" permite tirar dúvidas sobre o conteúdo do curso conversando diretamente com o ChatGPT (OpenAI), com o contexto de vibração/confiabilidade já embutido no prompt do sistema. Funciona com a **chave de API do próprio usuário**:
-
-- A chave é salva apenas no `localStorage` do navegador (`vibcourse_openai_api_key`, compartilhada com a leitura de voz de IA) e usada só para chamar `https://api.openai.com/v1/chat/completions` diretamente do navegador — nenhum servidor deste projeto vê ou armazena a chave.
-- O uso da API é cobrado na conta OpenAI do próprio usuário (não há custo para quem publica o site).
-- É possível trocar ou remover a chave salva a qualquer momento pelo botão "Trocar/remover chave" na própria página de chat.
+> **Nota:** a página "Chat com IA" (conversa livre com ChatGPT/OpenAI sobre o conteúdo do curso) foi
+> removida do site. O restante da leitura em voz alta (motor de voz do navegador) continua funcionando
+> normalmente.
 
 ## Exercícios práticos expandidos (15 casos, com aceleração e envelope)
 
@@ -274,7 +268,7 @@ Os roteiros de narração de cada módulo estão em `data/video_scripts.json`, u
   (`assets/js/charts.js`, `renderSpectrumSVG` → `placeMarkerByIdx`). O elemento de captura de clique recebeu
   `tabindex="0"` e ganha foco visual (`.hover-capture:focus`) ao ser clicado.
 - **Leitura em áudio com voz de IA (opcional)**: a leitura das aulas agora tem dois motores. Se o aluno já configurou
-  uma chave de API da OpenAI (na página Chat com IA), a leitura usa a voz neural da OpenAI (`/v1/audio/speech`,
+  uma chave de API da OpenAI, a leitura usa a voz neural da OpenAI (`/v1/audio/speech`,
   modelo `gpt-4o-mini-tts`), muito mais natural que a voz do navegador. Sem chave configurada, ou se a chamada falhar
   (CORS, rede, chave inválida), a leitura cai automaticamente para o motor de voz do navegador (Web Speech API) já
   existente, sem travar o botão. Um selo (`#audio-engine-badge`) indica qual motor está em uso a cada momento
@@ -643,7 +637,10 @@ continuam com `problems: 0`.
 
 
 
-## Rodada N — Calculadora de Diagnóstico (sem IA, offline)
+## Rodada N — Calculadora de Diagnóstico (sem IA, offline) — REMOVIDA na Rodada O
+
+> **Nota (Rodada O):** esta página (`🧮 Calculadora de Diagnóstico`) foi removida do site a pedido do
+> usuário. A seção abaixo fica só como registro histórico do que existiu.
 
 Nova página no menu (`🧮 Calculadora de Diagnóstico`). **Não usa IA e não faz nenhuma requisição de rede** —
 roda inteiramente no navegador, funciona offline e não gera custo de espécie alguma.
@@ -685,3 +682,15 @@ Também lista o que faltou informar para fechar melhor o diagnóstico.
 das 12 tabelas, cada regra de triagem, renderização do formulário e do parecer — e um bloco dedicado a garantir
 que a página não faz nenhuma chamada de rede e que o código não contém resquício de integração com API paga
 (sem `fetch`, sem `XMLHttpRequest`, sem chave, sem nome de modelo).
+
+
+## Rodada O — Vídeos dos Módulos 11-13, remoção do Chat com IA e da Calculadora de Diagnóstico
+
+- **Vídeo-aulas dos Módulos 11, 12 e 13** gerados via NotebookLM e vinculados (`data/video_manifest.json`,
+  `data/content.js`). Restam 11 módulos sem vídeo (m14 a m24) — detalhes em `assets/video/LEIA-ME.txt`.
+- **Removida a página "Chat com IA"** (`assets/js/chat.js`, `assets/css/chat.css`): botão na sidebar, no
+  menu rápido e na tela inicial, script e rota. O curso não faz mais nenhuma chamada a APIs de IA para
+  conversa livre.
+- **Removida a página "🧮 Calculadora de Diagnóstico"** (`assets/js/assistant.js`, `assets/css/assistant.css`,
+  `data/diag_engine.js`): botão, script e rota. A "📊 Tabela de Diagnóstico" (painel flutuante com a tabela
+  SKF em texto pesquisável) **continua no site**, sem alteração.

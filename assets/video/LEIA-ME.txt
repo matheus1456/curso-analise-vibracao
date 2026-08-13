@@ -22,19 +22,20 @@ Prontos e já vinculados no site (data/video_manifest.json):
 - Módulo 8 — assets/video/m8.mp4 ("Análise de Engrenagens", 7:28)
 - Módulo 9 — assets/video/m9.mp4 ("Problemas em Correias", 6:21)
 - Módulo 10 — assets/video/m10.mp4 ("Módulo 10: Máquinas Elétricas", 9:11)
+- Módulo 11 — assets/video/m11.mp4 ("Diagnóstico de Vibração", 7:30)
+  (concluído nesta rodada — 12/08/2026)
+- Módulo 12 — assets/video/m12.mp4 ("Confirmação Diagnóstica", 9:47)
+  (concluído nesta rodada — 12/08/2026)
+- Módulo 13 — assets/video/m13.mp4 ("Módulo 13: Monitoramento", 8:30)
+  (concluído nesta rodada — 12/08/2026)
 
-Pendentes (Módulos 11 a 21, incluindo o Módulo 17 — Glossário Técnico): o
-NotebookLM tem um limite diário de geração de "Resumo em Vídeo" (3
-vídeos/dia). Nesta execução (11/08/2026) o limite diário foi atingido
-logo após concluir os Módulos 9 e 10 — ao tentar gerar o vídeo do Módulo
-11 apareceu a mensagem "Você atingiu seu limite diário do recurso Resumo
-em Vídeo. Volte mais tarde." (provavelmente porque uma execução anterior
-no mesmo dia já havia iniciado a geração do Módulo 9, consumindo 1 dos 3
-vídeos da cota antes desta sessão começar). A fonte de texto do Módulo 11
-já está pronta e inserida no notebook — falta apenas clicar em "Resumo em
-Vídeo" → Gerar quando a cota renovar (~24h). Na próxima execução, o
-mesmo processo pode continuar a partir do Módulo 11 (aproveitando o
-notebook já criado, sem precisar recriar a fonte).
+Pendentes (Módulos 14 a 24): o NotebookLM tem um limite diário de geração
+de "Resumo em Vídeo" (3 vídeos/dia). Nesta execução (12/08/2026) os 3
+vídeos do dia foram usados para concluir os Módulos 11, 12 e 13 — o
+limite diário foi atingido exatamente após o 3º vídeo (nenhuma tentativa
+de gerar um 4º vídeo foi feita nesta rodada). Na próxima execução, o
+processo pode continuar a partir do Módulo 14 (nenhum notebook criado
+ainda para ele — a fonte de texto precisa ser gerada e colada do zero).
 
 Como o processo funciona (para retomar manualmente ou pedir ao assistente):
 1. Abrir notebooklm.google.com (conta Google do usuário, já autenticada).
@@ -44,7 +45,9 @@ Como o processo funciona (para retomar manualmente ou pedir ao assistente):
 4. No painel Estúdio, clicar em "Resumo em Vídeo" → Personalizar:
    - Idioma: português (Brasil) — no dropdown "Selecione o idioma", que
      abre em "English"; a opção fica poucas posições abaixo de "polski"
-     (role a lista até ver "português (Brasil)").
+     (role a lista até ver "português (Brasil)"). ATENÇÃO: ao selecionar
+     o idioma a modal pode rolar/reajustar o layout — tire um novo
+     screenshot antes de clicar no campo de foco seguinte.
    - Formato: Vídeo explicativo
    - Estilo visual: Seleção automática
    - Foco: "Explique este módulo de forma didática, como uma aula técnica
@@ -55,16 +58,18 @@ Como o processo funciona (para retomar manualmente ou pedir ao assistente):
    .mp4 direto para a pasta Downloads do usuário.
 6. Copiar o arquivo baixado para assets/video/mN.mp4 (renomeando).
 7. Adicionar a entrada em data/video_manifest.json, por exemplo:
-   { "m11": "assets/video/m11.mp4" }
+   { "m14": "assets/video/m14.mp4" }
 8. Como data/content.js já é o arquivo final (pós-pipeline de
-   build_site.js + inject_charts.js + inject_summaries.js + add_module18.js),
-   não é necessário re-rodar o pipeline inteiro — basta atualizar o campo
-   "videoUrl" do módulo correspondente diretamente em data/content.js
-   (mesma técnica usada para os Módulos 0-10 até agora), para não correr
-   o risco de perder conteúdo já injetado (gráficos, resumos, Módulo 18).
+   build_site.js + inject_charts.js + inject_summaries.js + add_module18.js
+   + add_bearing_modules.js + add_lube_track.js), não é necessário
+   re-rodar o pipeline inteiro — basta atualizar o campo "videoUrl" do
+   módulo correspondente diretamente em data/content.js (mesma técnica
+   usada para os Módulos 0-13 até agora), para não correr o risco de
+   perder conteúdo já injetado (gráficos, resumos, Módulo 18, módulos de
+   rolamentos e lubrificação).
 
 Notebooks já criados no NotebookLM do usuário (podem ser reaproveitados
-sem precisar recriar a fonte de texto — mas os módulos 0 a 10 abaixo já
+sem precisar recriar a fonte de texto — os módulos 0 a 13 abaixo já
 foram concluídos e vinculados, os notebooks ficam apenas como histórico):
 - Módulo 0: https://notebook.google.com/notebook/5ff5d6dc-0d80-43de-acb1-32145e7e4867
 - Módulo 1: https://notebook.google.com/notebook/158dcc22-4df8-40ff-9211-7090c92fa3c4
@@ -82,40 +87,38 @@ foram concluídos e vinculados, os notebooks ficam apenas como histórico):
 - Módulo 8: https://notebook.google.com/notebook/a6173fc3-9ccc-43bf-b407-09fc5fc7392d
   (concluído — vídeo já baixado e vinculado)
 - Módulo 9: https://notebook.google.com/notebook/cb56eed7-3a43-46e0-814f-ae300475354b
-  (concluído nesta rodada — vídeo já baixado e vinculado)
+  (concluído — vídeo já baixado e vinculado)
 - Módulo 10: https://notebook.google.com/notebook/097fe33f-22d4-4e1c-b303-575b2d430378
-  (concluído nesta rodada — vídeo já baixado e vinculado)
+  (concluído — vídeo já baixado e vinculado)
 - Módulo 11: https://notebook.google.com/notebook/b0827411-95b3-4d7b-b5a4-da49ea6c92d5
-  (fonte já colada, aguardando geração — limite diário atingido antes de
-  conseguir gerar; retomar diretamente clicando em "Resumo em Vídeo" →
-  Gerar assim que a cota renovar, sem precisar recriar a fonte)
+  (concluído nesta rodada — vídeo já baixado e vinculado)
+- Módulo 12: https://notebook.google.com/notebook/676c0935-eda3-4507-984e-8c6c49a860eb
+  (concluído nesta rodada — vídeo já baixado e vinculado)
+- Módulo 13: https://notebook.google.com/notebook/659fcea1-a881-4222-96db-acd5b1a8f04c
+  (concluído nesta rodada — vídeo já baixado e vinculado)
 
-Módulos 12 a 21 (incluindo o Módulo 17 — Glossário Técnico): notebooks
-ainda não criados. Repetir o processo acima para cada um, usando o texto
-de data/content.js como fonte, começando pelo Módulo 12 depois de
-concluir o Módulo 11. Restam 11 módulos pendentes de vídeo (m11 já com
-fonte pronta, mais m12, m13, m14, m15, m16, m17, m18, m19, m20, m21).
+Módulos 14 a 24 (11 módulos): notebooks ainda não criados. Repetir o
+processo acima para cada um, usando o texto de data/content.js como
+fonte, começando pelo Módulo 14 na próxima execução. Fila completa de
+pendentes: m14, m15, m16, m17 (Glossário Técnico), m18, m19, m20, m21,
+m22, m23, m24.
 
-ATUALIZAÇÃO (Rodada K): o curso ganhou 2 módulos novos, ainda sem vídeo
-e sem notebook criado — Módulo 22 (Boas Práticas de Montagem e Guia de
-Solução de Problemas em Rolamentos) e Módulo 23 (Técnicas Complementares
-de Monitoramento de Condição).
+ATUALIZAÇÃO (Rodada K): o curso ganhou 2 módulos novos — Módulo 22 (Boas
+Práticas de Montagem e Guia de Solução de Problemas em Rolamentos) e
+Módulo 23 (Técnicas Complementares de Monitoramento de Condição).
 
-ATUALIZAÇÃO (Rodada L): mais 1 módulo novo, também sem vídeo — Módulo 24
-(Designação de Rolamentos, Folga, Ajustes e Montagem/Desmontagem).
-Total de módulos na trilha de Vibração/Rolamentos agora é 25 (m0 a m24).
-Ao retomar a geração de vídeos, a fila completa de pendentes é:
-m11 (fonte já colada no notebook, só falta gerar), m12, m13, m14, m15,
-m16, m17, m18, m19, m20, m21, m22, m23 e m24 — 14 módulos.
+ATUALIZAÇÃO (Rodada L): mais 1 módulo novo — Módulo 24 (Designação de
+Rolamentos, Folga, Ajustes e Montagem/Desmontagem).
+Total de módulos na trilha de Vibração/Rolamentos: 25 (m0 a m24).
 
 IMPORTANTE — dois formatos de vídeo neste projeto:
 
 1) Pacote .zip completo (entregue ao usuário): vídeos em resolução cheia,
-   1280x720, de 19 a 44 MB cada. É o arquivo original baixado do
+   1280x720, de 19 a 47 MB cada. É o arquivo original baixado do
    NotebookLM.
 
 2) Pasta curso-vibracao-site (versão publicada no GitHub): os MESMOS
-   vídeos recodificados para 960x540, entre 4,9 e 13 MB cada, porque o
+   vídeos recodificados para 960x540, entre 4,9 e 14,5 MB cada, porque o
    GitHub recusa arquivos acima de 25 MB.
 
 Ao gerar um vídeo novo, é preciso fazer as DUAS coisas: colocar o
@@ -128,3 +131,7 @@ comprimida para a pasta publicada. Comando usado na recodificação:
 Esquecer o passo 2 foi exatamente o motivo de os vídeos dos Módulos 6 a
 10 não aparecerem no site publicado até a Rodada L, mesmo já estando
 corretamente referenciados em data/content.js e video_manifest.json.
+Nesta rodada (12/08/2026), os Módulos 11, 12 e 13 já foram entregues com
+os dois formatos: assets/video/mN.mp4 nesta pasta (curso-vibracao-site)
+está na versão comprimida (960x540); o zip completo entregue ao usuário
+nesta execução contém as versões originais em resolução cheia.
