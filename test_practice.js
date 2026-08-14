@@ -304,6 +304,6 @@ let allNewCasesOk = true;
   if (h.includes("undefined") || h.includes("[object Object]")) { console.log("PROBLEM in", id); allNewCasesOk = false; }
 });
 console.log("Os 9 novos casos (lc11-lc19) renderizam sem problemas:", allNewCasesOk);
-console.log("LUBE_CASES agora com 19 casos:", context.LUBE_CASES.length === 19);
+console.log("LUBE_CASES agora com 21 casos:", context.LUBE_CASES.length === 21);
 
 console.log("\\nDONE");

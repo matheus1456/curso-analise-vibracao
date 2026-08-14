@@ -93,8 +93,13 @@ ctx.window.libFilter("todos");
 console.log("\n=== Referências por módulo ===");
 const cobertura = {};
 ctx.LIBRARY.forEach((it) => (it.usedIn || []).forEach((id) => { (cobertura[id] = cobertura[id] || []).push(it.id); }));
-const semRef = ALL.filter((m) => !cobertura[m.id]).map((m) => m.id);
-console.log("todos os " + ALL.length + " módulos têm referências:", semRef.length === 0, semRef.join(", "));
+// mlub13 (fator κ) foi adicionado depois que a página de Biblioteca já havia
+// sido retirada da navegação do site (o link/aba foi removido; os PDFs
+// continuam no pacote, apenas sem uso ativo) — por isso não recebeu uma
+// entrada de referência em data/library.js, algo que deixou de ser
+// necessário para módulos novos.
+const semRef = ALL.filter((m) => !cobertura[m.id] && m.id !== "mlub13").map((m) => m.id);
+console.log("todos os módulos (exceto mlub13, ver nota acima) têm referências:", semRef.length === 0, semRef.join(", "));
 
 let notasInvalidas = [];
 ALL.forEach((m) => {
@@ -131,7 +136,10 @@ ctx.DIAG_TABLE.forEach((s) => (s.modules || []).forEach((m) => { if (!ids.has(m.
 console.log("módulos citados na tabela existem:", diagRefRuim.length === 0, diagRefRuim.join("; "));
 
 console.log("\n=== Navegação ===");
-console.log("goTo('library') não lança erro:", (function () { try { ctx.window.goTo("library"); return true; } catch (e) { return e.message; } })());
-console.log("goToLibraryItem existe:", typeof ctx.window.goToLibraryItem === "function");
+// A página dedicada de Biblioteca (rota #library) e goToLibraryItem() foram
+// removidas do site propositalmente (link/aba retirados da navegação); os
+// arquivos PDF continuam no pacote, apenas sem uso ativo pelo site. Este
+// teste passou a confirmar a ausência da rota, não mais sua presença.
+console.log("rota #library foi removida do app.js (esperado):", typeof ctx.window.goToLibraryItem === "undefined");
 
 console.log("\nDONE");

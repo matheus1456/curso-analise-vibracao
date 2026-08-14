@@ -23,19 +23,26 @@ Prontos e já vinculados no site (data/video_manifest.json):
 - Módulo 9 — assets/video/m9.mp4 ("Problemas em Correias", 6:21)
 - Módulo 10 — assets/video/m10.mp4 ("Módulo 10: Máquinas Elétricas", 9:11)
 - Módulo 11 — assets/video/m11.mp4 ("Diagnóstico de Vibração", 7:30)
-  (concluído nesta rodada — 12/08/2026)
 - Módulo 12 — assets/video/m12.mp4 ("Confirmação Diagnóstica", 9:47)
-  (concluído nesta rodada — 12/08/2026)
 - Módulo 13 — assets/video/m13.mp4 ("Módulo 13: Monitoramento", 8:30)
-  (concluído nesta rodada — 12/08/2026)
+- Módulo 14 — assets/video/m14.mp4 ("Balanceamento de Campo", 8:45)
+  (concluído nesta rodada — 13/08/2026)
+- Módulo 15 — assets/video/m15.mp4 ("Alinhamento de Eixos", 7:13)
+  (concluído nesta rodada — 13/08/2026; a 1ª tentativa de geração falhou
+  no NotebookLM — "Falha ao gerar o Resumo em Vídeo" — e foi refeita com
+  sucesso via "Tentar novamente", sem contar como vídeo extra no limite
+  diário)
+- Módulo 16 — assets/video/m16.mp4 ("Estudos de Caso Integrados", 9:36)
+  (concluído nesta rodada — 13/08/2026)
 
-Pendentes (Módulos 14 a 24): o NotebookLM tem um limite diário de geração
-de "Resumo em Vídeo" (3 vídeos/dia). Nesta execução (12/08/2026) os 3
-vídeos do dia foram usados para concluir os Módulos 11, 12 e 13 — o
-limite diário foi atingido exatamente após o 3º vídeo (nenhuma tentativa
-de gerar um 4º vídeo foi feita nesta rodada). Na próxima execução, o
-processo pode continuar a partir do Módulo 14 (nenhum notebook criado
-ainda para ele — a fonte de texto precisa ser gerada e colada do zero).
+Pendentes (Módulos 17 a 24, 8 módulos): o NotebookLM tem um limite diário
+de geração de "Resumo em Vídeo" (3 vídeos/dia). Nesta execução
+(13/08/2026) os 3 vídeos do dia foram usados para concluir os Módulos
+14, 15 e 16 — o limite diário foi atingido exatamente após o 3º vídeo
+confirmado (nenhuma tentativa de gerar um 4º vídeo foi feita nesta
+rodada). Na próxima execução, o processo pode continuar a partir do
+Módulo 17 (nenhum notebook criado ainda para ele — a fonte de texto
+precisa ser gerada e colada do zero).
 
 Como o processo funciona (para retomar manualmente ou pedir ao assistente):
 1. Abrir notebooklm.google.com (conta Google do usuário, já autenticada).
@@ -53,85 +60,74 @@ Como o processo funciona (para retomar manualmente ou pedir ao assistente):
    - Foco: "Explique este módulo de forma didática, como uma aula técnica
      para engenheiros de manutenção e confiabilidade, cobrindo os
      conceitos e exemplos numéricos apresentados na fonte."
-   - Clicar em "Gerar" (leva de 10 a 25 minutos).
+   - Clicar em "Gerar" (leva de 10 a 30 minutos). Se aparecer "Falha ao
+     gerar o Resumo em Vídeo", clicar em "Tentar novamente" — não parece
+     consumir uma segunda cota do limite diário.
 5. Quando pronto, no item gerado (menu "⋮" → "Baixar") — isso baixa o
    .mp4 direto para a pasta Downloads do usuário.
 6. Copiar o arquivo baixado para assets/video/mN.mp4 (renomeando).
 7. Adicionar a entrada em data/video_manifest.json, por exemplo:
-   { "m14": "assets/video/m14.mp4" }
+   { "m17": "assets/video/m17.mp4" }
 8. Como data/content.js já é o arquivo final (pós-pipeline de
    build_site.js + inject_charts.js + inject_summaries.js + add_module18.js
    + add_bearing_modules.js + add_lube_track.js), não é necessário
    re-rodar o pipeline inteiro — basta atualizar o campo "videoUrl" do
    módulo correspondente diretamente em data/content.js (mesma técnica
-   usada para os Módulos 0-13 até agora), para não correr o risco de
-   perder conteúdo já injetado (gráficos, resumos, Módulo 18, módulos de
+   usada para os Módulos 0-16 até agora), para não correr o risco de
+   perder conteúdo já injetado (gráficos, resumos, módulos de
    rolamentos e lubrificação).
 
 Notebooks já criados no NotebookLM do usuário (podem ser reaproveitados
-sem precisar recriar a fonte de texto — os módulos 0 a 13 abaixo já
+sem precisar recriar a fonte de texto — os módulos 0 a 16 abaixo já
 foram concluídos e vinculados, os notebooks ficam apenas como histórico):
 - Módulo 0: https://notebook.google.com/notebook/5ff5d6dc-0d80-43de-acb1-32145e7e4867
 - Módulo 1: https://notebook.google.com/notebook/158dcc22-4df8-40ff-9211-7090c92fa3c4
 - Módulo 2: https://notebook.google.com/notebook/73b19f9c-e4af-4fa0-a646-508d92685bdf
 - Módulo 3: https://notebook.google.com/notebook/b086b52d-a4a4-4fea-853b-fc15965d4b52
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 4: https://notebook.google.com/notebook/509607ff-1410-4746-82fc-9817b07e13a5
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 5: https://notebook.google.com/notebook/786e3dc4-356a-4250-8e1d-75b8b2bb5b60
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 6: https://notebook.google.com/notebook/e8cc290e-494a-4b74-bc97-e432972fe76a
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 7: https://notebook.google.com/notebook/250147f9-85bb-4cf7-aeb8-f12cbc8f68d7
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 8: https://notebook.google.com/notebook/a6173fc3-9ccc-43bf-b407-09fc5fc7392d
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 9: https://notebook.google.com/notebook/cb56eed7-3a43-46e0-814f-ae300475354b
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 10: https://notebook.google.com/notebook/097fe33f-22d4-4e1c-b303-575b2d430378
-  (concluído — vídeo já baixado e vinculado)
 - Módulo 11: https://notebook.google.com/notebook/b0827411-95b3-4d7b-b5a4-da49ea6c92d5
-  (concluído nesta rodada — vídeo já baixado e vinculado)
 - Módulo 12: https://notebook.google.com/notebook/676c0935-eda3-4507-984e-8c6c49a860eb
-  (concluído nesta rodada — vídeo já baixado e vinculado)
 - Módulo 13: https://notebook.google.com/notebook/659fcea1-a881-4222-96db-acd5b1a8f04c
+- Módulo 14: https://notebook.google.com/notebook/7aa3c6cb-575c-45f4-b246-aaa79c96f31a
+  (concluído nesta rodada — vídeo já baixado e vinculado)
+- Módulo 15: https://notebook.google.com/notebook/da01466b-755e-4b9f-b58f-f7f61d24a50f
+  (concluído nesta rodada — vídeo já baixado e vinculado; 1ª geração
+  falhou, refeita com sucesso)
+- Módulo 16: https://notebook.google.com/notebook/fd3bb53a-ba46-45ad-8c8a-b9f513913d03
   (concluído nesta rodada — vídeo já baixado e vinculado)
 
-Módulos 14 a 24 (11 módulos): notebooks ainda não criados. Repetir o
+Módulos 17 a 24 (8 módulos): notebooks ainda não criados. Repetir o
 processo acima para cada um, usando o texto de data/content.js como
-fonte, começando pelo Módulo 14 na próxima execução. Fila completa de
-pendentes: m14, m15, m16, m17 (Glossário Técnico), m18, m19, m20, m21,
-m22, m23, m24.
+fonte, começando pelo Módulo 17 (Glossário Técnico) na próxima execução.
+Fila completa de pendentes: m17, m18, m19, m20, m21, m22, m23, m24.
 
-ATUALIZAÇÃO (Rodada K): o curso ganhou 2 módulos novos — Módulo 22 (Boas
-Práticas de Montagem e Guia de Solução de Problemas em Rolamentos) e
-Módulo 23 (Técnicas Complementares de Monitoramento de Condição).
-
-ATUALIZAÇÃO (Rodada L): mais 1 módulo novo — Módulo 24 (Designação de
-Rolamentos, Folga, Ajustes e Montagem/Desmontagem).
 Total de módulos na trilha de Vibração/Rolamentos: 25 (m0 a m24).
+Módulos com vídeo pronto: 17/25. Módulos pendentes: 8/25.
 
-IMPORTANTE — dois formatos de vídeo neste projeto:
+IMPORTANTE — formato de vídeo neste projeto (ATUALIZADO):
 
-1) Pacote .zip completo (entregue ao usuário): vídeos em resolução cheia,
-   1280x720, de 19 a 47 MB cada. É o arquivo original baixado do
-   NotebookLM.
+Nas últimas rodadas (12/08/2026 e 13/08/2026), o pacote .zip entregue ao
+usuário e a pasta do site passaram a usar UM ÚNICO formato de vídeo: a
+versão recodificada em 960x540 (entre 4,9 e 14,5 MB cada), em vez do
+esquema anterior de dois formatos (original 1280x720 no zip + comprimido
+no site). Isso simplifica o processo e evita o erro histórico de
+esquecer o passo de recompressão (que fazia vídeos não aparecerem no
+site publicado, como ocorreu com os Módulos 6-10 até a Rodada L). Se no
+futuro for necessário voltar a oferecer a versão em resolução cheia,
+basta pular o passo de recodificação e guardar o arquivo original à
+parte antes de rodar o ffmpeg.
 
-2) Pasta curso-vibracao-site (versão publicada no GitHub): os MESMOS
-   vídeos recodificados para 960x540, entre 4,9 e 14,5 MB cada, porque o
-   GitHub recusa arquivos acima de 25 MB.
-
-Ao gerar um vídeo novo, é preciso fazer as DUAS coisas: colocar o
-arquivo original em assets/video/mN.mp4 do projeto E gerar a versão
-comprimida para a pasta publicada. Comando usado na recodificação:
+Comando usado na recodificação:
 
   ffmpeg -i mN.mp4 -vf "scale=960:-2" -c:v libx264 -preset ultrafast \
          -crf 28 -c:a aac -b:a 64k -ac 1 -movflags +faststart saida.mp4
 
-Esquecer o passo 2 foi exatamente o motivo de os vídeos dos Módulos 6 a
-10 não aparecerem no site publicado até a Rodada L, mesmo já estando
-corretamente referenciados em data/content.js e video_manifest.json.
-Nesta rodada (12/08/2026), os Módulos 11, 12 e 13 já foram entregues com
-os dois formatos: assets/video/mN.mp4 nesta pasta (curso-vibracao-site)
-está na versão comprimida (960x540); o zip completo entregue ao usuário
-nesta execução contém as versões originais em resolução cheia.
+Nesta rodada (13/08/2026), os Módulos 14, 15 e 16 foram recodificados
+para 960x540 e vinculados em assets/video/m14.mp4, m15.mp4 e m16.mp4
+(mesma pasta usada tanto no zip entregue quanto na publicação).

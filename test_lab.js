@@ -226,4 +226,41 @@ console.log("Pico 7.0 -> RMS = 4.950:", getVal("cv-rms") === "4.950");
 console.log("Pico 7.0 -> Pico-a-pico = 14.000:", getVal("cv-pp") === "14.000");
 console.log("Fator de crista calculado:", getText("cv-crest-out").includes("1.41"));
 
+// --------------------------------------------------------------------------
+// Aba "Lubrificação" (task: calculadora dinâmica, aba nova baseada na
+// planilha "Viscosidade da mistura de óleos" + fator κ/kappa do Módulo L13).
+// --------------------------------------------------------------------------
+console.log("\n--- Aba Lubrificação ---");
+context.window.openLab("mlub13");
+const lubeBtn = (GLOBAL_CLASS_INDEX["lab-tab"] || []).find((e) => e._attrs["data-tab"] === "lube");
+console.log("Aba 'Lubrificação' presente nas abas:", !!lubeBtn);
+lubeBtn.fire("click");
+console.log("Seletor de modo de cálculo presente:", !!GLOBAL_ID_INDEX["lab-lube-mode-select"]);
+
+// Modo "mix" (padrão): 2 componentes, valores da planilha original.
+setAndFire("lb-mix-v1", "57.76");
+setAndFire("lb-mix-q1", "0.65");
+setAndFire("lb-mix-v2", "146.5");
+setAndFire("lb-mix-q2", "0.35");
+console.log("Mistura de óleos calcula um resultado numérico:", /Viscosidade da mistura: \d/.test(getText("lb-mix-out")));
+
+// Trocar para o modo "kappa" e validar a fórmula κ = ν/ν1 e a classificação.
+const lubeModeSelect = GLOBAL_ID_INDEX["lab-lube-mode-select"];
+lubeModeSelect.value = "kappa";
+lubeModeSelect.fire("change");
+console.log("Campos do modo kappa presentes:", !!GLOBAL_ID_INDEX["lb-k-nu1"] && !!GLOBAL_ID_INDEX["lb-k-visc"]);
+setAndFire("lb-k-d", "40");
+setAndFire("lb-k-D", "90");
+setAndFire("lb-k-n", "1780");
+console.log("dm calculado (d=40,D=90) = 65,0 mm:", getText("lb-k-dm-out").includes("65.0"));
+setAndFire("lb-k-nu1", "12");
+setAndFire("lb-k-visc", "32");
+console.log("κ = 32/12 = 2.67:", getText("lb-k-out").includes("2.67"));
+console.log("Classificação de κ na faixa-alvo (1-4):", getText("lb-k-out").includes("Faixa-alvo prática"));
+
+// κ < 0.7 -> deve indicar aditivos EP obrigatórios.
+setAndFire("lb-k-nu1", "50");
+setAndFire("lb-k-visc", "20");
+console.log("κ baixo (0.4) indica filme insuficiente/EP:", getText("lb-k-out").includes("Filme insuficiente"));
+
 console.log("\nDONE");

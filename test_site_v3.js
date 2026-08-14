@@ -131,7 +131,7 @@ console.log("goTo('mlub1') renderiza título correto:", elements["content"]._htm
 // innerHTML/_html), então cada goTo() acumula outra rodada inteira de <li> por
 // cima da anterior — pegamos só os últimos N itens (o total de linhas de UM
 // render completo da sidebar) para checar exclusivamente o render mais recente.
-const SIDEBAR_ITEMS_PER_RENDER = 3 /*fixos*/ + 1 /*separador*/ + 3 /*track-headings*/ + 8 /*level-headings*/ + context.ALL_MODULES.length;
+const SIDEBAR_ITEMS_PER_RENDER = 2 /*fixos: Prática + Consulta Rápida (Biblioteca removida)*/ + 1 /*separador*/ + 3 /*track-headings*/ + 8 /*level-headings*/ + context.ALL_MODULES.length;
 const lastRender = elements["modlist"].children.slice(-SIDEBAR_ITEMS_PER_RENDER);
 const sidebarHtml = lastRender.map((c) => c._html).join("");
 console.log("Sidebar tem as 3 categorias:",
@@ -139,7 +139,7 @@ console.log("Sidebar tem as 3 categorias:",
   sidebarHtml.includes("Análise de Falhas - Rolamentos") &&
   sidebarHtml.includes("Engenheiro de Lubrificação"));
 const lubeModlinks = lastRender.filter((c) => c.className.indexOf("modlink") === 0 && c.dataset && c.dataset.groupkey && c.dataset.groupkey.indexOf("lubrificacao|") === 0);
-console.log("12 módulos de lubrificação no menu:", lubeModlinks.length === 12, "(encontrados:", lubeModlinks.length, ")");
+console.log("13 módulos de lubrificação no menu:", lubeModlinks.length === 13, "(encontrados:", lubeModlinks.length, ")");
 
 // --- teste do novo schema de quiz de múltipla escolha (rodadaJ) ---
 const h_m0 = (() => { context.window.goTo("m0"); return elements["content"]._html; })();
