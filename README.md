@@ -1,6 +1,6 @@
 # Análise de Vibração — Curso Interativo
 
-Site estático (sem servidor/back-end necessário) para o curso **"Análise de Vibração em Máquinas Rotativas — Formação para Engenheiro de Confiabilidade"**, com 37 módulos do nível básico ao avançado organizados em três trilhas — **Análise de Vibração I, II e III** (19 módulos), **Análise de Falhas - Rolamentos** (6 módulos, base SKF) e **Engenheiro de Lubrificação** (12 módulos, base ICML/Noria/Lubrin) —, todos os 107 quizzes do curso em formato de **múltipla escolha com correção instantânea**, tabelas de normas ISO 10816, mais de 50 diagramas/gráficos ilustrativos + 18 fotos reais de falhas de rolamentos, vídeo-aulas por módulo geradas por IA (NotebookLM), uma página de prática de diagnóstico com 32 casos de espectro + 18 casos de identificação por foto real + 19 casos de análise de óleo (incluindo **laudos de análise de óleo completos**, estilo LUBRIN/PURILUB, e exercícios visuais de ferrografia analítica), percentual de conclusão por trilha no menu lateral, tooltips explicativos ao passar o mouse em siglas técnicas (BPFO, GMF, RMS etc.) em todo o site e modo claro/escuro.
+Site estático (sem servidor/back-end necessário) para o curso **"Análise de Vibração em Máquinas Rotativas — Formação para Engenheiro de Confiabilidade"**, com 40 módulos do nível básico ao avançado organizados em três trilhas — **Análise de Vibração I, II e III** (19 módulos), **Análise de Falhas - Rolamentos** (6 módulos, base SKF) e **Engenheiro de Lubrificação** (15 módulos, base ICML/Noria/Lubrin + material SKF de lubrificação e inspeção) —, todos os 143 quizzes do curso em formato de **múltipla escolha com correção instantânea**, tabelas de normas ISO 10816, mais de 50 diagramas/gráficos ilustrativos + 18 fotos reais de falhas de rolamentos, vídeo-aulas por módulo geradas por IA (NotebookLM), uma página de prática de diagnóstico com 38 casos de espectro + 18 casos de identificação por foto real + 26 casos de análise de óleo e lubrificação (incluindo **laudos de análise de óleo completos**, estilo LUBRIN/PURILUB, e exercícios visuais de ferrografia analítica), uma **Consulta Rápida separada em 3 áreas** (Análise de Vibração, Falhas em Rolamentos e Lubrificação), percentual de conclusão por trilha no menu lateral, tooltips explicativos ao passar o mouse em siglas técnicas (BPFO, GMF, RMS etc.) em todo o site e modo claro/escuro.
 
 ## Como abrir
 
@@ -24,7 +24,7 @@ curso-vibracao/
 │   └── video/              # Vídeo-aulas por módulo (MP4), geradas via NotebookLM
 ├── data/
 │   ├── content.js          # Conteúdo estruturado dos 25 módulos da trilha de Vibração/Rolamentos (gerado automaticamente)
-│   ├── cases.js            # 32 casos práticos de espectro (tendência histórica + diagnóstico)
+│   ├── cases.js            # 38 casos práticos de espectro (tendência histórica + diagnóstico)
 │   ├── bearing_failure_cases.js  # 18 casos de identificação por foto real (Análise de Falhas - Rolamentos)
 │   ├── video_manifest.json # Mapeamento módulo → arquivo de vídeo
 │   └── video_scripts.json  # Roteiros de narração usados para gerar os vídeos
@@ -694,3 +694,85 @@ que a página não faz nenhuma chamada de rede e que o código não contém resq
 - **Removida a página "🧮 Calculadora de Diagnóstico"** (`assets/js/assistant.js`, `assets/css/assistant.css`,
   `data/diag_engine.js`): botão, script e rota. A "📊 Tabela de Diagnóstico" (painel flutuante com a tabela
   SKF em texto pesquisável) **continua no site**, sem alteração.
+
+---
+
+## Rodada Q — revisão de conteúdo, exercícios e Consulta Rápida (14/08/2026)
+
+Rodada de revisão disparada por uma releitura dos materiais originais de lubrificação e inspeção
+(apresentações SKF em `.ppt`/`.pdf` fornecidas pelo usuário), comparando-os módulo a módulo com o
+conteúdo já publicado para localizar lacunas.
+
+### 1. Lacunas encontradas nos materiais e o que foi implementado
+
+A comparação apontou dois blocos inteiros do material de origem sem cobertura no curso, além de
+detalhes técnicos ausentes em módulos já existentes:
+
+| Lacuna identificada | Onde foi implementada |
+|---|---|
+| Métodos e dispositivos de aplicação de lubrificante (banho de óleo e regra de nível, circulação, salpico/anel pescador, copo de nível constante, graxeiras e lubrificadores automáticos) | **Módulo L14** (novo) |
+| Preenchimento inicial de graxa (25-35% vedado / 100% + 30-70% aberto) e purga a cada 5-10 relubrificações | **Módulo L14** + complemento no L5 |
+| Condições de validade do diagrama de intervalo de relubrificação (70 °C, lítio/mineral, eixo horizontal) e correções por temperatura e eixo vertical | **Módulo L14** + complemento no L5 |
+| Variante `G = 0,002 × D × B` para autocompensador de rolos com sufixo W33 | **Módulo L14** + complemento no L5 |
+| Seleção prática de graxa: NLGI 1/2/3 por cenário, EP por `C/P < 5`, sólidos por `n·dm < 30.000 mm/min` | **Módulo L14** + complemento no L3 |
+| Compatibilidade com conservantes, vedações de borracha (ACM) e material da gaiola (latão > 100 °C, PA66 > 90 °C) | **Módulo L14** + complemento no L3 |
+| Rota de inspeção sensitiva e processo ODR (vedações, nível, limpeza, Δp de filtro, temperatura com pirômetro, redutores, bombas com gaxeta e copo dosador, acoplamentos, unidades hidráulicas) | **Módulo L15** (novo) |
+
+Trilha de Lubrificação: **13 → 15 módulos**.
+
+### 2. Módulos simplistas expandidos
+
+Auditoria por volume de conteúdo (caracteres, blocos, tabelas, imagens e questões) identificou seis
+módulos de vibração significativamente mais rasos que a média do curso. Todos foram expandidos com
+tabelas de referência, exemplos numéricos resolvidos e novas questões:
+
+| Módulo | Antes | Depois | Principais acréscimos |
+|---|---|---|---|
+| M3 — Sensores e Instrumentação | 3.094 | 9.855 | Comparativo dos 3 transdutores, faixa útil por fixação, escolha de unidade por faixa de frequência, Fmax/resolução/médias, artefato *ski-slope* |
+| M8 — Engrenagens | 3.501 | 8.331 | As 4 frequências do redutor, leitura do espaçamento de bandas laterais, HTF com exemplo resolvido, roteiro de diagnóstico |
+| M10 — Máquinas Elétricas | 2.907 | 7.936 | Teste do corte de energia, tabela de frequências de referência, tabela de diagnóstico elétrico, exemplo completo de barras de rotor, armadilha 2FL × 4×RPM |
+| M11 — Bombas/Ventiladores/Compressores | 3.291 | 7.985 | Cavitação × recirculação × turbulência, surge em compressores, verificação de ressonância com margem de separação |
+| M12 — Forma de Onda, Fase e Órbitas | 2.968 | 8.387 | Configuração da forma de onda, fator de crista e sua armadilha, tabela de fase por defeito, formatos de órbita (incl. *oil whirl*/*oil whip*) |
+| M13 — Programa de Monitoramento | 2.630 | 8.491 | Curva P-F e definição da periodicidade, 4 abordagens de alarme, estrutura do relatório, KPIs do programa |
+
+Total de questões do curso: **112 → 143**.
+
+### 3. Exercícios complementares na Prática de Diagnóstico
+
+Mapeamento de cobertura por módulo revelou temas novos e expandidos sem exercício correspondente.
+Foram adicionados **11 casos**:
+
+- `c33`-`c38` (espectro): artefato *ski-slope* lido como folga; envelope perdido por fixação magnética;
+  ambiguidade 2FL × 4×RPM resolvida pelo corte de energia; ressonância com margem de 4,5%;
+  fator de crista que cai em degradação severa; falha ocorrida entre coletas por periodicidade maior que o intervalo P-F.
+- `lc22`-`lc26` (lubrificação): nível de banho acima do correto; intervalo não corrigido para eixo vertical a 100 °C;
+  gaiola de latão fragilizada por graxa EP com enxofre; copo de nível vazio somado a Δp de filtro subindo;
+  óleo do copo dosador usado como referência errada da condição do mancal.
+
+Casos de espectro: **32 → 38**. Casos de lubrificação: **21 → 26**.
+
+### 4. Consulta Rápida reorganizada em 3 áreas
+
+A página deixou de ser uma lista única de 7 seções e passou a ter **três áreas com abas**, cada uma
+com as tabelas de uso cotidiano do Engenheiro de Confiabilidade (25 seções no total):
+
+- **📈 Análise de Vibração** (10 seções) — diagnóstico por ordem do espectro, bandas laterais,
+  confirmação por fase, discriminadores rápidos de campo, configuração de coleta (Fmax/resolução),
+  sensores e fixação, ISO 10816, leitura combinada do coletor, tolerâncias de alinhamento, conversões.
+- **⚙️ Falhas em Rolamentos** (7 seções) — frequências de defeito, os 4 estágios, modos de falha da
+  ISO 15243, leitura da designação, folga interna radial, vida nominal/κ, referências de temperatura.
+- **🛢️ Lubrificação** (8 seções) — graus ISO VG, seleção de graxa (NLGI/EP/sólidos), quantidade e
+  intervalo de relubrificação com correções, interpretação do fator κ, as 4 verificações de
+  compatibilidade, métodos de aplicação, ISO 4406 e alarmes de análise de óleo.
+
+A aba escolhida é memorizada em `localStorage` e a impressão em PDF gera a área ativa.
+`data/reference.js` passou a expor `REFERENCE.areas[]`, mantendo `REFERENCE.sections` achatado por compatibilidade.
+
+### 5. Testes
+
+Novo arquivo **`test_reference.js`** cobrindo a página reorganizada: estrutura das 3 áreas, coerência
+entre cabeçalho e linhas de cada tabela, renderização apenas da área ativa, troca de aba, persistência
+da preferência e presença do conteúdo essencial de cada área.
+
+Suíte completa (`test_site_v3.js`, `test_lab.js`, `test_practice.js`, `test_diag.js`, `test_reference.js`)
+executada antes e depois da minificação, com `problems: 0`.

@@ -209,7 +209,7 @@ novos.forEach(function (id) {
   }
 });
 console.log("Os 5 novos casos renderizam e estao consistentes:", novosOk, faltando.length ? faltando.join("; ") : "");
-console.log("CASES agora com 32 casos:", context.CASES.length === 32);
+console.log("CASES agora com 38 casos:", context.CASES.length === 38);
 
 console.log("\\n--- Análise de Falhas - Rolamentos ---");
 console.log("BEARING_FAILURE_CASES length:", context.BEARING_FAILURE_CASES.length);
@@ -304,6 +304,6 @@ let allNewCasesOk = true;
   if (h.includes("undefined") || h.includes("[object Object]")) { console.log("PROBLEM in", id); allNewCasesOk = false; }
 });
 console.log("Os 9 novos casos (lc11-lc19) renderizam sem problemas:", allNewCasesOk);
-console.log("LUBE_CASES agora com 21 casos:", context.LUBE_CASES.length === 21);
+console.log("LUBE_CASES agora com 26 casos:", context.LUBE_CASES.length === 26);
 
 console.log("\\nDONE");

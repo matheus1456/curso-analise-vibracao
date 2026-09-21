@@ -139,7 +139,7 @@ console.log("Sidebar tem as 3 categorias:",
   sidebarHtml.includes("Análise de Falhas - Rolamentos") &&
   sidebarHtml.includes("Engenheiro de Lubrificação"));
 const lubeModlinks = lastRender.filter((c) => c.className.indexOf("modlink") === 0 && c.dataset && c.dataset.groupkey && c.dataset.groupkey.indexOf("lubrificacao|") === 0);
-console.log("13 módulos de lubrificação no menu:", lubeModlinks.length === 13, "(encontrados:", lubeModlinks.length, ")");
+console.log("15 módulos de lubrificação no menu:", lubeModlinks.length === 15, "(encontrados:", lubeModlinks.length, ")");
 
 // --- teste do novo schema de quiz de múltipla escolha (rodadaJ) ---
 const h_m0 = (() => { context.window.goTo("m0"); return elements["content"]._html; })();
