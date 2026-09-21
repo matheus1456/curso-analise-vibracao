@@ -5642,7 +5642,7 @@ const COURSE = [
       level: "avançado",
       track: "rolamentos",
     },
-    videoUrl: null,
+    videoUrl: "assets/video/m18.mp4",
   },
   {
     id: "m19",
@@ -5978,7 +5978,7 @@ const COURSE = [
       level: "avançado",
       track: "rolamentos",
     },
-    videoUrl: null,
+    videoUrl: "assets/video/m19.mp4",
     refNotes: {
       "skf-analise-falha":
         "Estatísticas de falha, padrões de pista e zonas de carga.",
@@ -6328,7 +6328,7 @@ const COURSE = [
       level: "avançado",
       track: "rolamentos",
     },
-    videoUrl: null,
+    videoUrl: "assets/video/m20.mp4",
     refNotes: {
       "skf-analise-falha":
         "Classificação ISO 15243: fadiga, desgaste e corrosão, com os respectivos sub-modos.",
@@ -6709,7 +6709,7 @@ const COURSE = [
       level: "avançado",
       track: "rolamentos",
     },
-    videoUrl: null,
+    videoUrl: "assets/video/m21.mp4",
     refNotes: {
       "skf-analise-falha": "Erosão elétrica, deformação plástica e fratura.",
       "skf-treinamento-falhas":
@@ -7378,7 +7378,7 @@ const COURSE = [
       level: "referência",
       track: "vibracao",
     },
-    videoUrl: null,
+    videoUrl: "assets/video/m17.mp4",
     summary: [
       "O glossário técnico reúne, em ordem alfabética, todos os termos e siglas usados ao longo do curso (BPFO, GMF, RMS, Zonas ISO, etc.).",
       "Use esta seção como referência rápida sempre que encontrar uma sigla ou termo técnico que não lembre o significado exato.",
